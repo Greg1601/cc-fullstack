@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+
+    <header class="main-header" id="intro">
+			<div class="container">
+				<div class="table">
+					<div class="header-text">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h1 class="light white">Corse Connexion</h3>
+								<h1 class="white typed">Les offres de nos partenaires</h1>
+								<span class="typed-cursor">|</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</header>
+
+{% endblock %}
+
+{% block intro %}
+
+{% endblock %}
+
+{% block body %}
+
+    {% block offers %}
+        <section id="jobs" class="section gray-bg">
+            <div class="container">
+                <div class="row">
+                    {% for job in jobs %}
+                        <div class="col-md-4">
+                            <div class="jobs text-center">
+                                <div class="cover" style="background:url('{{ job.company.picture }}'); background-size:cover; width: 100%; height: 100%;">
+                                    <div class="overlay text-center">
+                                        <h3 class="white">{{ job.company }}</h3>
+                                        <h5 class="light light-white">{{ job.jobName }}</h5>
+                                    </div>
+                                </div>
+                                <div class="title">
+                                    <h5>{{ job.salary }}</h5>
+                                    <h5 class="muted regular">{{ job.requiredExperience }}</h5>
+                                </div>
+                                <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+{% endblock %}
