@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Corse Connexion</title>
+	<title>Corse Connexion{% block title %}{% endblock %}</title>
 	{# <meta name="description" content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic" />
 	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design" />
 	<meta name="author" content="Luka Cvetinovic for Codrops" /> #}
@@ -52,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/"><img src="img/CC_mini_logo.png" data-active-url="img/CC_mini_logo.png" alt=""></a>
+				<a class="navbar-brand" href={% block logoLink %}"#"{% endblock %}><img src="img/CC_mini_logo.png" data-active-url="img/CC_mini_logo.png" alt=""></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -64,9 +64,9 @@
 						<li><a href="#pricing">Tarifs et Contact</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a></li>
 					{% endblock %}
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
@@ -95,7 +95,7 @@
 						<div class="row">
 							<div class="col-md-12 text-center">
 								<h1 class="light white">Corse Connexion</h3>
-								<h1 class="white typed">Corse Connexion</h1>
+								<h1 class="orange typed">{% block pageTitle %}{% endblock %}</h1>
 								<span class="typed-cursor">|</span>
 							</div>
 						</div>

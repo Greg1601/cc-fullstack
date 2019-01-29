@@ -1,14 +1,31 @@
 {% extends 'base.html.twig' %}
 
+    {% block title %} - Entreprises{% endblock %}
+
     {% block style %} {{ parent() }} {% endblock %}
 
-	{% block navbar %} {{ parent() }} {% endblock %}
+    {% block logoLink %} {{ parent() }} {% endblock %}
+
+	{% block navbar %} 
+    
+        <li><a href="#intro">Home</a></li>
+        <li><a href="#services">Qui sommes nous</a></li>
+        {# <li><a href="#jobs">Offres d'Emploi</a></li> #}
+        <li><a href="#pricing">Tarifs et Contact</a></li>
+        <li><a href="/talent">Espace Candidats</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a></li>
+
+    {% endblock %}
 		
 
     {% block header %}
 
         {{ parent()}}
 
+    {% endblock %}
+
+    {% block pageTitle %}
+        Espace Entreprises
     {% endblock %}
 
     {% block body %}
@@ -178,14 +195,13 @@
         {% endblock %}
 
         {% block offers %}    	
-            <section id="jobs" class="section gray-bg">
+            {# <section id="jobs" class="section gray-bg">
                 <div class="container">
                     <div class="row title text-center">
                         <h2 class="margin-top">Offres d'Emploi</h2>
                         <h4 class="light muted">Nos partenaires recrutent</h4>
                     </div>
                     <div class="row">
-                        {# {% block offers %} #}
                             {% for job in jobs %}
                                     <div class="col-md-4">
                                         <div class="jobs text-center">
@@ -195,7 +211,6 @@
                                                     <h5 class="light light-white">{{ job.jobName }}</h5>
                                                 </div>
                                             </div>
-                                            <!-- <img src="img/team/team3.jpg" alt="Team Image" class="avatar"> -->
                                             <div class="title">
                                                 <h5>{{ job.salary }}</h5>
                                                 <h5 class="muted regular">{{ job.requiredExperience }}</h5>
@@ -204,14 +219,12 @@
                                         </div>
                                     </div>
                             {% endfor %}
-                        {# {% endblock %} #}
                     </div>
                     <div class="row title text-center">
                         <h4 class="light offer-link"><a href="/jobs">Voir toutes les offres</a></h4>
-                        {# <h2 class="margin-top">Voir toutes les offres.</h2> #}
                     </div>
                 </div>
-            </section>
+            </section> #}
         {% endblock %}
 
         {% block pricing %}

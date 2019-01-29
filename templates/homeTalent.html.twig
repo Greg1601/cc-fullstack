@@ -1,0 +1,303 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %} - Talents{% endblock %}
+
+    {% block style %} {{ parent() }} {% endblock %}
+
+    {% block logoLink %} {{ parent() }} {% endblock %}
+
+	{% block navbar %} 
+    
+        <li><a href="#intro">Home</a></li>
+        <li><a href="#services">Qui sommes nous</a></li>
+        <li><a href="#jobs">Offres d'Emploi</a></li>
+        <li><a href="#pricing">Tarifs et Contact</a></li>
+        <li><a href="/pro">Espace Entreprises</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a></li>
+
+    {% endblock %}
+		
+
+    {% block header %}
+
+        {{ parent()}}
+
+    {% endblock %}
+
+    {% block pageTitle %}
+        Espace Talents
+    {% endblock %}
+
+    {% block body %}
+        {% block intro %}
+	         <section>
+                <div class="cut cut-top"></div>
+                <!-- <div class="container">
+                    <div class="row intro-tables">
+                        <div class="col-md-4">
+                            <div class="intro-table intro-table-first">
+                                <h5 class="white heading">Today's Schedule</h5>
+                                <div class="owl-carousel owl-schedule bottom">
+                                    <div class="item">
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Early Exercise</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Muscle Building</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Cardio</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Early Exercise</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Muscle Building</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Cardio</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Early Exercise</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Muscle Building</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-6">
+                                                <h5 class="regular white">Cardio</h5>
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <h5 class="white">8:30 - 10:00</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="intro-table intro-table-hover">
+                                <h5 class="white heading hide-hover">Premium Membership</h5>
+                                <div class="bottom">
+                                    <h4 class="white heading small-heading no-margin regular">Register Today</h4>
+                                    <h4 class="white heading small-pt">20% Discount</h4>
+                                    <a href="#" class="btn btn-white-fill expand">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="intro-table intro-table-third">
+                                <h5 class="white heading">Happy Clients</h5>
+                                <div class="owl-testimonials bottom">
+                                    <div class="item">
+                                        <h4 class="white heading content">I couldn't be more happy with the results!</h4>
+                                        <h5 class="white heading light author">Adam Jordan</h5>
+                                    </div>
+                                    <div class="item">
+                                        <h4 class="white heading content">I can't believe how much better I feel!</h4>
+                                        <h5 class="white heading light author">Greg Pardon</h5>
+                                    </div>
+                                    <div class="item">
+                                        <h4 class="white heading content">Incredible transformation and I feel so healthy!</h4>
+                                        <h5 class="white heading light author">Christina Goldman</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </section> 
+        {% endblock %}
+
+        {% block services %}
+            <section id="services" class="section section-padded">
+                <div class="container">
+                    <div class="row text-center title">
+                        <h2>Services</h2>
+                        <h4 class="light muted">Corse-Connexion vous accompagne dans vos projets numériques.</h4>
+                    </div>
+                    <div class="row services">
+                        <div class="col-md-4">
+                            <div class="service">
+                                <div class="icon-holder">
+                                    <img src="img/icons/web-settings.png" alt="" class="icon">
+                                </div>
+                                <h4 class="heading">Recrutement</h4>
+                                <p class="description">Confiez nous vos besoins, nous avons les talents.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service">
+                                <div class="icon-holder">
+                                    <img src="img/icons/selection.png" alt="" class="icon">
+                                </div>
+                                <h4 class="heading">Elaboration de cahier des charges</h4>
+                                <p class="description">Vous avez un projet? Nous établissons votre cahier des charges en fonction de vos besoins.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service">
+                                <div class="icon-holder">
+                                    <img src="img/icons/hiring.png" alt="" class="icon">
+                                </div>
+                                <h4 class="heading">Offres d'emploi</h4>
+                                <p class="description">Diffusez vos offres directement en ligne sur Corse-Connexion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cut cut-bottom"></div>
+            </section>
+        {% endblock %}
+
+        {% block offers %}    	
+            <section id="jobs" class="section gray-bg">
+                <div class="container">
+                    <div class="row title text-center">
+                        <h2 class="margin-top">Offres d'Emploi</h2>
+                        <h4 class="light muted">Nos partenaires recrutent</h4>
+                    </div>
+                    <div class="row">
+                            {% for job in jobs %}
+                                    <div class="col-md-4">
+                                        <div class="jobs text-center">
+                                            <div class="cover" style="background:url('{{ job.company.picture }}'); background-size:cover; width: 100%; height: 100%;">
+                                                <div class="overlay text-center">
+                                                    <h3 class="white">{{ job.company }}</h3>
+                                                    <h5 class="light light-white">{{ job.jobName }}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="title">
+                                                <h5>{{ job.salary }}</h5>
+                                                <h5 class="muted regular">{{ job.requiredExperience }}</h5>
+                                            </div>
+                                            <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button>
+                                        </div>
+                                    </div>
+                            {% endfor %}
+                    </div>
+                    <div class="row title text-center">
+                        <h4 class="offer-link"><a href="/jobs">Voir toutes les offres</a></h4>
+                    </div>
+                </div>
+            </section>
+        {% endblock %}
+
+        {% block pricing %}
+            <section id="pricing" class="section">
+                <div class="container">
+                    <div class="row title text-center">
+                        <h2 class="margin-top white">Tarifs et Contact</h2>
+                        <!-- <h4 class="light white">Tarifs indicatifs</h4> -->
+                    </div>
+                    <div class="row no-margin">
+                        <div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
+                            <div class="pricing">
+                                <div class="box-main active" data-img="img/pricing1.jpg">
+                                    <h4 class="white">Diffusion d'offre d'emploi</h4>
+                                    <h4 class="white regular light">xx,xx € <span class="small-font">/ semaine</span></h4>
+                                    <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a>
+                                    <i class="info-icon icon_question"></i>
+                                </div>
+                                <div class="box-second active">
+                                    <ul class="white-list text-left">
+                                        <li>Diffusion de votre offre via nos outils</li>
+                                        <li>Visibilité maximale grace au réseau Corse Connexion</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pricing">
+                                <div class="box-main" data-img="img/pricing2.jpg">
+                                    <h4 class="white">Elaboration de cahier des charges</h4>
+                                    <h4 class="white regular light">xx,xx € <span class="small-font">/ jour</span></h4>
+                                    <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a>
+                                    <i class="info-icon icon_question"></i>
+                                </div>
+                                <div class="box-second">
+                                    <ul class="white-list text-left">
+                                        <li>Etude de votre projet</li>
+                                        <li>Réflexion technique</li>
+                                        <li>Rédaction de cahier des charges</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endblock %}
+
+        {% block goldenBook %}
+            <section class="section section-padded blue-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="owl-twitter owl-carousel">
+                                <div class="item text-center">
+                                    <i class="icon fa fa-twitter"></i>
+                                    <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</h4>
+                                    <h4 class="light-white light">#lorem #ipsum #latin</h4>
+                                </div>
+                                <div class="item text-center">
+                                    <i class="icon fa fa-twitter"></i>
+                                    <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+                                    <h4 class="light-white light">#lorem #ipsum #latin</h4>
+                                </div>
+                                <div class="item text-center">
+                                    <i class="icon fa fa-twitter"></i>
+                                    <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h4>
+                                    <h4 class="light-white light">#lorem #ipsum #latin</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endblock %}
+	{% endblock %}
+
+    

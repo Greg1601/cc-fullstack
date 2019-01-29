@@ -154,9 +154,19 @@ header .typed-cursor {
 
 a {
 	text-decoration: none;
-	color: #00a8ff;
+	color: black;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
+}
+
+a:hover {	
+	color: #ff004c;
+	text-decoration:underline;
+}
+
+a:visited {	
+	color: #ffae00;
+	text-decoration:underline;
 }
 /* Navigation Bar ( Navbar ) */
 
@@ -1003,6 +1013,10 @@ footer .social-footer li:hover a {
 	color: white;
 }
 
+.orange {
+	color: #ffae00;
+}
+
 .light-white {
 	color: rgba(255, 255, 255, 0.5);
 }
@@ -1025,12 +1039,6 @@ footer .social-footer li:hover a {
 
 .muted {
 	color: #989da0;
-}
-
-.offer-link {
-	/* margin-top: 20px;  */
-	color: #ffae00;
-	font-weight: bold;
 }
 
 .margin-top {

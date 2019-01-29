@@ -1,3 +1,9 @@
-index:
-   path: /
-   controller: App\Controller\HomeController::index
+job:
+    path: /jobs
+    defaults:
+        _controller: App\Controller\JobController::jobList
+ajax_route:
+    path:     /showJob
+    defaults:
+        _controller: App\Controller\JobController::jobShow
+    methods: [post]
