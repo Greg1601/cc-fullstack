@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block logo %}{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block mobileNav %}{% endblock %}
+
+{% block header %}
+	{# header d'origine à conserver pour copie (l'image de fond du header de la page d'accueil est relié à la classe css main-header ). Le CSS de header a été modifié en .main-header #}
+		{# <header id="intro">
+			<div class="container">
+				<div class="table">
+					<div class="header-text">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h1 class="light white">Corse Connexion</h3>
+								<h1 class="white typed">Corse Connexion</h1>
+								<span class="typed-cursor">|</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header> #}
+		<header class="main-header" id="intro">
+			<div class="container">
+				<div class="table">
+					<div class="header-text">
+						<div class="row">
+							<div class="col-md-12 text-center">
+                                <div class="col-md-12 text-center">
+                                    <img src="img/CC_logo.png" id="homelogo" alt="Corse-Connexion Logo">
+                                </div>
+								<h1 class="white typed">Corse Connexion</h1>
+								{# <span class="typed-cursor">|</span> #}
+								<div class="row title text-center">
+                                    <a href="/talent" class="btn btn-blue homebtn ripple">Talents</a>
+                                    <a href="/pro" class="btn btn-blue homebtn ripple">Entreprises</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	{% endblock %}
+
+	{% block footer %}{% endblock %}
+
+
+	{% block scripts %}
+	
+	<!-- Scripts -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		{# <script src="js/owl.carousel.min.js"></script> #}
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/typewriter.js"></script>
+		<script src="js/jquery.onepagenav.js"></script>
+		<script src="js/main.js"></script>
+
+	{% endblock %}

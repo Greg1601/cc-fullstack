@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\JobOffer;
+use App\Entity\Skill;
 
 class JobController extends AbstractController
 {
@@ -21,8 +22,19 @@ class JobController extends AbstractController
         ->getRepository(JobOffer::class)
         ->findAll();
 
-        // dump($jobs);die;
+        // récupération de tous les élements Skill pour affichage si inscription
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
 
-        return $this->render('offers.html.twig', ['jobs' => $jobs]);
+        // dump($skills);die;
+
+        return $this->render('offers.html.twig', 
+            [
+                'jobs' => $jobs,
+                'skills' => $skills
+            ]
+        );
     }
 }

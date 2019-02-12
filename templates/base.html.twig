@@ -46,14 +46,16 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href={% block logoLink %}"#"{% endblock %}><img src="img/CC_mini_logo.png" data-active-url="img/CC_mini_logo.png" alt=""></a>
-			</div>
+				{% block mobileNav %}
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				{% endblock %}
+				{% block logo %}<a class="navbar-brand" href={% block logoLink %}"#"{% endblock %}><img src="img/CC_mini_logo.png" data-active-url="img/CC_mini_logo.png" alt=""></a>
+			</div>{% endblock %}
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
@@ -94,9 +96,9 @@
 					<div class="header-text">
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<h1 class="light white">Corse Connexion</h3>
-								<h1 class="orange typed">{% block pageTitle %}{% endblock %}</h1>
-								<span class="typed-cursor">|</span>
+								<h1 class="light white">Corse Connexion</h1>
+								<h2 class="orange typed">{% block pageTitle %}{% endblock %}</h2>
+								{# <span class="typed-cursor">|</span> #}
 							</div>
 						</div>
 					</div>
@@ -151,12 +153,14 @@
 		</div>
 	{% endblock %}
 
+	{% block footer %}
+
 	<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 text-center-mobile">
-					<h3 class="white">Pour tout renseignement:</h3>
-					<h5 class="light regular light-white">N'hésitez pas à nous contacter</h5>
+					{# <h3 class="white">Pour tout renseignement:</h3>
+					<h5 class="light regular light-white">N'hésitez pas à nous contacter</h5> #}
 					<a href="#" class="btn btn-blue ripple trial-button">Contact</a>
 				</div>
 				<!-- <div class="col-sm-6 text-center-mobile">
@@ -188,20 +192,25 @@
 		</div>
 	</footer>
 
-	<!-- Holder for mobile navigation -->
-	<div class="mobile-nav">
-		<ul>
-		</ul>
-		<a href="#" class="close-link"><i class="arrow_up"></i></a>
-	</div>
-	<!-- Scripts -->
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/typewriter.js"></script>
-	<script src="js/jquery.onepagenav.js"></script>
-	<script src="js/main.js"></script>
+	{% endblock %}
+	
+		<!-- Holder for mobile navigation -->
+		<div class="mobile-nav">
+			<ul>
+			</ul>
+			<a href="#" class="close-link"><i class="arrow_up"></i></a>
+		</div>
+	
+	{% block scripts %}
+		<!-- Scripts -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/typewriter.js"></script>
+		<script src="js/jquery.onepagenav.js"></script>
+		<script src="js/main.js"></script>
+	{% endblock %}
 </body>
 
 </html>

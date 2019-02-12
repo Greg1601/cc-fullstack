@@ -33,6 +33,21 @@ class Company
      */
     private $jobOffers;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $mail;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone;
+
     public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
@@ -100,5 +115,41 @@ class Company
 
     public function __toString(){
         return $this->name;      
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
     }
 }
