@@ -110,9 +110,7 @@
                             <div class="animated lightSpeedIn">
                                 {% for skill in skills %}
                                         <input type="checkbox" name="skills[]" value="{{ skill.name }}">
-                                        {# <input type="checkbox" id="{{ skill.name }}" name="{{ skill.name }}"> #}
                                         <label for="{{ skill.name }}">{{ skill.name }}</label>
-                                    {# <li class="animated lightSpeedIn" value="{{ skill.name }}"><a href="#">{{ skill.name }}</a></li> #}
                                 {% endfor %}
                             </div>
 							</ul>

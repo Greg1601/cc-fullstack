@@ -49,7 +49,12 @@ class SecurityController extends AbstractController
         $talent->setLocation($request->request->get('location'));
         $talent->setAvatar($request->request->get('avatar'));
         $talent->setCV($request->request->get('cv'));
-        $talent->setIsMobile($request->request->get('mobility'));
+        if ($request->request->get('mobility')) {
+            $talent->setIsMobile($request->request->get('mobility'));
+        }
+        else {
+            $talent->setIsMobile(0);
+        }
         $talent->setLinkedIn($request->request->get('linkedIn'));
 
         $skills = $request->request->get('skills');
