@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Entity\Talent;
 use App\Entity\Skill;
+use App\Entity\Company;
+use App\Entity\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -17,18 +19,16 @@ class SecurityController extends AbstractController
      * @Route("/login", name="login")
      * @Method("POST")
      */
-    public function loginAction(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        dump($_POST);die;
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error
-        ]);
+        return $this->redirectToRoute('404page'); 
+            Response::HTTP_OK
+            ;
     }
 
     /**
@@ -63,7 +63,6 @@ class SecurityController extends AbstractController
             ->getManager()
             ->getRepository(Skill::class)
             ->findOneByName($s);
-            // dump($skill);die;
             $talent->addSkill($skill);
         }
 
@@ -72,11 +71,37 @@ class SecurityController extends AbstractController
         $em->persist($talent);
         $em->flush();
 
-        // Réponse pour validation de la requête renvoyée en Json
-        return $this->json($request->request->get('firstname').' '.$request->request->get('lastname'),
-            Response::HTTP_OK
-        );
+        return $this->redirectToRoute('homeTalent'); 
+                Response::HTTP_OK
+        ;
     }
+
     
+    /**
+     * @Route("/companyRegistration", name="companyRegistration")
+     * @Method("POST")
+     */
+
+    public function companhyRegistration(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $company = new Company;
+        $company->setName($request->request->get('name'));
+        $company->setAddress($request->request->get('address'));
+        $company->setMail($request->request->get('email'));
+        $company->setPhone($request->request->get('phone'));
+        $company->setPassword($encoder->encodePassword($company, $request->request->get('password')));
+        $company->setPicture($request->request->get('picture'));
+        
+        // Génération d'une clé aléatoire pour l'activation du compte
+        // $company->setRandomKey($cle = md5(microtime(TRUE)*100000));
+        $em->persist($company);
+        $em->flush();
+
+        return $this->redirectToRoute('homePro'); 
+                Response::HTTP_OK
+        ;
+    }
 
 }

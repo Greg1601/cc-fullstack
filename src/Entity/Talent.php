@@ -65,9 +65,14 @@ class Talent implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\skill", inversedBy="talents")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Skill", inversedBy="talents")
      */
     private $skills;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
 
     public function __construct()
     {
@@ -232,5 +237,17 @@ class Talent implements UserInterface
     public function eraseCredentials()
     {
     }
+
+    public function __toString(){
+        return $this->getFirstname().' '.$this->getLastName();
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+    
 
 }

@@ -42,18 +42,26 @@ security:
                 providers: [admin, talent, company]
 
         admin:
-            entity: { class: App\Entity\Admin, property: email }
+            entity: { class: App\Entity\Admin, property: mail }
         talent:
-            entity: { class: App\Entity\Talent, property: email }
+            entity: { class: App\Entity\Talent, property: mail }
         Company:
-            entity: { class: App\Entity\Company, property: email }
+            entity: { class: App\Entity\Company, property: mail }
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            anonymous: ~
+            provider: chain_provider
+            form_login:
+                login_path: login
+                check_path: login
+                username_parameter: "email"
+                password_parameter: "password"
+                default_target_path: homePro
+                # csrf_token_generator: security.csrf.token_manager
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:

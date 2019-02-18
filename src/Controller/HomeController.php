@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\JobOffer;
+use App\Entity\Skill;
 
 class HomeController extends AbstractController
 {
@@ -15,7 +16,13 @@ class HomeController extends AbstractController
     public function homeAction()
     {
 
-        return $this->render('homepage.html.twig');
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
+        return $this->render('homepage.html.twig',[
+            'skills' => $skills
+        ]);
     }
 
     /**
@@ -29,12 +36,22 @@ class HomeController extends AbstractController
         ->getManager()
         ->getRepository(JobOffer::class)
         ->findBy(array(), array('id' => 'desc'));
+
+        // récupération de tous les élements Skill pour affichage si inscription
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
         
         // stockage en variable des 3 premiers éléments du tableau récupéré pour affichage sur la page d'accueil (les 3 dernières offres    entrées en BDD seront affichées pour exemple sur la homepage)
         $lastThree = array_slice($jobs, 0, 3, true);
+        
+        dump($_SESSION);die;
 
-        return $this->render('homePro.html.twig');
-        // return $this->render('home.html.twig', ['jobs' => $lastThree]);
+        return $this->render('homePro.html.twig',[
+            'jobs' => $lastThree,
+            'skills' => $skills
+        ]);
     }
 
     /**
@@ -48,12 +65,21 @@ class HomeController extends AbstractController
         ->getManager()
         ->getRepository(JobOffer::class)
         ->findBy(array(), array('id' => 'desc'));
+
+        // récupération de tous les élements Skill pour affichage si inscription
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
         
         // stockage en variable des 3 premiers éléments du tableau récupéré pour affichage sur la page d'accueil (les 3 dernières offres    entrées en BDD seront affichées pour exemple sur la homepage)
         $lastThree = array_slice($jobs, 0, 3, true);
 
         // return $this->render('homePro.html.twig');
-        return $this->render('homeTalent.html.twig', ['jobs' => $lastThree]);
+        return $this->render('homeTalent.html.twig',[
+            'jobs' => $lastThree,
+            'skills' => $skills
+        ]);
     }
 
 }

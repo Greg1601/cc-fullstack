@@ -62,6 +62,11 @@ class JobOffer
      */
     private $company;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $isChecked;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -173,6 +178,22 @@ class JobOffer
         $this->company = $company;
 
         return $this;
+    }
+
+    public function getIsChecked(): ?bool
+    {
+        return $this->isChecked;
+    }
+
+    public function setIsChecked(bool $isChecked): self
+    {
+        $this->isChecked = $isChecked;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 
 }

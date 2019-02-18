@@ -1,6 +1,169 @@
-#easy_admin:
-#    entities:
-#        # List the entity class name you want to manage
-#        - App\Entity\Product
-#        - App\Entity\Category
-#        - App\Entity\User
+easy_admin:
+  site_name: '<img src="..\public\img\CC_mini_logo.png" /> Corse Connexion'
+  entities:
+    
+    Talents:
+      class: App\Entity\Talent
+      disabled_actions: ['new']
+      list:
+          title: Les Talents
+          fields:
+              - id
+              - { property: 'firstname', label: "Prénom" }
+              - { property: 'lastname', label: "Nom" }
+              - { property: 'mail', label: "Email" }
+              - { property: 'skills', label: "Compétences" }
+              - { property: 'location', label: "Ville" }
+              - { property: 'isMobile', label: "Mobile?" }
+              - { property: 'linkedIn', label: "Profil LinkedIn" }
+              - { property: 'cv', label: "CV" }
+              - { property: 'avatar', label: "Avatar" }
+          actions:
+              - { name: 'show', icon: 'info-circle', label: 'Show' }
+              - { name: 'edit', icon: 'pencil', label: 'Edit' }
+              - { name: 'delete', icon: 'trash', label: '' }
+              - { name: 'search', label: 'Rechercher un talent'}
+      form:
+          title: Modifier un Talent
+          fields:
+              - { property: 'firstname', label: "Prénom" }
+              - { property: 'lastname', label: "Nom" }
+              - { property: 'mail', label: "Email" }
+              - { property: 'skills', label: "Compétences" }
+              - { property: 'location', label: "Ville" }
+              - { property: 'isMobile', label: "Mobile?" }
+              - { property: 'linkedIn', label: "Profil LinkedIn" }
+              - { property: 'cv', label: "CV" }
+              - { property: 'avatar', label: "Avatar" }
+      show:
+          title: "Détails du talent"
+          fields:
+              - { property: 'firstname', label: "Prénom" }
+              - { property: 'lastname', label: "Nom" }
+              - { property: 'mail', label: "Email" }
+              - { property: 'skills', label: "Compétences" }
+              - { property: 'location', label: "Ville" }
+              - { property: 'isMobile', label: "Mobile?" }
+              - { property: 'linkedIn', label: "Profil LinkedIn" }
+              - { property: 'cv', label: "CV" }
+              - { property: 'avatar', label: "Avatar" }
+    
+    Administrateurs:
+      class: App\Entity\Admin
+      list:
+          title: Administrateurs
+          fields:
+              - id
+              - { property: 'firstname', label: "Prénom" }
+              - { property: 'lastname', label: "Nom" }
+              - { property: 'mail', label: "Email" }
+          actions:
+              - { name: 'show', icon: 'info-circle', label: 'Show' }
+              - { name: 'edit', icon: 'pencil', label: 'Edit' }
+              - { name: 'delete', icon: 'trash', label: '' }
+              - { name: 'search', label: 'Rechercher un talent'}
+              - { name: 'new', label: "Ajouter un admninistrateur"}
+      form:
+          title: Modifier un Admin
+          fields:
+              - { property: 'firstname', label: "Prénom" }
+              - { property: 'lastname', label: "Nom" }
+              - { property: 'mail', label: "Email" }
+      show:
+          title: "Détails de l'Admin"
+          fields:
+              - { property: 'firstname', label: "Prénom" }
+              - { property: 'lastname', label: "Nom" }
+              - { property: 'mail', label: "Email" }
+        
+    
+    Entreprises:
+      class: App\Entity\Company
+      list:
+          title: Les Entreprises
+          fields:
+              - id
+              - { property: 'name', label: "Nom de l'entreprise" }
+              - { property: 'address', label: "Adresse" }
+              - { property: 'phone', label: "Téléphone" }
+              - { property: 'mail', label: "Email" }
+              - { property: 'picture', type: 'image', label: "Image de l'entreprise" }
+              - { property: 'jobOffers', label: "Offres à pourvoir" }
+          actions:
+              - { name: 'show', icon: 'info-circle', label: 'Show' }
+              - { name: 'edit', icon: 'pencil', label: 'Edit' }
+              - { name: 'delete', icon: 'trash', label: ''}
+              - { name: 'search', label: 'Rechercher une entreprise'}
+      form:
+          title: Modifier une Entreprise
+          fields:
+              - { property: 'name', label: "Nom de l'entreprise" }
+              - { property: 'address', label: "Adresse" }
+              - { property: 'phone', label: "Téléphone" }
+              - { property: 'mail', label: "Email" }
+              - { property: 'picture', label: "Ajouter une image" }
+      show:
+          title: Détails de l'entreprise
+
+    Offres:
+      class: App\Entity\JobOffer
+      list:
+          title: Offres d'emploi
+          fields:
+              - id
+              - { property: 'jobName', label: "Intitulé de l'offre" }
+              - { property: 'company.name', label: "Entreprise" }
+              - { property: 'jobDescription', label: "Détails de l'offre" }
+              - { property: 'jobPlace', label: "Ville" }
+              - { property: 'contact', label: "Email du contact" }
+              - { property: 'salary', label: "Salaire indicatif" }
+              - { property: 'requiredExperience', label: "Expérience requise" }
+              - { property: 'remotePossibility', label: "Télétravail?" }
+              - { property: 'company.picture', label: "Illustration" }
+              - { property: 'isChecked', label: "Vérifiée?" }
+          actions:
+              - { name: 'show', icon: 'info-circle', label: 'Show' }
+              - { name: 'edit', icon: 'pencil', label: 'Edit' }
+              - { name: 'delete', icon: 'trash', label: '' }
+              - { name: 'search', label: "Rechercher une offre d'emploi"}
+              - { name: 'new', label: "Ajouter une offre d'emploi"}
+      form:
+          title: Ajouter ou modifier une offre d'emploi
+          fields:
+              - { property: 'company', label: "Entreprise" }
+              - { property: 'jobName', label: "Intitulé de l'offre" }
+              - { property: 'jobDescription', label: "Détails de l'offre" }
+              - { property: 'jobPlace', label: "Ville" }
+              - { property: 'salary', label: "Salaire indicatif" }
+              - { property: 'contact', label: "Email du contact" }
+              - { property: 'requiredExperience', label: "Expérience requise" }
+              - { property: 'remotePossibility', label: "Télétravail?" }
+              - { property: 'isChecked', label: "Vérifiée?" }
+      show:
+          title: Détails de l'offre
+
+    Competences:
+      class: App\Entity\Skill
+      list:
+          title: Les compétences
+          fields:
+              - id
+              - { property: 'name', label: "Compétence" }
+          actions:
+              - { name: 'show', icon: 'info-circle', label: 'Show' }
+              - { name: 'edit', icon: 'pencil', label: 'Edit' }
+              - { name: 'delete', icon: 'trash', label: '' }
+              - { name: 'search', label: 'Rechercher une compétence'}
+              - { name: 'new', label: 'Ajouter une compétence'}
+      form:
+          title: Ajouter ou modifier une compétence
+          fields:
+              - { property: 'name', label: "Compétence" }
+      show:
+        title: "Détails"
+        fields:
+            - id
+            - { property: 'name', label: "Nom" }
+            - { property: 'talents', label: "Talents" }
+
+

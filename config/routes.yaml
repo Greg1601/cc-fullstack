@@ -1,9 +1,4 @@
-job:
-    path: /jobs
+easyAdmin:
+    path: /admin
     defaults:
-        _controller: App\Controller\JobController::jobList
-ajax_route:
-    path:     /showJob
-    defaults:
-        _controller: App\Controller\JobController::jobShow
-    methods: [post]
+        _controller: EasyAdminBundle/Controller/EasyAdminController.php
