@@ -23,7 +23,7 @@ class HomeController extends AbstractController
 
         $user = $this->getUser();
 
-        return $this->render('homepage.html.twig',[
+        return $this->render('homepages/homepage.html.twig',[
             'skills' => $skills,
             'user' => $user
         ]);
@@ -54,7 +54,7 @@ class HomeController extends AbstractController
         $lastThree = array_slice($jobs, 0, 3, true);
 
         
-        return $this->render('homePro.html.twig',[
+        return $this->render('homepages/homePro.html.twig',[
             'jobs' => $lastThree,
             'skills' => $skills,
             'user' => $user
@@ -85,7 +85,7 @@ class HomeController extends AbstractController
         $user = $this->getUser();
 
         // return $this->render('homePro.html.twig');
-        return $this->render('homeTalent.html.twig',[
+        return $this->render('homepages/homeTalent.html.twig',[
             'jobs' => $lastThree,
             'skills' => $skills,
             'user' => $user

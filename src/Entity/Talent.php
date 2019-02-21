@@ -240,6 +240,7 @@ class Talent implements UserInterface
 
     public function __toString(){
         return $this->getFirstname().' '.$this->getLastName();
+        return $this->getSkills();
     }
 
     public function setUsername(string $username): self

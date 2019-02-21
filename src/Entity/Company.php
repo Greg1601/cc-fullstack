@@ -62,6 +62,7 @@ class Company implements UserInterface
     public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
+        $this->username = $this->getName();
     }
 
     public function getId(): ?int

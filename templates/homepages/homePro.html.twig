@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} - Talents{% endblock %}
+{% block title %} - Entreprises{% endblock %}
 
 {% block style %} {{ parent() }} {% endblock %}
 
@@ -8,12 +8,13 @@
 
 {% block navbar %} 
 
+    {# <li><a href="#intro">Home</a></li> #}
     <li><a href="#services">Qui sommes nous</a></li>
     <li><a href="#jobs">Offres d'Emploi</a></li>
     <li><a href="#pricing">Tarifs et Contact</a></li>
-    <li><a href="/pro">Espace Entreprises</a></li>
+    <li><a href="/talent">Espace Talents</a></li>
     {% if user != null %}
-        <li><a href="/profile">Profil</a></li>
+        <li><a href="/profil">Profil</a></li>
         <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
     {% endif %}
     {% if user == null %}
@@ -31,7 +32,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-    Espace Talents
+    Espace Entreprises
 {% endblock %}
 
 {% block body %}
@@ -201,7 +202,7 @@
     {% endblock %}
 
     {% block offers %}    	
-        <section id="jobs" class="section gray-bg">
+        {# <section id="jobs" class="section gray-bg">
             <div class="container">
                 <div class="row title text-center">
                     <h2 class="margin-top">Offres d'Emploi</h2>
@@ -227,10 +228,10 @@
                         {% endfor %}
                 </div>
                 <div class="row title text-center">
-                    <a href="/jobs" class="btn btn-blue ripple trial-button">Voir toutes les offres</a>
+                    <h4 class="light offer-link"><a href="/jobs">Voir toutes les offres</a></h4>
                 </div>
             </div>
-        </section>
+        </section> #}
     {% endblock %}
 
     {% block pricing %}
@@ -306,6 +307,7 @@
     {% endblock %}
 
     {% block footer %} {{ parent() }} {% endblock %}
+
 {% endblock %}
 
 {% block securityForms %} 
@@ -313,8 +315,9 @@
     {{ parent() }} 
     
     {% block loginRedirectionPath %} 
-        value="{{ path('homeTalent') }}" 
+        value="{{ path('homePro') }}" 
     {% endblock %}
 
 {% endblock %}
+
     

@@ -15,7 +15,7 @@ class ProfileController extends AbstractController
 {
 
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/profil", name="profile")
      * @Method("POST")
      */
 
@@ -32,34 +32,32 @@ class ProfileController extends AbstractController
 
         if ($user = $this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail)) {
 
-            $talent = $user;
-            return $this->render('profileTalent.html.twig', 
-            [
+            $talentSkills = $user->getSkills();
+            
+            return $this->render('profilePages/profileTalent.html.twig', 
+                [
                 'skills' => $skills,
-                'user' => $user,
-                'talent' => $talent           ]
+                'user' => $user
+                        
+                ]
             ); 
             Response::HTTP_OK;
         }
         elseif ($user = $this->getDoctrine()->getManager()->getRepository(Company::Class)->findOneByMail($userMail)) {
 
-            $company = $user;
-            return $this->render('profileCompany.html.twig', 
-            [
-                'skills' => $skills,
-                'company' => $company,
-                'user' => $user             ]
+            return $this->render('profilePages/profileCompany.html.twig', 
+                [
+                'user' => $user            
+                 ]
             ); 
             Response::HTTP_OK;
         }
         else {
 
-            $admin = $user;
-            return $this->render('profileAdmin.html.twig', 
-            [
-                'skills' => $skills,
-                'admin' => $admin,
-                'user' => $user             ]
+            return $this->render('profilePages/profileAdmin.html.twig', 
+                [
+                'user' => $user             
+                ]
             ); 
             Response::HTTP_OK;
         }

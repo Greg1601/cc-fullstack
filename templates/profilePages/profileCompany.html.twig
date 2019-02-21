@@ -82,11 +82,11 @@
                 <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
                 <h3 class="white">Modifier profil Entreprise</h3>
                 <form action="" class="popup-form">
-                    <input type="text" name="name" class="form-control form-white" placeholder="Remplacer {{ user.name }} ?">
-                    <input type="text" name="email" class="form-control form-white" placeholder="Remplacer {{ user.mail }} ?">
-                    <input type="text" name="picture" class="form-control form-white" placeholder="Remplacer le logo de l'entreprise ?">
-                    <input type="text" name="address" class="form-control form-white" placeholder="Remplacer {{ user.address }} ?">
-                    <input type="text" name="phone" class="form-control form-white" placeholder="Remplacer {{ user.phone }} ?">
+                    <input type="text" name="name" class="form-control form-white" value="{{ user.name }}" placeholder="Remplacer {{ user.name }} ?">
+                    <input type="text" name="email" class="form-control form-white" value="{{ user.mail }}" placeholder="Remplacer {{ user.mail }} ?">
+                    <input type="text" name="picture" class="form-control form-white" value="{{ user.picture }}" placeholder="Remplacer le logo de l'entreprise ?">
+                    <input type="text" name="address" class="form-control form-white" value="{{ user.address }}" placeholder="Remplacer {{ user.address }} ?">
+                    <input type="text" name="phone" class="form-control form-white" value="{{ user.phone }}"  placeholder="Remplacer {{ user.phone }} ?">
                     
 
                     {# <div class="dropdown">
@@ -106,7 +106,6 @@
                         </div>
                     </div> #}
                     <button type="submit" class="btn btn-submit" formaction="companyEdit" formmethod="post">Envoyer</button>
-                    <p>Déjà inscrit? <a href="#" data-toggle="modal" data-target="#modal1">Par ici!!!</a>
                     {# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
                 </form>
             </div>

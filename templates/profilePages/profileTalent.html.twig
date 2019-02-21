@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Entreprises{% endblock %}
+
+{% block style %} {{ parent() }} {% endblock %}
+
+{% block logoLink %} {{ parent() }} {% endblock %}
+
+{% block navbar %} 
+
+    
+    <li><a href="/talent">Espace Talents</a></li>
+    <li><a href="/pro">Espace Entreprises</a></li>
+    {% if user != null %}
+        <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+    {% endif %}
+    {% if user == null %}
+        <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+    {% endif %}
+
+{% endblock %}
+    
+
+{% block header %}
+
+    {{ parent()}}
+
+{% endblock %}
+
+{% block pageTitle %}
+    Détails de votre profil
+{% endblock %}
+
+{% block body %}
+
+    <section id="jobs" class="section gray-bg">
+        <div class="container">
+            <div class="text-center">
+                <img class="margin-top" src="" alt="Avatar de {{ user.username }}">
+                <h1>{{ user.username }}</h1>
+            </div>
+            <div class="row text-center profile-details">
+                    <div>
+                        <h3 class="details">Nom:</h3><p>{{ user.lastname }}</p>
+                    </div>
+                    <div>
+                        <h3 class="details">Prénom:</h3><p>{{ user.firstname }}</p>
+                    </div>
+                    <div>
+                        <h3 class="details">Email:</h3><p>{{ user.mail }}</p>
+                    </div>
+                    <div>
+                        <h3 class="details">Commune:</h3><p>{{ user.location }}</p>
+                    </div>
+                    <div>
+                        <h3 class="details">LinkedIn:</h3><p>{{ user.LinkedIn }}</p>
+                    </div>
+                    <div>
+                        <h3 class="details">Compétences:</h3>
+                        {% for skill in user.skills %}
+                            <li> {{ skill.name }} </li>
+                        {% else %}
+                            <li>Aucune compétence mentionnée</li>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        {% if user.isMobile == true %}
+                            <h3 class="details">Mobile sur toute la Corse</h3>
+                        {% else %}
+                            <h3 class="details">Aucune mobilité</h3>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h3 class="details">CV:</h3><img src="{{ user.cv }}" alt="CV de {{ user.username }}"></p>
+                    </div>
+            </div>
+            <div class="row title text-center">
+                <a href="#" data-toggle="modal" data-target="#modalEditTalent" class="btn btn-blue">Modifier vos informations</a>
+            </div>
+        </div>
+    </section>
+
+    {% block footer %} {{ parent() }} {% endblock %}
+
+{% endblock %}
+
+{% block securityForms %}
+    <div class="modal fade" id="modalEditTalent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+                <h3 class="white">Modifier profil Talent</h3>
+                <form action="" class="popup-form">
+                    <input type="text" name="firstname" class="form-control form-white" value="{{ user.firstname }}" placeholder="Remplacer {{ user.firstname }} ?">
+                    <input type="text" name="lastname" class="form-control form-white" value="{{ user.lastname }}" placeholder="Remplacer {{ user.lastname }} ?">
+                    <input type="text" name="email" class="form-control form-white" value="{{ user.mail }}" placeholder="Remplacer {{ user.mail }} ?">
+                    <div class="dropdown">
+                        <button id="dLabel" name="skills" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Compétences
+                        </button>
+                        <div class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
+                        <div class="animated lightSpeedIn">
+                            {% for skill in skills %}
+                                {% if skill in user.skills %}
+                                    <input type="checkbox" name="skills[]" value="{{ skill.name }}" checked>
+                                    <label for="{{ skill.name }}">{{ skill.name }}</label>
+                                {% else %}
+                                    <input type="checkbox" name="skills[]" value="{{ skill.name }}">
+                                    <label for="{{ skill.name }}">{{ skill.name }}</label>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        </ul>
+                    </div>
+                    <input type="text" name="location" class="form-control form-white" value="{{ user.location }}" placeholder="Remplacer {{ user.location }} ?">
+                    <input type="text" name="linkedIn" class="form-control form-white" value="{{ user.linkedIn }}" placeholder="Remplacer {{ user.linkedIn }} ?">
+                    {% if user.isMobile == true %}
+                        <input type="checkbox" name="mobility" checked> Je suis mobile en Corse<br>
+                    {% else %}
+                        <input type="checkbox" name="mobility"> Je suis mobile en Corse<br>
+                    {% endif %}
+
+                    {# <div class="dropdown">
+                        <button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Vos besoins
+                        </button>
+                        <ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
+                            <li class="animated lightSpeedIn"><a href="#">Diffusion d'offre d'emploi</a></li>
+                            <li class="animated lightSpeedIn"><a href="#">Elaboration de cahier des charges</a></li>
+                            <li class="animated lightSpeedIn"><a href="#">Autre demande</a></li>
+                        </ul>
+                    </div>
+                    <div class="checkbox-holder text-left">
+                        <div class="checkbox">
+                            <input type="checkbox" value="None" id="squaredOne" name="check" />
+                            <label for="squaredOne"><span>J'accepte les <strong>conditions générales</strong></span></label>
+                        </div>
+                    </div> #}
+                    <button type="submit" class="btn btn-submit" formaction="talentEdit" formmethod="post">Envoyer</button>
+                    {# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
