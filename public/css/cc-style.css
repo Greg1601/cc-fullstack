@@ -557,6 +557,10 @@ section {
 .jobs .title {
 	margin: 50px 0;
 }
+
+.jobs {
+	font-size: 2em;
+}
 /* Pricing */
 
 #pricing {

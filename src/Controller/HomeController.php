@@ -20,9 +20,14 @@ class HomeController extends AbstractController
         ->getManager()
         ->getRepository(Skill::class)
         ->findAll();
+
+        $user = $this->getUser();
+
         return $this->render('homepage.html.twig',[
-            'skills' => $skills
+            'skills' => $skills,
+            'user' => $user
         ]);
+
     }
 
     /**
@@ -30,6 +35,8 @@ class HomeController extends AbstractController
      */
     public function homeProAction()
     {
+        $user = $this->getUser();
+        // dump($user);die;
 
         // récupération des éléments de JobOffer pour récupérer les derniers créés en priorité.
         $jobs = $this ->getDoctrine()
@@ -45,12 +52,12 @@ class HomeController extends AbstractController
         
         // stockage en variable des 3 premiers éléments du tableau récupéré pour affichage sur la page d'accueil (les 3 dernières offres    entrées en BDD seront affichées pour exemple sur la homepage)
         $lastThree = array_slice($jobs, 0, 3, true);
-        
-        dump($_SESSION);die;
 
+        
         return $this->render('homePro.html.twig',[
             'jobs' => $lastThree,
-            'skills' => $skills
+            'skills' => $skills,
+            'user' => $user
         ]);
     }
 
@@ -74,11 +81,14 @@ class HomeController extends AbstractController
         
         // stockage en variable des 3 premiers éléments du tableau récupéré pour affichage sur la page d'accueil (les 3 dernières offres    entrées en BDD seront affichées pour exemple sur la homepage)
         $lastThree = array_slice($jobs, 0, 3, true);
+        
+        $user = $this->getUser();
 
         // return $this->render('homePro.html.twig');
         return $this->render('homeTalent.html.twig',[
             'jobs' => $lastThree,
-            'skills' => $skills
+            'skills' => $skills,
+            'user' => $user
         ]);
     }
 

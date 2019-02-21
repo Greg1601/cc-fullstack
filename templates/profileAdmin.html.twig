@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Entreprises{% endblock %}
+
+{% block style %} {{ parent() }} {% endblock %}
+
+{% block logoLink %} {{ parent() }} {% endblock %}
+
+{% block navbar %} 
+
+    
+    <li><a href="/talent">Espace Talents</a></li>
+    <li><a href="/pro">Espace Entreprises</a></li>
+    {% if user != null %}
+        <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+    {% endif %}
+    {% if user == null %}
+        <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+    {% endif %}
+
+{% endblock %}
+    
+
+{% block header %}
+
+    {{ parent()}}
+
+{% endblock %}
+
+{% block pageTitle %}
+    Détails de votre profil
+{% endblock %}
+
+{% block body %}
+
+    <section id="jobs" class="section gray-bg">
+        <div class="container">
+            <div class="text-center">
+                <img class="margin-top" src="" alt="Avatar de {{ user.username }}">
+                <h1>{{ user.username }}</h1>
+            </div>
+            <div class="row text-center profile-details">
+                <div>
+                    <h3 class="details">Nom:</h3><p>{{ user.lastname }}</p>
+                </div>
+                <div>
+                    <h3 class="details">Prénom:</h3><p>{{ user.firstname }}</p>
+                </div>
+                <div>
+                    <h3 class="details">Email:</h3><p>{{ user.mail }}</p>
+                </div>
+                <div>
+            </div>
+            <div class="row title text-center">
+                <h4 class="light offer-link btn btn-blue"><a href="/jobs">Modifier vos informations</a></h4>
+            </div>
+        </div>
+    </section>
+
+    {% block footer %} {{ parent() }} {% endblock %}
+
+{% endblock %}
+

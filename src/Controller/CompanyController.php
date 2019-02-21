@@ -5,29 +5,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\JobOffer;
-use App\Entity\Skill;
 
-class JobController extends AbstractController
+class CompanyController extends AbstractController
 {
 
     /**
-     * @Route("/jobs", name="jobList")
+     * @Route("/companyEdit", name="jobLicompanyEditst")
      */
-    public function jobListAction()
+    public function companyEditAction()
     {
         // récupération de tous les éléments de JobOffer pour affichage.
-        $jobs = $this ->getDoctrine()
-        ->getManager()
-        ->getRepository(JobOffer::class)
-        ->findAll();
-
-        // récupération de tous les élements Skill pour affichage si inscription
-        $skills = $this->getDoctrine()
-        ->getManager()
-        ->getRepository(Skill::class)
-        ->findAll();
-
         $user = $this->getUser();
+
+
+        // $jobs = $this ->getDoctrine()
+        // ->getManager()
+        // ->getRepository(JobOffer::class)
+        // ->findAll();
+
+        // // récupération de tous les élements Skill pour affichage si inscription
+        // $skills = $this->getDoctrine()
+        // ->getManager()
+        // ->getRepository(Skill::class)
+        // ->findAll();
+
+        // $user = $this->getUser();
 
         return $this->render('offers.html.twig', 
             [

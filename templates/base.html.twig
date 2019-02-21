@@ -60,11 +60,17 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
 					{% block navbar %}
-						<li><a href="#intro">Qui Sommes Nous?</a></li>
+						{# <li><a href="#intro">Qui Sommes Nous?</a></li>
 						<li><a href="#services">Services</a></li>
 						<li><a href="#jobs">Offres d'Emploi</a></li>
 						<li><a href="#pricing">Tarifs et Contact</a></li>
-						<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion Inscription</a></li>
+						{% if session == true %}
+							<li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+						{% endif %}
+						{% if session == false %}
+							<li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+							<li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+						{% endif %} #}
 					{% endblock %}
 				</ul>
 			</div>
@@ -178,6 +184,7 @@
 								</div>
 							</div> #}
 							{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
+							<input type="hidden" name="_target_path" {% block loginRedirectionPath %}{% endblock %} />
 							<button type="submit" class="btn btn-submit" formaction="login" formmethod="post">Envoyer</button>
 							<p>Pas encore inscrit? <a href="#" data-toggle="modal" data-target="#modalRegistration">Par ici!!!</a>
 							{# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}

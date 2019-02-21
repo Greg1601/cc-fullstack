@@ -12,8 +12,14 @@
     <li><a href="#jobs">Offres d'Emploi</a></li>
     <li><a href="#pricing">Tarifs et Contact</a></li>
     <li><a href="/pro">Espace Entreprises</a></li>
-    <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-    <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+    {% if user != null %}
+        <li><a href="/profile">Profil</a></li>
+        <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+    {% endif %}
+    {% if user == null %}
+        <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+    {% endif %}
 
 {% endblock %}
     
@@ -302,5 +308,13 @@
     {% block footer %} {{ parent() }} {% endblock %}
 {% endblock %}
 
-{% block securityForms %} {{ parent() }} {% endblock %}
+{% block securityForms %} 
+
+    {{ parent() }} 
+    
+    {% block loginRedirectionPath %} 
+        value="{{ path('homeTalent') }}" 
+    {% endblock %}
+
+{% endblock %}
     

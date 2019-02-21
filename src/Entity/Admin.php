@@ -112,7 +112,7 @@ class Admin implements UserInterface
     }
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array('ROLE_ADMIN');
     }
 
     public function eraseCredentials()
