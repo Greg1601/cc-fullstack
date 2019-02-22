@@ -34,7 +34,7 @@ security:
         App\Entity\Company:
             algorithm: bcrypt
         App\Entity\Admin:
-            algorithm: plaintext
+            algorithm: bcrypt
 
     providers:
         chain_provider:
@@ -69,3 +69,6 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profil, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER

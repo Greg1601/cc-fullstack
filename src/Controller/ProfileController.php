@@ -28,6 +28,7 @@ class ProfileController extends AbstractController
         ->findAll();
 
         $user = $this->getUser();
+        
         $userMail=$user->getMail();
 
         if ($user = $this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail)) {
@@ -52,7 +53,8 @@ class ProfileController extends AbstractController
             ); 
             Response::HTTP_OK;
         }
-        else {
+        elseif ($user = $this->getDoctrine()->getManager()->getRepository(Admin::Class)->findOneByMail($userMail)) {
+            // dump($user);die;
 
             return $this->render('profilePages/profileAdmin.html.twig', 
                 [
