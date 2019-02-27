@@ -34,6 +34,10 @@ class ProfileController extends AbstractController
         if ($user = $this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail)) {
 
             $talentSkills = $user->getSkills();
+            // dump($user->getAvatar());die;
+
+
+            //img/users/pictures/a9553b6dc810751e7d6d1b55e4c68574.png
             
             return $this->render('profilePages/profileTalent.html.twig', 
                 [

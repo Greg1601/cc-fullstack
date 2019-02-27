@@ -198,12 +198,12 @@
 					<div class="modal-content modal-popup">
 						<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 						<h3 class="white">Enregistrement Talent</h3>
-						<form action="" class="popup-form">
+						<form action="" class="popup-form" enctype="multipart/form-data">
 							<input type="text" name="lastname" class="form-control form-white" placeholder="Nom">
 							<input type="text" name="firstname" class="form-control form-white" placeholder="Lastname">
 							<input type="text" name="email" class="form-control form-white" placeholder="Email">
-							<input type="password" class="form-control form-white" placeholder="Mot de passe" id="password_talent" required>
-							<input type="password" class="form-control form-white" placeholder="Confirmez le mot de passe" id="confirm_password_talent" required>
+							<input type="password" name="password" class="form-control form-white" placeholder="Mot de passe" id="password_talent" required>
+							<input type="password" name="password" class="form-control form-white" placeholder="Confirmez le mot de passe" id="confirm_password_talent" required>
 
 							<div class="dropdown">
 								<button id="dLabel" name="skills" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -220,10 +220,23 @@
 							</div>
 
 							<input type="text" name="location" class="form-control form-white" placeholder="Commune">
-							<input type="text" name="avatar" class="form-control form-white" placeholder="Avatar">
 							<input type="text" name="cv" class="form-control form-white" placeholder="CV">
 							<input type="text" name="linkedIn" class="form-control form-white" placeholder="Profil LinkedIn">
-							<input type="checkbox" name="mobility" value="1"> Je suis mobile en Corse<br>
+							<div>
+								<label for="mobility">Je suis mobile en Corse</label>
+								<input type="checkbox" name="mobility">
+							</div>
+
+							<div>
+								<label for="remoteOnly">Télétravail seulement</label>
+								<input type="checkbox" class="form-white" name="remoteOnly">
+							</div>
+
+							<div class="form-control form-white file-input">
+								<label for="avatar">Importez une photo ou laissez Corse-Connexion choisir un avatar pour vous:</label>
+								<input type="file" name="avatar" accept="image/png, image/jpeg">
+							</div>
+
 
 
 							{# <div class="dropdown">

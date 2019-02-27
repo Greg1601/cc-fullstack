@@ -15,8 +15,7 @@
     {% if user != null %}
         <li><a href="/profil">Profil</a></li>
         <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
-    {% endif %}
-    {% if user == null %}
+    {% else %}
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
         <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
     {% endif %}
@@ -38,7 +37,7 @@
     {% block intro %}
             <section>
             <div class="cut cut-top"></div>
-            <!-- <div class="container">
+            <div class="container">
                 <div class="row intro-tables">
                     <div class="col-md-4">
                         <div class="intro-table intro-table-first">
@@ -154,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </section> 
     {% endblock %}

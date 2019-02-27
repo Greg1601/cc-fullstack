@@ -35,44 +35,53 @@
 {% block body %}
 
     <section id="jobs" class="section gray-bg">
-        <div class="container">
+        <div class="container profile">
             <div class="text-center">
-                <img class="margin-top" src="" alt="Avatar de {{ user.username }}">
+                <img class="margin-top profile-picture" src="{{ user.avatar }}" alt="Avatar de {{ user.username }}">
                 <h1>{{ user.username }}</h1>
             </div>
-            <div class="row text-center profile-details">
-                    <div>
-                        <h3 class="details">Nom:</h3><p>{{ user.lastname }}</p>
+            <div class="profile-details">
+                    <div class="details">
+                        <p class="profileElement">Nom:</p><p>{{ user.lastname }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Prénom:</h3><p>{{ user.firstname }}</p>
+                    <div class="details">
+                        <p class="profileElement">Prénom:</p><p>{{ user.firstname }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Email:</h3><p>{{ user.mail }}</p>
+                    <div class="details">
+                        <p class="profileElement">Email:</p><p>{{ user.mail }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Commune:</h3><p>{{ user.location }}</p>
+                    <div class="details">
+                        <p class="profileElement">Commune:</p><p>{{ user.location }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">LinkedIn:</h3><p>{{ user.LinkedIn }}</p>
+                    <div class="details">
+                        <p class="profileElement">LinkedIn:</p><p>{{ user.LinkedIn }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Compétences:</h3>
+                    <div class="details">
+                        <p class="profileElement">Compétences:</p>
                         {% for skill in user.skills %}
-                            <li> {{ skill.name }} </li>
+                            <li class="talentSkills"> {{ skill.name }} </li>
                         {% else %}
                             <li>Aucune compétence mentionnée</li>
                         {% endfor %}
                     </div>
-                    <div>
+                    <div class="details">
+                        <p class="profileElement">Mobile en Corse</p>
                         {% if user.isMobile == true %}
-                            <h3 class="details">Mobile sur toute la Corse</h3>
+                            <p>Oui</p>
                         {% else %}
-                            <h3 class="details">Aucune mobilité</h3>
+                            <p>Non</p>
                         {% endif %}
                     </div>
-                    <div>
-                        <h3 class="details">CV:</h3><img src="{{ user.cv }}" alt="CV de {{ user.username }}"></p>
+                    <div class="details">
+                        <p class="profileElement">Télétravail seulement?</p>
+                        {% if user.remoteOnly == true %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p>
+                        {% endif %}
+                    </div>
+                    <div class="details">
+                        <p class="profileElement">CV:</p><img src="{{ user.cv }}" alt="CV de {{ user.username }}"></p>
                     </div>
             </div>
             <div class="row title text-center">
@@ -116,9 +125,15 @@
                     <input type="text" name="location" class="form-control form-white" value="{{ user.location }}" placeholder="Remplacer {{ user.location }} ?">
                     <input type="text" name="linkedIn" class="form-control form-white" value="{{ user.linkedIn }}" placeholder="Remplacer {{ user.linkedIn }} ?">
                     {% if user.isMobile == true %}
-                        <input type="checkbox" name="mobility" checked> Je suis mobile en Corse<br>
+                        <input type="checkbox" name="mobility" checked> Mobile en Corse?<br>
                     {% else %}
-                        <input type="checkbox" name="mobility"> Je suis mobile en Corse<br>
+                        <input type="checkbox" name="mobility"> Mobile en Corse?<br>
+                    {% endif %}
+
+                    {% if user.remoteOnly == true %}
+                        <input type="checkbox" name="remoteOnly" checked> Télétravail seulement?<br>
+                    {% else %}
+                        <input type="checkbox" name="remoteOnly"> Télétravail seulement?<br>
                     {% endif %}
 
                     {# <div class="dropdown">

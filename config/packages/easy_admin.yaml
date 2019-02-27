@@ -1,5 +1,5 @@
 easy_admin:
-  site_name: '<img src="..\public\img\CC_mini_logo.png" /> Corse Connexion'
+  site_name: '<img src="img\CC_mini_logo.png" /> Corse Connexion'
   entities:
     
     Talents:
@@ -15,9 +15,11 @@ easy_admin:
               - { property: 'skills', label: "Compétences" }
               - { property: 'location', label: "Ville" }
               - { property: 'isMobile', label: "Mobile?" }
+              - { property: 'remoteOnly', label: "Télétravail seulement?" }
               - { property: 'linkedIn', label: "Profil LinkedIn" }
               - { property: 'cv', label: "CV" }
               - { property: 'avatar', label: "Avatar" }
+              - { property: 'isChecked', label: "Vérifié?" }
           actions:
               - { name: 'show', icon: 'info-circle', label: 'Show' }
               - { name: 'edit', icon: 'pencil', label: 'Edit' }
@@ -32,9 +34,11 @@ easy_admin:
               - { property: 'skills', label: "Compétences" }
               - { property: 'location', label: "Ville" }
               - { property: 'isMobile', label: "Mobile?" }
+              - { property: 'remoteOnly', label: "Télétravail seulement?" }
               - { property: 'linkedIn', label: "Profil LinkedIn" }
               - { property: 'cv', label: "CV" }
               - { property: 'avatar', label: "Avatar" }
+              - { property: 'isChecked', label: "Vérifié?" }
       show:
           title: "Détails du talent"
           fields:
@@ -44,9 +48,11 @@ easy_admin:
               - { property: 'skills', label: "Compétences" }
               - { property: 'location', label: "Ville" }
               - { property: 'isMobile', label: "Mobile?" }
+              - { property: 'remoteOnly', label: "Télétravail seulement?" }
               - { property: 'linkedIn', label: "Profil LinkedIn" }
               - { property: 'cv', label: "CV" }
               - { property: 'avatar', label: "Avatar" }
+              - { property: 'isChecked', label: "Vérifié?" }
     
     Administrateurs:
       class: App\Entity\Admin

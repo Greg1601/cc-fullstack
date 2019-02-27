@@ -74,9 +74,20 @@ class Talent implements UserInterface
      */
     private $username;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isChecked;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $remoteOnly;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->isChecked = 0;
     }
 
     public function getId(): ?int
@@ -246,6 +257,30 @@ class Talent implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getIsChecked(): ?bool
+    {
+        return $this->isChecked;
+    }
+
+    public function setIsChecked(bool $isChecked): self
+    {
+        $this->isChecked = $isChecked;
+
+        return $this;
+    }
+
+    public function getRemoteOnly(): ?bool
+    {
+        return $this->remoteOnly;
+    }
+
+    public function setRemoteOnly(bool $remoteOnly): self
+    {
+        $this->remoteOnly = $remoteOnly;
 
         return $this;
     }

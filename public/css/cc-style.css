@@ -561,6 +561,32 @@ section {
 .jobs {
 	font-size: 2em;
 }
+
+.profile {
+	border: 1rem solid #ffae00;
+	padding: 1rem;
+}
+
+.profile .details {
+	display: flex;
+	padding-left: 10rem;
+	
+}
+
+.details p {
+	margin-left: 5rem;
+	font-size: 3rem;
+}
+
+.profileElement {
+	font-weight: bold;
+	color: black;
+}
+
+.profile-picture {
+	width: 15%;
+}
+
 /* Pricing */
 
 #pricing {
@@ -784,6 +810,11 @@ footer .social-footer li:hover a {
 	background: rgba(255,255,255,0.2);
 }
 
+.file-input label{
+	font-weight: normal;
+	padding-bottom: 2rem;
+}
+
 /* Popup */
 .modal {
 	padding: 0 25px !important;
@@ -862,6 +893,8 @@ footer .social-footer li:hover a {
 	color: #fff;
 	background: #ffae00;
 }
+
+popup-form 
 
 /* Checkbox */
 
