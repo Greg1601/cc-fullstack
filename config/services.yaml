@@ -30,4 +30,8 @@ services:
     # please note that last definitions always *replace* previous ones
     Symfony\Component\HttpKernel\Profiler\Profiler: '@profiler'
 
+    App\DataFixtures:
+        class: corse-connexion\App\DataFixtures\AppFixtures
+        arguments: ['@doctrine.orm.entity_manager']
+
     
