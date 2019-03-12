@@ -84,16 +84,6 @@ class Talent implements UserInterface
      */
     private $remoteOnly;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isFreelance;
-
     public function __construct()
     {
         $this->skills = new ArrayCollection();
@@ -291,30 +281,6 @@ class Talent implements UserInterface
     public function setRemoteOnly(bool $remoteOnly): self
     {
         $this->remoteOnly = $remoteOnly;
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getIsFreelance(): ?bool
-    {
-        return $this->isFreelance;
-    }
-
-    public function setIsFreelance(bool $isFreelance): self
-    {
-        $this->isFreelance = $isFreelance;
 
         return $this;
     }

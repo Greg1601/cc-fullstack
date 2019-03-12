@@ -13,7 +13,7 @@
         <li><a href="/talent">Espace Candidats</a></li>
         <li><a href="/pro">Espace Entreprises</a></li>
         {% if user != null %}
-            <li><a href="/monProfil">Profil</a></li>
+            <li><a href="/profil">Profil</a></li>
             <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
         {% endif %}
         {% if user == null %}
@@ -49,7 +49,7 @@
                     {% for job in jobs %}
                         <div class="col-md-4">
                             <div class="jobs text-center">
-                                <div class="cover" style="background:url('{{ job.company.picture }}'); background-position: center; background-size:contain; background-repeat: no-repeat;">
+                                <div class="cover" style="background:url('{{ job.company.picture }}'); background-size:cover; width: 100%; height: 100%;">
                                     <div class="overlay text-center">
                                         <h3 class="white">{{ job.company }}</h3>
                                         <h5 class="light light-white">{{ job.jobName }}</h5>
@@ -59,12 +59,7 @@
                                     <h5>{{ job.salary }}</h5>
                                     <h5 class="muted regular">{{ job.requiredExperience }}</h5>
                                 </div>
-                                <form method="post" action="/job" class="inline">
-                                    <input type="hidden" name="id" value="{{ job.id }}">
-                                    <button type="submit" name="submit_param" value="submit_value" class="btn btn-blue-fill">
-                                        Consulter
-                                    </button>
-                                </form>
+                                <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button>
                             </div>
                         </div>
                     {% endfor %}

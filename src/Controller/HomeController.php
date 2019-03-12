@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\JobOffer;
 use App\Entity\Skill;
-use App\Entity\Talent;
 
 class HomeController extends AbstractController
 {
@@ -39,27 +38,24 @@ class HomeController extends AbstractController
         $user = $this->getUser();
         // dump($user);die;
 
-        // récupération des éléments de Talents.
-        $talents = $this->getDoctrine()
+        // récupération des éléments de JobOffer pour récupérer les derniers créés en priorité.
+        $jobs = $this ->getDoctrine()
         ->getManager()
-        ->getRepository(Talent::class)
-        ->findAll();
-
-        // Shuffle de talent
-        shuffle($talents);
-
-        //récupération des 3 derniers éléments du tableau $talentsq mélangé
-        $threeTalents = array_slice($talents, 0, 3, true);
+        ->getRepository(JobOffer::class)
+        ->findBy(array(), array('id' => 'desc'));
 
         // récupération de tous les élements Skill pour affichage si inscription
         $skills = $this->getDoctrine()
         ->getManager()
         ->getRepository(Skill::class)
         ->findAll();
+        
+        // stockage en variable des 3 premiers éléments du tableau récupéré pour affichage sur la page d'accueil (les 3 dernières offres    entrées en BDD seront affichées pour exemple sur la homepage)
+        $lastThree = array_slice($jobs, 0, 3, true);
 
         
         return $this->render('homepages/homePro.html.twig',[
-            'talents' => $threeTalents,
+            'jobs' => $lastThree,
             'skills' => $skills,
             'user' => $user
         ]);
@@ -71,14 +67,11 @@ class HomeController extends AbstractController
     public function homeTalentAction()
     {
 
-        // récupération des éléments de JobOffer.
+        // récupération des éléments de JobOffer pour récupérer les derniers créés en priorité.
         $jobs = $this ->getDoctrine()
         ->getManager()
         ->getRepository(JobOffer::class)
-        ->findAll();
-
-        //shuffle JobOffer
-        shuffle($jobs);
+        ->findBy(array(), array('id' => 'desc'));
 
         // récupération de tous les élements Skill pour affichage si inscription
         $skills = $this->getDoctrine()
@@ -86,14 +79,14 @@ class HomeController extends AbstractController
         ->getRepository(Skill::class)
         ->findAll();
         
-        // stockage en variable des 3 premiers éléments du tableau mélangé pour affichage sur la page d'accueil
-        $threeOffers = array_slice($jobs, 0, 3, true);
+        // stockage en variable des 3 premiers éléments du tableau récupéré pour affichage sur la page d'accueil (les 3 dernières offres    entrées en BDD seront affichées pour exemple sur la homepage)
+        $lastThree = array_slice($jobs, 0, 3, true);
         
         $user = $this->getUser();
 
         // return $this->render('homePro.html.twig');
         return $this->render('homepages/homeTalent.html.twig',[
-            'jobs' => $threeOffers,
+            'jobs' => $lastThree,
             'skills' => $skills,
             'user' => $user
         ]);

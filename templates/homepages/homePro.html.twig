@@ -4,26 +4,24 @@
 
 {% block style %} {{ parent() }} {% endblock %}
 
+{% block logoLink %} {{ parent() }} {% endblock %}
+
 {% block navbar %} 
 
     {# <li><a href="#intro">Home</a></li> #}
-    <li><a href="#services">Services</a></li>
-    <li><a href="#talents">Talents</a></li>
-    <li><a href="#presentation">Qui sommes nous?</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#services">Qui sommes nous</a></li>
+    <li><a href="#jobs">Offres d'Emploi</a></li>
+    <li><a href="#pricing">Tarifs et Contact</a></li>
+    <li><a href="/talent">Espace Talents</a></li>
     {% if user != null %}
-        <li><a href="/monProfil">Mon Profil</a></li>
+        <li><a href="/profil">Profil</a></li>
         <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
     {% endif %}
     {% if user == null %}
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
         <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
     {% endif %}
-    <br>
-    <div class="align-content-end">
-        <a href="/admin" class="other-link">Espace Admin</a>
-        <a href="/talent" class="other-link">Espace Talents</a>
-    </div>
+
 {% endblock %}
     
 
@@ -38,113 +36,126 @@
 {% endblock %}
 
 {% block body %}
-
-   {% block intro %}
+    {% block intro %}
             <section>
             <div class="cut cut-top"></div>
-            <div class="container">
+            <!-- <div class="container">
                 <div class="row intro-tables">
                     <div class="col-md-4">
                         <div class="intro-table intro-table-first">
-                            <h4 class="white heading">Events</h4>
+                            <h5 class="white heading">Today's Schedule</h5>
                             <div class="owl-carousel owl-schedule bottom">
                                 <div class="item">
                                     <div class="schedule-row row">
-                                        <div class="col-xs-12">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
+                                        <div class="col-xs-6">
+                                            <h5 class="regular white">Early Exercise</h5>
                                         </div>
-                                        {# <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
-                                        </div> #}
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8:30 - 10:00</h5>
+                                        </div>
                                     </div>
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">Le 23/04/2019</h5>
+                                            <h5 class="regular white">Muscle Building</h5>
                                         </div>
                                         <div class="col-xs-6 text-right">
-                                            <h5 class="white">8h30 - 10h00</h5>
+                                            <h5 class="white">8:30 - 10:00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
-                                        <div class="col-xs-12 ">
-                                            <h5 class="white">Twitch</h5>
+                                        <div class="col-xs-6">
+                                            <h5 class="regular white">Cardio</h5>
                                         </div>
-                                    </div> 
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8:30 - 10:00</h5>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="item">
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
+                                            <h5 class="regular white">Early Exercise</h5>
                                         </div>
                                         <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
+                                            <h5 class="white">8:30 - 10:00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">23/04/2019</h5>
+                                            <h5 class="regular white">Muscle Building</h5>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8:30 - 10:00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">8:30 - 10:00 sur Twitch</h5>
+                                        <div class="col-xs-6">
+                                            <h5 class="regular white">Cardio</h5>
                                         </div>
-                                    </div> 
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8:30 - 10:00</h5>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="item">
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
+                                            <h5 class="regular white">Early Exercise</h5>
                                         </div>
                                         <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
+                                            <h5 class="white">8:30 - 10:00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">23/04/2019</h5>
+                                            <h5 class="regular white">Muscle Building</h5>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8:30 - 10:00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">8:30 - 10:00 sur Twitch</h5>
+                                        <div class="col-xs-6">
+                                            <h5 class="regular white">Cardio</h5>
                                         </div>
-                                    </div> 
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8:30 - 10:00</h5>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="intro-table intro-table-hover">
-                            <h5 class="white heading hide-hover">Inscription</h5>
+                            <h5 class="white heading hide-hover">Premium Membership</h5>
                             <div class="bottom">
-                                <h4 class="white heading small-heading no-margin regular">Rejoindre la communauté Corse-Connexion</h4>
-                                {# <h4 class="white heading small-pt">20% Discount</h4> #}
-                                <a href="#" data-toggle="modal" data-target="#modalGetEmail" class="btn btn-white-fill expand">En savoir plus</a>
-                                {# <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button> #}
+                                <h4 class="white heading small-heading no-margin regular">Register Today</h4>
+                                <h4 class="white heading small-pt">20% Discount</h4>
+                                <a href="#" class="btn btn-white-fill expand">Register</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="intro-table intro-table-third happy-talents">
-                            <h5 class="white heading">Happy Talents</h5>
+                        <div class="intro-table intro-table-third">
+                            <h5 class="white heading">Happy Clients</h5>
                             <div class="owl-testimonials bottom">
-                                <div class="item white heading content">
-                                    <p class="white heading content">Grâce à Marjorie je vis un rêve éveillé ! Pouvoir revivre en Corse tout en m'épanouissant dans mon parcours professionnel dans le Marketing Digital. À l'âge de 17 ans j'avais dû quitter la Corse pour cause de mutation de ma mère. 15 ans plus tard, vivant sur Aix-en-Provence j'ai été contacté par Marjorie sur LinkedIn qui me proposait une opportunité sur mesure chez Volpy ! Je n'ai pas hésité longtemps, emmenant mon mari dans mes bagages. Un grand merci à Marjorie pour son professionnalisme et son dynamisme !</p>
-                                    <p class="white heading light author">Sabrina Taelman Martini</p>
+                                <div class="item">
+                                    <h4 class="white heading content">I couldn't be more happy with the results!</h4>
+                                    <h5 class="white heading light author">Adam Jordan</h5>
                                 </div>
-                                {# <div class="item">
+                                <div class="item">
                                     <h4 class="white heading content">I can't believe how much better I feel!</h4>
                                     <h5 class="white heading light author">Greg Pardon</h5>
                                 </div>
                                 <div class="item">
                                     <h4 class="white heading content">Incredible transformation and I feel so healthy!</h4>
                                     <h5 class="white heading light author">Christina Goldman</h5>
-                                </div> #}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section> 
     {% endblock %}
@@ -160,16 +171,16 @@
                     <div class="col-md-4">
                         <div class="service">
                             <div class="icon-holder">
-                                <img src="img/icons/selection.png" alt="" class="icon">
+                                <img src="img/icons/web-settings.png" alt="" class="icon">
                             </div>
-                            <h4 class="heading">Accompagnement au recrutement</h4>
+                            <h4 class="heading">Recrutement</h4>
                             <p class="description">Confiez nous vos besoins, nous avons les talents.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="service">
                             <div class="icon-holder">
-                                <img src="img/icons/web-settings.png" alt="" class="icon">
+                                <img src="img/icons/selection.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Elaboration de cahier des charges</h4>
                             <p class="description">Vous avez un projet? Nous établissons votre cahier des charges en fonction de vos besoins.</p>
@@ -180,7 +191,7 @@
                             <div class="icon-holder">
                                 <img src="img/icons/hiring.png" alt="" class="icon">
                             </div>
-                            <h4 class="heading">Diffuser mon offre d'emploi</h4>
+                            <h4 class="heading">Offres d'emploi</h4>
                             <p class="description">Diffusez vos offres directement en ligne sur Corse-Connexion</p>
                         </div>
                     </div>
@@ -190,60 +201,53 @@
         </section>
     {% endblock %}
 
-    {% block talents %}    	
-        <section id="talents" class="section gray-bg">
+    {% block offers %}    	
+        {# <section id="jobs" class="section gray-bg">
             <div class="container">
                 <div class="row title text-center">
-                    <h2 class="margin-top">Les talents</h2>
+                    <h2 class="margin-top">Offres d'Emploi</h2>
+                    <h4 class="light muted">Nos partenaires recrutent</h4>
                 </div>
                 <div class="row">
-                        {% for talent in talents %}
-                            <div class="col-md-4">
-                                <div class="jobs text-center">
-                                    <div class="cover" style="background:url('{{ talent.avatar }}'); background-position: center; background-size:contain; background-repeat: no-repeat;">
-                                        <div class="overlay text-center">
-                                            {% for skill in talent.skills %}
-                                                <p class="white">{{ skill.name }}</p>
-                                            {% endfor %}
+                        {% for job in jobs %}
+                                <div class="col-md-4">
+                                    <div class="jobs text-center">
+                                        <div class="cover" style="background:url('{{ job.company.picture }}'); background-size:cover; width: 100%; height: 100%;">
+                                            <div class="overlay text-center">
+                                                <h3 class="white">{{ job.company }}</h3>
+                                                <h5 class="light light-white">{{ job.jobName }}</h5>
+                                            </div>
                                         </div>
+                                        <div class="title">
+                                            <h5>{{ job.salary }}</h5>
+                                            <h5 class="muted regular">{{ job.requiredExperience }}</h5>
+                                        </div>
+                                        <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button>
                                     </div>
-                                    <div class="title">
-                                        <h3 class="muted regular">{{ talent.username }}</h3>
-                                        {# <h5>{{ job.salary }}</h5> #}
-                                        <h5 class="muted regular">{{ talent.title }}</h5>
-                                    </div>
-                                    <form method="post" action="/talentProfile" class="inline">
-                                        <input type="hidden" name="id" value="{{ talent.id }}">
-                                        <button type="submit" name="submit_param" value="submit_value" class="btn btn-blue-fill">
-                                            Profil
-                                        </button>
-                                    </form>
-                                    {# <button type="button" data-toggle="modal" id="{{ talent.id }}" class="btn btn-blue-fill">Profil</button> #}
                                 </div>
-                            </div>
                         {% endfor %}
                 </div>
                 <div class="row title text-center">
-                    <a href="/talents" class="btn btn-blue ripple trial-button">Voir tous les talents</a>
+                    <h4 class="light offer-link"><a href="/jobs">Voir toutes les offres</a></h4>
                 </div>
             </div>
-        </section>
+        </section> #}
     {% endblock %}
 
-    {% block presentation %}
+    {% block pricing %}
         <section id="pricing" class="section">
-            <div class="container" id="presentation">
+            <div class="container">
                 <div class="row title text-center">
-                    <h2 class="margin-top white whois">Qui sommes nous?!</h2>
+                    <h2 class="margin-top white">Tarifs et Contact</h2>
                     <!-- <h4 class="light white">Tarifs indicatifs</h4> -->
                 </div>
                 <div class="row no-margin">
                     <div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
                         <div class="pricing">
-                            <div class="box-main active" data-img="img/ananas_cool.jpg" style="background:url('img/team/marjorie.jpg'); background-position: center; background-size:cover; background-repeat: no-repeat;">
-                                <h4 class="white">Marjorie Di Placido Pietri</h4>
-                                {# <h4 class="white regular light">xx,xx € <span class="small-font">/ semaine</span></h4>
-                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a> #}
+                            <div class="box-main active" data-img="img/pricing1.jpg">
+                                <h4 class="white">Diffusion d'offre d'emploi</h4>
+                                <h4 class="white regular light">xx,xx € <span class="small-font">/ semaine</span></h4>
+                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a>
                                 <i class="info-icon icon_question"></i>
                             </div>
                             <div class="box-second active">
@@ -254,10 +258,10 @@
                             </div>
                         </div>
                         <div class="pricing">
-                            <div class="box-main" data-img="img/ananas_cool.jpg" style="background:url('img/team/greg.jpg'); background-position: center; background-size:cover; background-repeat: no-repeat;">
-                                <h4 class="white">Grégory Guiné</h4>
-                                {# <h4 class="white regular light">xx,xx € <span class="small-font">/ jour</span></h4>
-                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a> #}
+                            <div class="box-main" data-img="img/pricing2.jpg">
+                                <h4 class="white">Elaboration de cahier des charges</h4>
+                                <h4 class="white regular light">xx,xx € <span class="small-font">/ jour</span></h4>
+                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a>
                                 <i class="info-icon icon_question"></i>
                             </div>
                             <div class="box-second">
@@ -281,11 +285,11 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="owl-twitter owl-carousel">
                             <div class="item text-center">
-                                <i class="icon fa fa-linkedin"></i>
-                                <h4 class="white light">Grâce à Marjorie je vis un rêve éveillé ! Pouvoir revivre en Corse tout en m'épanouissant dans mon parcours professionnel dans le Marketing Digital. À l'âge de 17 ans j'avais dû quitter la Corse pour cause de mutation de ma mère. 15 ans plus tard, vivant sur Aix-en-Provence j'ai été contacté par Marjorie sur LinkedIn qui me proposait une opportunité sur mesure chez Volpy ! Je n'ai pas hésité longtemps, emmenant mon mari dans mes bagages. Un grand merci à Marjorie pour son professionnalisme et son dynamisme !</h4>
-                                <h4 class="light-white light">Sabrina Taelman Martini</h4>
+                                <i class="icon fa fa-twitter"></i>
+                                <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</h4>
+                                <h4 class="light-white light">#lorem #ipsum #latin</h4>
                             </div>
-                            {# <div class="item text-center">
+                            <div class="item text-center">
                                 <i class="icon fa fa-twitter"></i>
                                 <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
                                 <h4 class="light-white light">#lorem #ipsum #latin</h4>
@@ -294,7 +298,7 @@
                                 <i class="icon fa fa-twitter"></i>
                                 <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h4>
                                 <h4 class="light-white light">#lorem #ipsum #latin</h4>
-                            </div> #}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -303,12 +307,6 @@
     {% endblock %}
 
     {% block footer %} {{ parent() }} {% endblock %}
-
-{% endblock %}
-
-{% block form %}
-
-    {{ parent() }} 
 
 {% endblock %}
 
@@ -321,5 +319,5 @@
     {% endblock %}
 
 {% endblock %}
- 
+
     
