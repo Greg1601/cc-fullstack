@@ -17,6 +17,6 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-/corse-connexion/public/img/users/CV
-/corse-connexion/public/img/users/jobSheets
-/corse-connexion/public/img/users/pictures
+/public/img/users/CV
+/public/img/users/jobSheets
+/public/img/users/pictures
