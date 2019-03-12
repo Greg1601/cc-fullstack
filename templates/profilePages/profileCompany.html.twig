@@ -34,38 +34,41 @@
 
 {% block body %}
 
-    <section id="jobs" class="section gray-bg">
-        <div class="container">
+    <section class="section gray-bg">
+        <div class="container profile">
             <div class="text-center">
-                <img class="margin-top" src="{{ user.picture }}" alt="Logo de {{ user.username }}">
+                <img class="margin-top profile-picture" src="{{ user.picture }}" alt="Logo de {{ user.username }}">
                 <h1>{{ user.username }}</h1>
             </div>
-            <div class="row text-center profile-details">
-                    <div>
-                        <h3 class="details">Nom:</h3><p>{{ user.name }}</p>
+            <div class="profile-details margin-top">
+                    <div class="details">
+                        <p class="profileElement">Nom:</h3><p>{{ user.name }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Email:</h3><p>{{ user.mail }}</p>
+                    <div class="details">
+                        <p class="profileElement">Email:</h3><p>{{ user.mail }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Adresse:</h3><p>{{ user.address }}</p>
+                    <div class="details">
+                        <p class="profileElement">Adresse:</h3><p>{{ user.address }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Téléphone:</h3><p>{{ user.phone }}</p>
+                    <div class="details">
+                        <p class="profileElement">Téléphone:</h3><p>{{ user.phone }}</p>
                     </div>
-                    <div>
-                        <h3 class="details">Offres publiées actuellement:</h3>
+                    <div class="details">
+                        <p class="profileElement">Offres publiées actuellement:</p>
                         {% for offer in user.jobOffers %}
-                            <li> {{ offer.jobName }} </li>
+                            <div class="profileButtons">
+                                <form method="post" action="/job">
+                                    <input type="hidden" name="id" value="{{ offer.id }}">
+                                    <button type="submit" class="btn btn-offer">{{ offer.jobName }}</button>
+                                </form>  
+                            </div>
                         {% else %}
                             <li>Aucune offre d'emploi publiée actuellement</li>
                         {% endfor %}
                     </div>
             </div>
-            <div class="row title text-center">
-                <a class="light offer-link btn btn-blue" href="/jobs">Ajouter une offre d'emploi</a>
-            </div>
-            <div class="row title text-center">
+            <div class="row title text-center d-flex">
+                <a href="#" data-toggle="modal" data-target="#modalAddOffer" class="btn btn-blue">Ajouter une offre d'emploi</a>
                 <a href="#" data-toggle="modal" data-target="#modalEditCompany" class="btn btn-blue">Modifier vos informations</a>
             </div>
         </div>
@@ -108,6 +111,36 @@
                     <button type="submit" class="btn btn-submit" formaction="companyEdit" formmethod="post">Envoyer</button>
                     {# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAddOffer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+                <div class="form-control form-white">
+                    <h3 class="white">Ajouter une offre d'emploi</h3>
+                    <form action="" class="popup-form" enctype="multipart/form-data">
+                        <input type="text" name="jobName" class="form-control form-white" placeholder="Intitulé du poste" required>
+                        <textarea name="jobDescription" class="form-control form-white" rows="4" cols="50" placeholder="Description du poste "></textarea>
+                        <input type="text" name="requiredExperience" class="form-control form-white" placeholder="Expérience demandée">
+                        <input type="text" name="salary" class="form-control form-white" placeholder="Salaire">
+                        <input type="text" name="jobPlace" class="form-control form-white" placeholder="Localisation du poste">
+                        <input type="text" name="contact" class="form-control form-white" placeholder="Contact">
+                        <div class="form-white">
+                            <label for="remotePossibility">Télétravail possible</label>
+                            <input type="checkbox" name="remotePossibility">
+                        </div>
+                        <div class="form-control form-white file-input">
+                            <label for="CV">Importer la fiche de poste au format PDF</label>
+                            <input type="file" name="jobSheet" accept="application/pdf">
+                        </div>
+
+                        
+                        <button type="submit" class="btn btn-submit" formaction="addOpportunity" formmethod="post">Envoyer</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

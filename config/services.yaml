@@ -6,7 +6,9 @@
 parameters:
     locale: 'fr'
 
-    userPictures_directory: '%kernel.project_dir%/public/img/users/pictures'
+    userPictures_directory: '%kernel.project_dir%/public/img/users/pictures/'
+    userCV_directory: '%kernel.project_dir%/public/img/users/CV/'
+    userjobSheet_directory: '%kernel.project_dir%/public/img/users/jobSheets/'
 
 services:
     # default configuration for services in *this* file

@@ -52,11 +52,6 @@ class JobOffer
     private $remotePossibility;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $picture;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="jobOffers")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -66,6 +61,28 @@ class JobOffer
      * @ORM\Column(type="boolean", options={"default":false})
      */
     private $isChecked;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $jobSheet;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $visibility;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFilled;
+
+    public function __construct()
+    {
+        $this->visibility = true;
+        $this->isFilled = false;
+        $this->isChecked = false;
+    }
 
     public function getId(): ?int
     {
@@ -156,18 +173,6 @@ class JobOffer
         return $this;
     }
 
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
     public function getCompany(): ?company
     {
         return $this->company;
@@ -194,6 +199,42 @@ class JobOffer
 
     public function __toString(){
         return $this->name;
+    }
+
+    public function getJobSheet(): ?string
+    {
+        return $this->jobSheet;
+    }
+
+    public function setJobSheet(?string $jobSheet): self
+    {
+        $this->jobSheet = $jobSheet;
+
+        return $this;
+    }
+
+    public function getVisibility(): ?bool
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(bool $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getIsFilled(): ?bool
+    {
+        return $this->isFilled;
+    }
+
+    public function setIsFilled(bool $isFilled): self
+    {
+        $this->isFilled = $isFilled;
+
+        return $this;
     }
 
 }

@@ -15,6 +15,37 @@ class TalentController extends AbstractController
 {
 
     /**
+     * @Route("/talents", name="TalentList")
+     */
+    public function talentListAction()
+    {
+        // récupération de tous les éléments de Talent pour affichage.
+        $talents = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Talent::class)
+        ->findAll();
+
+        shuffle($talents);
+        
+        // récupération de tous les élements Skill pour affichage si inscription
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
+
+        $user = $this->getUser();
+
+        return $this->render('talents.html.twig', 
+            [
+                'talents' => $talents,
+                'skills' => $skills,
+                'user' => $user
+            ]
+        );
+    }
+
+
+    /**
      * @Route("/talentRegistration", name="talentRegistration")
      * @Method("POST")
      */
@@ -26,10 +57,10 @@ class TalentController extends AbstractController
         $talent = new Talent;
         $talent->setLastname($request->request->get('lastname'));
         $talent->setFirstname($request->request->get('firstname'));
+        $talent->setTitle($request->request->get('title'));
         $talent->setMail($request->request->get('email'));
         $talent->setPassword($encoder->encodePassword($talent, $request->request->get('password')));
         $talent->setLocation($request->request->get('location'));
-        $talent->setCV($request->request->get('cv'));
         
         $username = $request->request->get('firstname').' '.$request->request->get('lastname');
         
@@ -42,13 +73,14 @@ class TalentController extends AbstractController
                 $avatarName
             );
 
-            $explodedPath = explode("corse-connexion/public/", $avatar);
+            // $explodedPath = explode("corse-connexion/public/", $avatar);
+            // dump('img/users/pictures/'.$avatarName);die;
 
-            $usablePath = $explodedPath[1];
-            $talent->setAvatar($usablePath);
+            // $usablePath = $explodedPath[1];
+            $talent->setAvatar('img/users/pictures/'.$avatarName);
         }
         else {
-            $talent->setAvatar('https://avatars.dicebear.com/v2/identicon/'.$username.'.svg');
+            $talent->setAvatar('https://robohash.org/'.$username.'.png');
         }
 
         if ($request->request->get('mobility')) {
@@ -56,6 +88,13 @@ class TalentController extends AbstractController
         }
         else {
             $talent->setIsMobile(0);
+        }
+
+        if ($request->request->get('isFreelance')) {
+            $talent->setIsFreelance($request->request->get('isFreelance'));
+        }
+        else {
+            $talent->setIsFreelance(0);
         }
 
         if ($request->request->get('remoteOnly')) {
@@ -80,6 +119,23 @@ class TalentController extends AbstractController
             ->findOneByName($s);
             $talent->addSkill($skill);
         }
+
+        
+        $file = $request->files->get('CV');
+        $CVName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+        
+        $cv = $file->move(
+            $this->getParameter('userCV_directory'),
+            $CVName
+        );
+        // dump($cv);die;
+
+        // $explodedPath = explode("corse-connexion/public/", $avatar);
+        // dump('img/users/pictures/'.$avatarName);die;
+
+        // $usablePath = $explodedPath[1];
+        $talent->setCv('img/users/CV/'.$CVName);
+    
 
         $talent->setUsername($username);
 
@@ -116,7 +172,7 @@ class TalentController extends AbstractController
 
         $user = $this->getUser();
         
-        // dump($_POST);die;
+        // dump($request);die;
         $user->setFirstname($request->request->get('firstname'));
         $user->setLastname($request->request->get('lastname'));
         $user->setMail($request->request->get('email'));
@@ -138,10 +194,17 @@ class TalentController extends AbstractController
         }
 
         if ($request->request->get('remoteOnly')) {
-            $user->setIsMobile($request->request->get('remoteOnly'));
+            $user->setRemoteOnly($request->request->get('remoteOnly'));
         }
         else {
-            $user->setIsMobile(0);
+            $user->setRemoteOnly(0);
+        }
+
+        if ($request->request->get('isFreelance')) {
+            $user->setIsFreelance($request->request->get('isFreelance'));
+        }
+        else {
+            $user->setIsFreelance(0);
         }
 
         $skills = $request->request->get('skills');
@@ -152,7 +215,39 @@ class TalentController extends AbstractController
             ->findOneByName($s);
             $user->addSkill($skill);
         }
+        
+        if ($request->files->get('avatar')) {
+            $file = $request->files->get('avatar');
+            $avatarName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            
+            $avatar = $file->move(
+                $this->getParameter('userPictures_directory'),
+                $avatarName
+            );
 
+            // $explodedPath = explode("corse-connexion/public/", $avatar);
+            // dump('img/users/pictures/'.$avatarName);die;
+
+            // $usablePath = $explodedPath[1];
+            $user->setAvatar('img/users/pictures/'.$avatarName);
+        }
+
+        if ($request->files->get('CV')) {
+            $file = $request->files->get('CV');
+            $CVName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            
+            $cv = $file->move(
+                $this->getParameter('userCV_directory'),
+                $CVName
+            );
+            // dump($cv);die;
+
+            // $explodedPath = explode("corse-connexion/public/", $avatar);
+            // dump('img/users/pictures/'.$avatarName);die;
+
+            // $usablePath = $explodedPath[1];
+            $user->setCv('img/users/CV/'.$CVName);
+        }
 
         $username = $request->request->get('firstname').' '.$request->request->get('lastname');
         $user->setUsername($username);
@@ -170,4 +265,5 @@ class TalentController extends AbstractController
                 Response::HTTP_OK
         ;
     }
+    
 }

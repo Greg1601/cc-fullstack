@@ -1,0 +1,309 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Offre n°{{job.id}} {% endblock %}
+
+{% block style %} 
+    <link rel="apple-touch-icon" sizes="57x57" href="../img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../img/favicons/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="../img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="../img/favicons/manifest.json">
+    <link rel="shortcut icon" href="../img/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffae00">
+    <meta name="msapplication-config" content="../img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Normalize -->
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <!-- Owl -->
+    <link rel="stylesheet" type="text/css" href="../css/owl.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="../css/animate.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+    <!-- Elegant Icons -->
+    <link rel="stylesheet" type="text/css" href="../fonts/eleganticons/et-icons.css">
+    <!-- Main style -->
+    <link rel="stylesheet" type="text/css" href="../css/cc-style.css"> 
+{% endblock %}
+
+{% block logoLink %} {{ parent() }} {% endblock %}
+
+{% block navbar %} 
+
+    <li><a href="/jobs">Retour à la liste des offres</a></li>
+    <li><a href="/talent">Espace Talents</a></li>
+    <li><a href="/pro">Espace Entreprises</a></li>
+    {% if user != null %}
+        <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+    {% endif %}
+    {% if user == null %}
+        <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+    {% endif %}
+    <br>
+    <div class="align-content-end">
+        <a href="/admin" class="other-link">Espace Admin</a>
+    </div>
+
+{% endblock %}
+    
+
+{% block header %}
+
+    {{ parent()}}
+
+{% endblock %}
+
+{% block pageTitle %}
+    {{ job.jobName }} - {{ job.Company }}
+{% endblock %}
+
+{% block body %}
+
+    {% block preloader %}
+        <div class="preloader">
+            <img src="../img/loader.gif" alt="Preloader image">
+        </div>
+    {% endblock %}
+
+    {% block logo %}<a class="navbar-brand" href="#pageStart"><img src="../img/CC_mini_logo.png" data-active-url="../img/CC_mini_logo.png" alt=""></a>
+			</div>{% endblock %}
+
+    <section class="section gray-bg">
+        <div class="container profile">
+            <div class="text-center">
+                <img class="margin-top profile-picture" src="../{{ job.company.picture }}" alt="Logo de {{ job.company }}">
+                <h1>{{ job.jobName }}</h1>
+            </div>
+            <div class="profile-details margin-top">
+                    <div class="details">
+                        <p class="profileElement">Description du poste</p><p>{{ job.jobDescription }}</p>
+                    </div>
+                    <div class="details">
+                        <p class="profileElement">Expérience demandée:</p><p>{{ job.requiredExperience }}</p>
+                    </div>
+                    <div class="details">
+                        <p class="profileElement">Salaire:</p><p>{{ job.salary }}</p>
+                    </div>
+                    <div class="details">
+                        <p class="profileElement">Lieu de travail:</p><p>{{ job.jobPlace }}</p>
+                    </div>
+                    <div class="details">
+                        <p class="profileElement">Contact:</p><p>{{ job.contact }}</p>
+                    </div>
+                    {# <div class="details">
+                        <p class="profileElement">Compétences:</p>
+                        {% for skill in user.skills %}
+                            <li class="talentSkills"> {{ skill.name }} </li>
+                        {% else %}
+                            <li>Aucune compétence mentionnée</li>
+                        {% endfor %}
+                    </div> #}
+                    <div class="details">
+                        <p class="profileElement">Télétravail possible?</p>
+                        {% if job.remotePossibility == true %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p>
+                        {% endif %}
+                    </div>
+
+                    {% if job.jobSheet %}
+                        <div class="details">
+                            <iframe src="{{ job.jobSheet }}" width="800" height="600" align="middle"></iframe>
+                        </div>
+                    {% endif %}
+                    {# <div class="details">
+                        <p class="profileElement">Mobile en Corse</p>
+                        {% if user.isMobile == true %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p><textarea name="jobDescription" class="form-control form-white" rows="4" cols="50"> {{ job.jobDescription }} </textarea>
+                        {% endif %}
+                    </div>
+                    <div class="details">
+                        <p class="profileElement">Télétravail seulement?</p>
+                        {% if user.remoteOnly == true %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p>
+                        {% endif %}
+                    </div> #}
+                    {# <div class="details">
+                    <iframe src="{{ user.Cv }}" width="800" height="600" align="middle"></iframe>
+                    </div> #}
+            </div>
+
+            <div class="row title text-center">
+                {% if user != null and usertype == 'talent' %}
+                    <a href="#" data-toggle="modal" data-target="#modalEditTalent" class="btn btn-blue">Postuler</a>
+                {% endif %}
+                {% if user != null and usertype == 'company' and user.name == job.Company %}
+                    <a href="#" data-toggle="modal" data-target="#modalEditOffer" class="btn btn-blue">Modifer l'offre</a>
+                    <a href="#" data-toggle="modal" data-target="#modalDeleteOffer" class="btn btn-blue">Supprimer l'offre</a>
+                    <a href="#" data-toggle="modal" data-target="#modalFilledOffer" class="btn btn-blue">Offre pourvue</a>
+                {% endif %}
+                {% if user == null %}
+                    <p class="warning">Tu dois être un talent identifié pour pouvoir postuler à cette offre!</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    {% block footer %} {{ parent() }} {% endblock %}
+
+{% endblock %}
+
+{% block securityForms %}
+
+    {{ parent() }}
+
+    <div class="modal fade" id="modalEditOffer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+                <div class="form-control form-white">
+                    <h3 class="white">Modifier votre offre d'emploi</h3>
+                    <form action="" class="popup-form" enctype="multipart/form-data">
+                        
+                        <input type="text" name="jobName" class="form-control form-white" value="{{ job.jobName }}" placeholder="Remplacer {{ job.jobName }} ?">
+                        {# <input type="text" name="jobDescription" class="form-control form-white" value="{{ job.jobDescription }}" placeholder="Remplacer {{ user.lastname }} ?"> #}
+                        <textarea name="jobDescription" class="form-control form-white" rows="4" cols="50"> {{ job.jobDescription }} </textarea>
+                        <input type="text" name="requiredExperience" class="form-control form-white" value="{{ job.requiredExperience }}" placeholder="Remplacer {{ job.requiredExperience }} ?">
+                        {# <div class="dropdown">
+                            <button id="dLabel" name="skills" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Compétences
+                            </button>
+                            <div class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
+                                <div class="animated lightSpeedIn">
+                                    {% for skill in skills %}
+                                        {% if skill in user.skills %}
+                                            <input type="checkbox" name="skills[]" value="{{ skill.name }}" checked>
+                                            <label for="{{ skill.name }}">{{ skill.name }}</label>
+                                        {% else %}
+                                            <input type="checkbox" name="skills[]" value="{{ skill.name }}">
+                                            <label for="{{ skill.name }}">{{ skill.name }}</label>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div> #}
+                        <input type="text" name="salary" class="form-control form-white" value="{{ job.salary }}" placeholder="Remplacer {{ job.salary }} ?">
+
+                        <input type="text" name="jobPlace" class="form-control form-white" value="{{ job.jobPlace }}" placeholder="Remplacer {{ job.jobPlace }} ?">
+
+                        {# <input type="text" name="jobPlace" class="form-control form-white" value="{{ job.jobPlace }}" placeholder="Remplacer {{ job.jobPlace }} ?"> #}
+                        
+                        {# <div class="form-control form-white file-input">
+                                <label for="avatar">Modifier votre Avatar</label>
+                                <input type="file" name="avatar" accept="image/png, image/jpeg, image/jpg">
+                        </div> #}
+
+                        <input type="text" name="contact" class="form-control form-white" value="{{ job.contact }}" placeholder="Remplacer {{ job.contact }} ?">
+
+                        <div class="form-white">
+                            <label for="remotePossibility">Télétravail possible</label>
+                            {% if job.remotePossibility == true %}
+                                <input type="checkbox" name="remotePossibility" checked>
+                            {% else %}
+                                <input type="checkbox" name="remotePossibility">
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-control form-white file-input">
+							<label for="CV">Importer la fiche de poste au format PDF</label>
+							<input type="file" name="jobSheet" accept="application/pdf">
+						</div>
+
+                        <input type="hidden" name="id" value="{{ job.id }}">
+
+                    
+                        {# <div class="form-white">
+                            <label for="mobility">Mobile en Corse</label>
+                            {% if user.isMobile == true %}
+                                <input type="checkbox" name="mobility" checked>
+                            {% else %}
+                                <input type="checkbox" name="mobility">
+                            {% endif %}
+                        </div>
+
+                        <div class="form-white">
+                            <label for="remoteOnly">Télétravail seulement</label>
+                            {% if user.remoteOnly == true %}
+                                <input type="checkbox" name="remoteOnly" checked>
+                            {% else %}
+                                <input type="checkbox" name="remoteOnly">
+                            {% endif %}
+                        </div> #}
+                    
+
+                        {# <div class="dropdown">
+                            <button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Vos besoins
+                            </button>
+                            <ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
+                                <li class="animated lightSpeedIn"><a href="#">Diffusion d'offre d'emploi</a></li>
+                                <li class="animated lightSpeedIn"><a href="#">Elaboration de cahier des charges</a></li>
+                                <li class="animated lightSpeedIn"><a href="#">Autre demande</a></li>
+                            </ul>
+                        </div>
+                        <div class="checkbox-holder text-left">
+                            <div class="checkbox">
+                                <input type="checkbox" value="None" id="squaredOne" name="check" />
+                                <label for="squaredOne"><span>J'accepte les <strong>conditions générales</strong></span></label>
+                            </div>
+                        </div> #}
+                        <button type="submit" class="btn btn-submit" formaction="offerEdit" formmethod="post">Envoyer</button>
+                        {# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="modal fade" id="modalDeleteOffer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+                <h3 class="white">Supprimer l'offre?</h3>
+
+                <form method="post" action="/offerHide" class="inline">
+                    <input type="hidden" name="id" value="{{ job.id }}">
+                    <button type="submit" class="btn btn-submit">Supprimer</button>
+                </form>
+                {# <a href="#" class="btn btn-submit">Annuler</a> #}
+                <span class="btn btn-submit" data-dismiss="modal" aria-label="Close">Annuler</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFilledOffer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
+                <h3 class="white">Déclarer cette offre pourvue?</h3>
+
+                <form method="post" action="/offerFilled" class="inline">
+                    <input type="hidden" name="id" value="{{ job.id }}">
+                    <button type="submit" class="btn btn-submit">Oui</button>
+                </form>
+                {# <a href="#" class="btn btn-submit">Annuler</a> #}
+                <span class="btn btn-submit" data-dismiss="modal" aria-label="Close">Non</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Scripts -->
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/typewriter.js"></script>
+    <script src="../js/jquery.onepagenav.js"></script>
+    <script src="../js/main.js"></script>
+{% endblock %}
+

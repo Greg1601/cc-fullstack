@@ -33,10 +33,12 @@ class AppFixtures extends Fixture
     //         $talent->setFirstname('lastname'.$i);
     //         $talent->setMail('lastname'.$i.'.'.'firstname'.$i.'@gmail.com');
     //         $talent->setLocation('lastname'.$i.'place');
-    //         $talent->setAvatar('https://avatars.dicebear.com/v2/identicon/'.$username.'.svg');
+    //         $talent->setAvatar('https://robohash.org/'.$username.'.png');
     //         $talent->setPassword($this->encoder->encodePassword($talent, ('test')));
     //         $talent->setIsMobile(mt_rand(0, 1));
     //         $talent->setRemoteOnly(mt_rand(0, 1));
+    //         $talent->setIsFreelance(mt_rand(0, 1));
+    //         $talent->setTitle('Développeur fullstack php/symfony');
 
     //         $skills = $this->manager
     //             ->getRepository(Skill::class)
@@ -63,7 +65,7 @@ class AppFixtures extends Fixture
     //         $company = new Company();
     //         $username = 'company'.$i;
     //         $company->setName('company'.$i);
-    //         $company->setPicture('https://avatars.dicebear.com/v2/identicon/'.$username.'.svg');
+    //         $company->setPicture('img\team\qwant_music_s5bqg8.jpg');
     //         $company->setMail('company'.$i.'@gmail.com');
     //         $company->setAddress('adresse de l\'entreprise company'.$i);
     //         $company->setPhone('company');
@@ -93,7 +95,7 @@ class AppFixtures extends Fixture
                 ->findAll()
             ;
             $companyCount = count($companies);
-            $randomized = mt_rand(25, 44);
+            $randomized = mt_rand(66, 85);
             
             $company = $this->manager
                 ->getRepository(Company::class)
