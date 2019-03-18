@@ -18,7 +18,7 @@
         {% endif %}
         {% if user == null %}
             <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#modalRegistrationCompany" class="btn btn-blue">Inscription</a></li>
         {% endif %}
 
 
@@ -31,7 +31,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-    Les talents
+    Les Talents 
 {% endblock %}
 
 {% block intro %}
@@ -51,20 +51,17 @@
                             <div class="jobs text-center">
                                 <div class="cover" style="background:url('{{ talent.avatar }}'); background-position: center; background-size:contain; background-repeat: no-repeat;">
                                     <div class="overlay text-center">
-                                        {% for skill in talent.skills %}
-                                            <p class="white">{{ skill.name }}</p>
-                                        {% endfor %}
+                                        <p class="white">Viens voir le superbe profil de {{ talent.firstname }}!<p>
                                     </div>
                                 </div>
                                 <div class="title">
                                     <h3 class="muted regular">{{ talent.username }}</h3>
-                                    {# <h5>{{ job.salary }}</h5> #}
                                     <h5 class="muted regular">{{ talent.title }}</h5>
                                 </div>
                                 <form method="post" action="/talentProfile" class="inline">
                                     <input type="hidden" name="id" value="{{ talent.id }}">
                                     <button type="submit" name="submit_param" value="submit_value" class="btn btn-blue-fill">
-                                        Profil
+                                        Profil détaillé
                                     </button>
                                 </form>
                             </div>

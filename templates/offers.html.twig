@@ -6,20 +6,19 @@
 
 {% block navbar %} 
     
-        <li><a href="#intro">Home</a></li>
-        {# <li><a href="#services">Qui sommes nous</a></li> #}
-        <li><a href="#jobs">Offres d'Emploi</a></li>
-        {# <li><a href="#pricing">Tarifs et Contact</a></li> #}
-        <li><a href="/talent">Espace Candidats</a></li>
-        <li><a href="/pro">Espace Entreprises</a></li>
-        {% if user != null %}
-            <li><a href="/monProfil">Profil</a></li>
-            <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
-        {% endif %}
-        {% if user == null %}
-            <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
-        {% endif %}
+    <li><a href="/talent">Espace Talents</a></li>
+    <li><a href="/pro">Espace Entreprises</a></li>
+    {% if user != null %}
+        <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+    {% endif %}
+    {% if user == null %}
+        <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistrationTalent" class="btn btn-blue">Inscription</a></li>
+    {% endif %}
+    <br>
+    <div class="align-content-end">
+        <a href="/admin" class="other-link">Espace Admin</a>
+    </div>
 
 
     {% endblock %}
@@ -52,12 +51,17 @@
                                 <div class="cover" style="background:url('{{ job.company.picture }}'); background-position: center; background-size:contain; background-repeat: no-repeat;">
                                     <div class="overlay text-center">
                                         <h3 class="white">{{ job.company }}</h3>
-                                        <h5 class="light light-white">{{ job.jobName }}</h5>
+                                        <h5 class="light white">{{ job.jobName }}</h5>
                                     </div>
                                 </div>
                                 <div class="title">
-                                    <h5>{{ job.salary }}</h5>
-                                    <h5 class="muted regular">{{ job.requiredExperience }}</h5>
+                                    <p>Lieu de travail: {{ job.jobPlace }}</p>
+                                    {% if job.remotePossibility == true %}
+                                        <p class="muted regular">Télétravail possible</p>
+                                    {% else %}
+                                        <p class="muted regular">Télétravail: Non</p>
+                                    {% endif %}
+                                    <p class="muted regular">Salaire indicatif: {{ job.salary }}</p>
                                 </div>
                                 <form method="post" action="/job" class="inline">
                                     <input type="hidden" name="id" value="{{ job.id }}">
@@ -65,6 +69,8 @@
                                         Consulter
                                     </button>
                                 </form>
+                                {# <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button> #}
+                                {# <a href="/job/{{job.id}}" class="btn btn-blue ripple trial-button">Consulter</a> #}
                             </div>
                         </div>
                     {% endfor %}

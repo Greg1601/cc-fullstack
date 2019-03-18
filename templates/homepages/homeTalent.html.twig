@@ -11,13 +11,14 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#jobs">Offres d'emploi</a></li>
     <li><a href="#presentation">Qui sommes nous?</a></li>
+    <li><a href="#goldenBook">Happy Talents</a></li>
     <li><a href="#contact">Contact</a></li>
     {% if user != null %}
         <li><a href="/monProfil">Profil</a></li>
         <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
     {% else %}
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistrationTalent" class="btn btn-blue">Inscription</a></li>
     {% endif %}
     <br>
     <div class="align-content-end">
@@ -120,27 +121,32 @@
                             <div class="bottom">
                                 <h4 class="white heading small-heading no-margin regular">Rejoindre la communauté Corse-Connexion</h4>
                                 {# <h4 class="white heading small-pt">20% Discount</h4> #}
-                                <a href="#" class="btn btn-white-fill expand">En savoir plus</a>
+                                <a href="#" data-toggle="modal" data-target="#modalGetEmail" class="btn btn-white-fill expand">En savoir plus</a>
+                                {# <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button> #}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="intro-table intro-table-third happy-talents">
-                            <h5 class="white heading">Happy Talents</h5>
-                            <div class="owl-testimonials bottom">
-                                <div class="item white heading content">
-                                    <p class="white heading content">Grâce à Marjorie je vis un rêve éveillé ! Pouvoir revivre en Corse tout en m'épanouissant dans mon parcours professionnel dans le Marketing Digital. À l'âge de 17 ans j'avais dû quitter la Corse pour cause de mutation de ma mère. 15 ans plus tard, vivant sur Aix-en-Provence j'ai été contacté par Marjorie sur LinkedIn qui me proposait une opportunité sur mesure chez Volpy ! Je n'ai pas hésité longtemps, emmenant mon mari dans mes bagages. Un grand merci à Marjorie pour son professionnalisme et son dynamisme !</p>
-                                    <p class="white heading light author">Sabrina Taelman Martini</p>
+                        <div class="intro-table intro-table-first">
+                            <h4 class="white heading">Happy Talents</h4>
+                            <a href="#goldenBook">
+                            <div class="schedule-row row">
+                                <div class="owl-carousel owl-schedule bottom">
+                                    <div class="item">
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-12 ">
+                                                <h4 class="regular white" style="padding-left : 1.5rem">"Revivre en Corse tout en m'épanouissant dans mon parcours professionnel..."</h4>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-12 ">
+                                                <p class="white" style="padding-left: 1.5rem">Sabrina Taelman Martini</p>
+                                            </div>
+                                        </div> 
+                                    </div>
                                 </div>
-                                {# <div class="item">
-                                    <h4 class="white heading content">I can't believe how much better I feel!</h4>
-                                    <h5 class="white heading light author">Greg Pardon</h5>
-                                </div>
-                                <div class="item">
-                                    <h4 class="white heading content">Incredible transformation and I feel so healthy!</h4>
-                                    <h5 class="white heading light author">Christina Goldman</h5>
-                                </div> #}
                             </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -162,8 +168,10 @@
                                 <img src="img/icons/conversation-orange.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Accompagnement individuel</h4>
-                            <p class="description">Fais-toi coacher par un expert RH.<p>
-                            <a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue description">Voir</a>
+                            <div class="description">
+                            <p>Fais-toi coacher par un expert RH.</p>
+                            </div>
+                            <a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue description" style="margin-top: 20%">Voir</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -183,7 +191,10 @@
                                 <img src="img/icons/hiring.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Offres d'emploi</h4>
-                            <a href="/jobs" class="btn btn-blue description">Voir les offres</a>
+                            <p class="description">
+                            Viens découvrir les offres de nos partenaires!
+                            </p>
+                            <a href="/jobs" class="btn btn-blue description" style="margin-top: 20%">Voir les offres</a>
                         </div>
                     </div>
                 </div>
@@ -206,12 +217,17 @@
                                         <div class="cover" style="background:url('{{ job.company.picture }}'); background-position: center; background-size:contain; background-repeat: no-repeat;">
                                             <div class="overlay text-center">
                                                 <h3 class="white">{{ job.company }}</h3>
-                                                <h5 class="light light-white">{{ job.jobName }}</h5>
+                                                <h5 class="light white">{{ job.jobName }}</h5>
                                             </div>
                                         </div>
                                         <div class="title">
-                                            <h5>{{ job.salary }}</h5>
-                                            <h5 class="muted regular">{{ job.requiredExperience }}</h5>
+                                            <p>Lieu de travail: {{ job.jobPlace }}</p>
+                                            {% if job.remotePossibility == true %}
+                                                <p class="muted regular">Télétravail possible</p>
+                                            {% else %}
+                                                <p class="muted regular">Télétravail: Non</p>
+                                            {% endif %}
+                                            <p class="muted regular">Salaire indicatif: {{ job.salary }}</p>
                                         </div>
                                         <form method="post" action="/job" class="inline">
                                             <input type="hidden" name="id" value="{{ job.id }}">
@@ -236,39 +252,36 @@
         <section id="pricing" class="section">
             <div class="container" id="presentation">
                 <div class="row title text-center">
-                    <h2 class="margin-top white">Tarifs et Contact</h2>
-                    <!-- <h4 class="light white">Tarifs indicatifs</h4> -->
                 </div>
-                <div class="row no-margin">
-                    <div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
-                        <div class="pricing">
-                            <div class="box-main active" data-img="ananas_cool.jpg">
-                                <h4 class="white">Diffusion d'offre d'emploi</h4>
-                                <h4 class="white regular light">xx,xx € <span class="small-font">/ semaine</span></h4>
-                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a>
-                                <i class="info-icon icon_question"></i>
-                            </div>
-                            <div class="box-second active">
-                                <ul class="white-list text-left">
-                                    <li>Diffusion de votre offre via nos outils</li>
-                                    <li>Visibilité maximale grace au réseau Corse Connexion</li>
-                                </ul>
-                            </div>
+                <div class="row no-margin" style="text-align: -webkit-right;">
+                    <div class="whoIs" >
+                        <div class="marjo">
                         </div>
-                        <div class="pricing">
-                            <div class="box-main" data-img="ananas_cool.jpg">
-                                <h4 class="white">Elaboration de cahier des charges</h4>
-                                <h4 class="white regular light">xx,xx € <span class="small-font">/ jour</span></h4>
-                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a>
-                                <i class="info-icon icon_question"></i>
-                            </div>
-                            <div class="box-second">
-                                <ul class="white-list text-left">
-                                    <li>Etude de votre projet</li>
-                                    <li>Réflexion technique</li>
-                                    <li>Rédaction de cahier des charges</li>
-                                </ul>
-                            </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
+                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
+                        </div>
+                    </div>
+                    <div class="whoIs" >
+                        <div class="greg">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Grégory Guiné</h4>
+                            <p class="description">nteger in quam sapien. Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem. Etiam tincidunt varius egestas. Proin hendrerit eros at rutrum suscipit.</p>
+                        </div>
+                    </div>
+                    {# Masqué au dessus de width 992px #}
+                    <div class="whoIs-mobile" >
+                         <div class="row title text-center">
+                            <h2>Qui sommes nous?</h2>
+                        </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
+                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
+                        </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Grégory Guiné</h4>
+                            <p class="description">Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem.</p>
                         </div>
                     </div>
                 </div>
@@ -277,7 +290,7 @@
     {% endblock %}
 
     {% block goldenBook %}
-        <section class="section section-padded blue-bg">
+        <section id="goldenBook" class="section section-padded blue-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -312,7 +325,6 @@
     {{ parent() }} 
     
     {% block loginRedirectionPath %} 
-        value="{{ path('homeTalent') }}" 
     {% endblock %}
 
 {% endblock %}

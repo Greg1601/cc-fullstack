@@ -40,7 +40,7 @@
     {% endif %}
     {% if user == null %}
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistrationTalent" class="btn btn-blue">Inscription</a></li>
     {% endif %}
     <br>
     <div class="align-content-end">
@@ -111,8 +111,10 @@
                     </div>
 
                     {% if job.jobSheet %}
-                        <div class="details">
+                        <div class="details profileDoc">
                             <iframe src="{{ job.jobSheet }}" width="800" height="600" align="middle"></iframe>
+                            {# Affiché que si width > 992px #}
+                            <a href="./{{ job.jobSheet }}" class="btn btn-blue pdfDocument" download="{{ job.jobSheet }}"> Télécharger la fiche de poste</a>
                         </div>
                     {% endif %}
                     {# <div class="details">

@@ -10,6 +10,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#talents">Talents</a></li>
     <li><a href="#presentation">Qui sommes nous?</a></li>
+    <li><a href="#goldenBook">Happy Clients</a></li>
     <li><a href="#contact">Contact</a></li>
     {% if user != null %}
         <li><a href="/monProfil">Mon Profil</a></li>
@@ -17,7 +18,7 @@
     {% endif %}
     {% if user == null %}
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistrationCompany" class="btn btn-blue">Inscription</a></li>
     {% endif %}
     <br>
     <div class="align-content-end">
@@ -51,15 +52,12 @@
                                 <div class="item">
                                     <div class="schedule-row row">
                                         <div class="col-xs-12">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
+                                            <h5 class="regular white">Webinar : Recruter un junior pour développer son site web</h5>
                                         </div>
-                                        {# <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
-                                        </div> #}
                                     </div>
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">Le 23/04/2019</h5>
+                                            <h5 class="regular white">Le 17/06/2019</h5>
                                         </div>
                                         <div class="col-xs-6 text-right">
                                             <h5 class="white">8h30 - 10h00</h5>
@@ -71,46 +69,26 @@
                                         </div>
                                     </div> 
                                 </div>
-                                <div class="item">
+                                {# <div class="item">
                                     <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
-                                        </div>
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
+                                        <div class="col-xs-12">
+                                            <h5 class="regular white">Webinar : Recruter un junior pour développeur son site web</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">23/04/2019</h5>
+                                            <h5 class="regular white">Le 17/06/2019</h5>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <h5 class="white">8h30 - 10h00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">8:30 - 10:00 sur Twitch</h5>
+                                        <div class="col-xs-12 ">
+                                            <h5 class="white">Twitch</h5>
                                         </div>
                                     </div> 
-                                </div>
-                                <div class="item">
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
-                                        </div>
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
-                                        </div>
-                                    </div>
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">23/04/2019</h5>
-                                        </div>
-                                    </div>
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">8:30 - 10:00 sur Twitch</h5>
-                                        </div>
-                                    </div> 
-                                </div>
+                                </div> #}
                             </div>
                         </div>
                     </div>
@@ -126,22 +104,26 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="intro-table intro-table-third happy-talents">
-                            <h5 class="white heading">Happy Talents</h5>
-                            <div class="owl-testimonials bottom">
-                                <div class="item white heading content">
-                                    <p class="white heading content">Grâce à Marjorie je vis un rêve éveillé ! Pouvoir revivre en Corse tout en m'épanouissant dans mon parcours professionnel dans le Marketing Digital. À l'âge de 17 ans j'avais dû quitter la Corse pour cause de mutation de ma mère. 15 ans plus tard, vivant sur Aix-en-Provence j'ai été contacté par Marjorie sur LinkedIn qui me proposait une opportunité sur mesure chez Volpy ! Je n'ai pas hésité longtemps, emmenant mon mari dans mes bagages. Un grand merci à Marjorie pour son professionnalisme et son dynamisme !</p>
-                                    <p class="white heading light author">Sabrina Taelman Martini</p>
+                        <div class="intro-table intro-table-first">
+                            <h4 class="white heading">Happy Clients</h4>
+                            <a href="#goldenBook">
+                            <div class="schedule-row row">
+                                <div class="owl-carousel owl-schedule bottom">
+                                    <div class="item">
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-12 ">
+                                                <h4 class="regular white" style="padding-left: 1.5rem">"Marjorie a été diablement efficace..."</h4>
+                                            </div>
+                                        </div>
+                                        <div class="schedule-row row">
+                                            <div class="col-xs-12 ">
+                                                <p class="white" style="padding-left: 1.5rem">Marc Simeoni - CEO & Co-founder of Volpy.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                {# <div class="item">
-                                    <h4 class="white heading content">I can't believe how much better I feel!</h4>
-                                    <h5 class="white heading light author">Greg Pardon</h5>
-                                </div>
-                                <div class="item">
-                                    <h4 class="white heading content">Incredible transformation and I feel so healthy!</h4>
-                                    <h5 class="white heading light author">Christina Goldman</h5>
-                                </div> #}
                             </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -154,7 +136,7 @@
             <div class="container">
                 <div class="row text-center title">
                     <h2>Services</h2>
-                    <h4 class="light muted">Corse-Connexion vous accompagne dans vos projets numériques.</h4>
+                    <h4 class="light muted">Corse-Connexion t'accompagne dans tes projets numériques.</h4>
                 </div>
                 <div class="row services">
                     <div class="col-md-4">
@@ -163,7 +145,9 @@
                                 <img src="img/icons/selection.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Accompagnement au recrutement</h4>
-                            <p class="description">Confiez nous vos besoins, nous avons les talents.</p>
+                            <p class="description">Que tu recherches un profil pour une mission de courte durée ou en CDI, Corse-Connexion recherche le talent fait pour répondre à tes besoins. <br>
+
+                            De l’élaboration de la fiche de poste au recrutement en passant par l’identification du profil idéal, nous mettons à ta disposition toute notre expertise RH & Digitale en gardant évidemment notre grain de folie !</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -172,7 +156,7 @@
                                 <img src="img/icons/web-settings.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Elaboration de cahier des charges</h4>
-                            <p class="description">Vous avez un projet? Nous établissons votre cahier des charges en fonction de vos besoins.</p>
+                            <p class="description">On peut avoir une idée incroyable mais des difficultés à la coucher sur le papier « techniquement parlant ». Laisse nous t’accompagner dans la définition de ton cahier des charges afin qu’il soit compris plus facilement par ton futur développeur.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -181,7 +165,7 @@
                                 <img src="img/icons/hiring.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Diffuser mon offre d'emploi</h4>
-                            <p class="description">Diffusez vos offres directement en ligne sur Corse-Connexion</p>
+                            <p class="description">La diffusion est gratuite pendant 15 jours!</p>
                         </div>
                     </div>
                 </div>
@@ -202,9 +186,7 @@
                                 <div class="jobs text-center">
                                     <div class="cover" style="background:url('{{ talent.avatar }}'); background-position: center; background-size:contain; background-repeat: no-repeat;">
                                         <div class="overlay text-center">
-                                            {% for skill in talent.skills %}
-                                                <p class="white">{{ skill.name }}</p>
-                                            {% endfor %}
+                                            <p class="white">Viens voir le superbe profil de {{ talent.firstname }}!<p>
                                         </div>
                                     </div>
                                     <div class="title">
@@ -215,7 +197,7 @@
                                     <form method="post" action="/talentProfile" class="inline">
                                         <input type="hidden" name="id" value="{{ talent.id }}">
                                         <button type="submit" name="submit_param" value="submit_value" class="btn btn-blue-fill">
-                                            Profil
+                                            Profil détaillé
                                         </button>
                                     </form>
                                     {# <button type="button" data-toggle="modal" id="{{ talent.id }}" class="btn btn-blue-fill">Profil</button> #}
@@ -233,40 +215,35 @@
     {% block presentation %}
         <section id="pricing" class="section">
             <div class="container" id="presentation">
-                <div class="row title text-center">
-                    <h2 class="margin-top white whois">Qui sommes nous?!</h2>
-                    <!-- <h4 class="light white">Tarifs indicatifs</h4> -->
-                </div>
-                <div class="row no-margin">
-                    <div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
-                        <div class="pricing">
-                            <div class="box-main active" data-img="img/ananas_cool.jpg" style="background:url('img/team/marjorie.jpg'); background-position: center; background-size:cover; background-repeat: no-repeat;">
-                                <h4 class="white">Marjorie Di Placido Pietri</h4>
-                                {# <h4 class="white regular light">xx,xx € <span class="small-font">/ semaine</span></h4>
-                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a> #}
-                                <i class="info-icon icon_question"></i>
-                            </div>
-                            <div class="box-second active">
-                                <ul class="white-list text-left">
-                                    <li>Diffusion de votre offre via nos outils</li>
-                                    <li>Visibilité maximale grace au réseau Corse Connexion</li>
-                                </ul>
-                            </div>
+                <div class="row no-margin" style="text-align: -webkit-right;">
+                    <div class="whoIs" >
+                        <div class="marjo">
                         </div>
-                        <div class="pricing">
-                            <div class="box-main" data-img="img/ananas_cool.jpg" style="background:url('img/team/greg.jpg'); background-position: center; background-size:cover; background-repeat: no-repeat;">
-                                <h4 class="white">Grégory Guiné</h4>
-                                {# <h4 class="white regular light">xx,xx € <span class="small-font">/ jour</span></h4>
-                                <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Plus d'infos</a> #}
-                                <i class="info-icon icon_question"></i>
-                            </div>
-                            <div class="box-second">
-                                <ul class="white-list text-left">
-                                    <li>Etude de votre projet</li>
-                                    <li>Réflexion technique</li>
-                                    <li>Rédaction de cahier des charges</li>
-                                </ul>
-                            </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
+                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
+                        </div>
+                    </div>
+                    <div class="whoIs" >
+                        <div class="greg">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Grégory Guiné</h4>
+                            <p class="description">Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem.</p>
+                        </div>
+                    </div>
+                    {# Masqué au dessus de width 992px #}
+                    <div class="whoIs-mobile" >
+                        <div class="row title text-center">
+                            <h2>Qui sommes nous?</h2>
+                        </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
+                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
+                        </div>
+                        <div class="team-info">
+                            <h4 class="white heading">Grégory Guiné</h4>
+                            <p class="description">Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem.</p>
                         </div>
                     </div>
                 </div>
@@ -275,14 +252,14 @@
     {% endblock %}
 
     {% block goldenBook %}
-        <section class="section section-padded blue-bg">
+        <section id="goldenBook" class="section section-padded blue-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="owl-twitter owl-carousel">
                             <div class="item text-center">
                                 <i class="icon fa fa-linkedin"></i>
-                                <h4 class="white light">Grâce à Marjorie je vis un rêve éveillé ! Pouvoir revivre en Corse tout en m'épanouissant dans mon parcours professionnel dans le Marketing Digital. À l'âge de 17 ans j'avais dû quitter la Corse pour cause de mutation de ma mère. 15 ans plus tard, vivant sur Aix-en-Provence j'ai été contacté par Marjorie sur LinkedIn qui me proposait une opportunité sur mesure chez Volpy ! Je n'ai pas hésité longtemps, emmenant mon mari dans mes bagages. Un grand merci à Marjorie pour son professionnalisme et son dynamisme !</h4>
+                                <h4 class="white light">Marjorie a été diablement efficace en nous prodiguant des profils de qualité, totalement en adequation avec nos besoins, pourtant spécifiques et exigeants. Elle a eu un rôle déterminant dans les recrutements que nous avons conduit. Je ne peux que la recommander chaudement !</h4>
                                 <h4 class="light-white light">Sabrina Taelman Martini</h4>
                             </div>
                             {# <div class="item text-center">
@@ -317,7 +294,7 @@
     {{ parent() }} 
     
     {% block loginRedirectionPath %} 
-        value="{{ path('homePro') }}" 
+        {# value="{{ path('homePro') }}"  #}
     {% endblock %}
 
 {% endblock %}

@@ -112,6 +112,7 @@ ul.white-list li:before {
 .main-header {
 	position: relative;
 	width: 100%;
+	height: 100%;
 	color: white;
 	background: rgba(28, 36, 65, 0.93);
 	background: url('../img/header_test.jpg');
@@ -359,13 +360,11 @@ section {
 
 .intro-table-first {
 	background: rgba(255, 174, 0, 0.9);
-	background-image: url('../img/CC_logo.png');
 }
 
 .intro-table-hover {
 	-webkit-transition: background-image 0.3s ease, background-position 0.3s;
 	transition: background-image 0.3s ease, background-position 0.3s;
-	/* background-image: url('../img/table-2.jpg'); */
 	background: rgba(255, 174, 0, 0.9);
 }
 
@@ -376,15 +375,7 @@ section {
 	transition: transform 0.3s;
 }
 
-.intro-table-hover:hover {
-	/* background-image: url('../img/table-2-hover.jpg'); */
-	backgroung: rgba(198,144,27, 0.9);
-	/* background: rgba(255, 0, 76, 0.9); */
-	/* background-position: 50% 50%; */
-}
-
 .intro-table-third {
-	/* background-image: url('../img/table-3.jpg'); */
 	background-color: rgba(255, 174, 0, 0.9);
 }
 
@@ -446,16 +437,6 @@ section {
 	padding: 10px 30px;
 	color: white;
 	transition: all 0.3s ease;
-}
-
-.happy-talents {
-	overflow: hidden;
-	white-space: nowrap; 
-	text-overflow: ellipsis;
-}
-
-.whois {
-	text-shadow: 3px 3px 3px #ffae00;
 }
 
 .owl-schedule .schedule-row:not(:last-child) {
@@ -547,13 +528,16 @@ section {
 }
 
 .service:hover .heading {
-	top: -30px;
+	/* display: none; */
+	font-size: 1.5rem;
+	top: -60px;
 }
 
 .service .description {
 	width: 80%;
 	margin: 0 auto;
 	opacity: 0;
+	font-size: 1.5rem;
 	-webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	-webkit-transform: scale(0);
@@ -562,10 +546,119 @@ section {
 }
 
 .service:hover .description {
+	margin-top: -60px;
+  	transform: translateY(50%);
 	opacity: 1;
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
+}
+
+a.description {
+	margin-top: 60px;
+}
+
+/* ATTENTION : Voir pour réduire la taille de la section qui suit en jouant avec les classes. Jusqu'à Pricing */
+
+.whoIs {
+	text-align: center;
+	border: 1px solid #ffae00;
+	width: 30%;
+	height: 300px;
+	position: relative;
+}
+
+.whoIs:first-child {
+	margin-bottom: 1rem;
+}
+
+.whoIs:last-child {
+	margin-top: 1rem;
+}
+
+.marjo {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background:url('../img/team/marjorie.jpg'); 
+	background-position: center; 
+	background-size:cover; 
+	background-repeat: no-repeat;
+	filter: blur(0);
+	-webkit-filter: blur(0);
+	-moz-filter: blur(0);
+	-o-filter: blur(0);
+	-ms-filter: blur(0);
+}
+
+.greg {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background:url('../img/team/greg.jpg'); 
+	background-position: center; 
+	background-size:cover; 
+	background-repeat: no-repeat;
+	filter: blur(0);
+	-webkit-filter: blur(0);
+	-moz-filter: blur(0);
+	-o-filter: blur(0);
+	-ms-filter: blur(0);
+}
+
+.team-info {
+	pointer-events:none;
+}
+
+.whoIs .heading {
+	top: 250px;
+	text-shadow: #ffae00 1px 0 10px;
+	position: relative;
+	-webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.whoIs .description {
+	color: #8a8e91;
+	width: 80%;
+	margin: 0 auto;
+	opacity: 0;
+	font-size: 1.5rem;
+	-webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+}
+
+.whoIs:hover .description {
+	margin-top: 0px;
+  	transform: translateY(50%);
+	opacity: 1;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+.marjo:hover {
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+}
+
+.greg:hover {
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+}
+
+.whoIs:hover .heading {
+	font-size: 2rem;
+	top: -5px;
 }
 
 .jobs {
@@ -603,6 +696,11 @@ section {
 	font-size: 2em;
 }
 
+.jobs p {
+	font-size: 2rem;
+	padding: 0 2rem;
+}
+
 .profile {
 	border: 1rem solid #ffae00;
 	padding: 1rem;
@@ -633,6 +731,10 @@ section {
 	padding-bottom: 1rem;
 }
 
+.profileDoc {
+	text-align: -webkit-center;
+}
+
 /* Pricing */
 
 #pricing {
@@ -658,7 +760,7 @@ section {
 	width: 100%;
 }
 
-.pricings .pricing .box-main,
+/* .pricings .pricing .box-main,
 .pricings .pricing .box-second {
 	position: relative;
 	left: 25%;
@@ -732,7 +834,7 @@ section {
 
 .pricings .pricing .box-main a.btn {
 	margin-top: 50px;
-}
+} */
 
 .owl-twitter i.icon {
 	font-size: 36px;
@@ -809,6 +911,32 @@ footer .social-footer li a {
 footer .social-footer li:hover a {
 	color: #ffae00;
 }
+
+footer label {
+	color: #ffae00;
+	font-size: 1.5rem;
+	margin-right: 0.5rem;
+}
+
+input[type="radio"] {
+	margin-top: -1px;
+	vertical-align: middle;
+}
+
+footer input:first-of-type {
+	margin-right: 2rem;
+}
+
+footer input:focus{
+	background-color: #ffae00;
+	color: #f7f7f7;
+}
+
+footer textarea:focus{
+	background-color: #ffae00;
+	color: #f7f7f7;
+}
+
 /* Form Control */
 
 .form-control {
@@ -1148,6 +1276,23 @@ popup-form
 	margin-top: 150px;
 }
 
+/* Media Queries */
+
+@media(min-width:1023px) {
+	.pdfDocument {
+		display: none;
+	}
+}
+
+@media(min-width:993px) {
+	.pdfDocument {
+		display: none;
+	}
+	.whoIs-mobile {
+		display: none;
+	}
+}
+
 @media(max-width:992px) {
 	h1 {
 		font-size: 36px;
@@ -1170,9 +1315,28 @@ popup-form
 	.section {
 		padding: 30px 0;
 	}
+	iframe {
+		display: none;
+	}
+	#pricing {
+	background: #fff;
+	}
+	.whoIs {
+		display: none;
+	}
+	.whoIs-mobile {
+		text-align: -webkit-left;
+	}
+	.whoIs-mobile h2 {
+		color: #ffae00;
+	}
+	.whoIs-mobile p{
+		color: 989da0;
+	}
+	.whoIs-mobile .heading {
+		color: #ffae00;
+	}
 }
-
-/* Media Queries */
 
 @media(max-width:991px) {
 	.text-center-mobile {
@@ -1187,7 +1351,7 @@ popup-form
 	.pricings .pricing .info-icon {
 		display: none;
 	}
-	.pricings .pricing .box-main,
+	/* .pricings .pricing .box-main,
 	.pricings .pricing .box-second {
 		left: 0;
 		width: 100%;
@@ -1204,7 +1368,7 @@ popup-form
 	.pricings .pricing .box-second {
 		position: relative;
 		opacity: 1;
-	}
+	} */
 	.popup-form {
 		width: 100%;
 		margin: 60px auto;
@@ -1223,7 +1387,7 @@ popup-form
 	header .typed-cursor {
 		display: none;
 	}
-	.pricings .pricing .box-second {
+	/* .pricings .pricing .box-second {
 		padding-top: 0;
-	}
+	} */
 }
