@@ -4,25 +4,35 @@
 
 {% block logoLink %}"/talent"{% endblock %}
 
-{% block navbar %} 
-    
-        <li><a href="#intro">Home</a></li>
-        {# <li><a href="#services">Qui sommes nous</a></li> #}
-        <li><a href="#jobs">Offres d'Emploi</a></li>
-        {# <li><a href="#pricing">Tarifs et Contact</a></li> #}
-        <li><a href="/talent">Espace Candidats</a></li>
-        <li><a href="/pro">Espace Entreprises</a></li>
-        {% if user != null %}
-            <li><a href="/monProfil">Profil</a></li>
-            <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
-        {% endif %}
-        {% if user == null %}
-            <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#modalRegistrationCompany" class="btn btn-blue">Inscription</a></li>
-        {% endif %}
+{% block navbar %}     
+    <li><a href="#intro">Home</a></li>
+    {# <li><a href="#services">Qui sommes nous</a></li> #}
+    <li><a href="#jobs">Offres d'Emploi</a></li>
+    {# <li><a href="#pricing">Tarifs et Contact</a></li> #}
+    <li><a href="/talent">Espace Candidats</a></li>
+    <li><a href="/pro">Espace Entreprises</a></li>
+    {% if user != null %}
+        <li><a href="/monProfil">Profil</a></li>
+        <li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
+    {% endif %}
+    {% if user == null %}
+        <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modalRegistrationCompany" class="btn btn-blue">Inscription</a></li>
+    {% endif %}
+    <br>
+    <div class="align-content-end">
+        <a href="/admin" class="other-link">Espace Admin</a>
+        <a href="/talent" class="other-link">Espace Talents</a>
+    </div>
+{% endblock %}
 
-
-    {% endblock %}
+{% block flashMessages %} 
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
 
 {% block header %}
 
@@ -82,6 +92,12 @@
 
 {% endblock %}
 
-{% block securityForms %} {{ parent() }} {% endblock %}
+{% block securityForms %}
+    {{ parent() }} 
 
+    {% block loginRedirectionPath %} 
+        <input type="hidden" name="_target_path" value="{{ path('TalentList') }}"/>
+    {% endblock %}
+
+{% endblock %}
     

@@ -23,6 +23,14 @@
 
     {% endblock %}
 
+{% block flashMessages %} 
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
+
 {% block header %}
 
     {{ parent() }}
@@ -74,7 +82,6 @@
                             </div>
                         </div>
                     {% endfor %}
-
                 {% else %}
                     <div class="col-md-12 text-center">
                         <h4>Aucune offre disponible actuellement</h4>    
@@ -89,6 +96,12 @@
 
 {% endblock %}
 
-{% block securityForms %} {{ parent() }} {% endblock %}
+{% block securityForms %} 
+    {{ parent() }} 
+    
+    {% block loginRedirectionPath %} 
+        <input type="hidden" name="_target_path" value="{{ path('jobList') }}"/>
+    {% endblock %}
+{% endblock %}
 
     

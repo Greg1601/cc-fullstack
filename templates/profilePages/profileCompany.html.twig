@@ -144,5 +144,10 @@
             </div>
         </div>
     </div>
+
+    {% block loginRedirectionPath %} 
+        <input type="hidden" name="_target_path" value="{{ path('homePro') }}"/>
+    {% endblock %}
+
 {% endblock %}
 

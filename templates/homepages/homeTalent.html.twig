@@ -28,6 +28,13 @@
 
 {% endblock %}
     
+{% block flashMessages %} 
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
 
 {% block header %}
 
@@ -40,6 +47,7 @@
 {% endblock %}
 
 {% block body %}
+
     {% block intro %}
             <section>
             <div class="cut cut-top"></div>
@@ -69,46 +77,6 @@
                                     <div class="schedule-row row">
                                         <div class="col-xs-12 ">
                                             <h5 class="white">Twitch</h5>
-                                        </div>
-                                    </div> 
-                                </div>
-                                <div class="item">
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
-                                        </div>
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
-                                        </div>
-                                    </div>
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">23/04/2019</h5>
-                                        </div>
-                                    </div>
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">8:30 - 10:00 sur Twitch</h5>
-                                        </div>
-                                    </div> 
-                                </div>
-                                <div class="item">
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">Webinar: se former au métier de développeur</h5>
-                                        </div>
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">23/04/2019</h5>
-                                        </div>
-                                    </div>
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6">
-                                            <h5 class="regular white">23/04/2019</h5>
-                                        </div>
-                                    </div>
-                                    <div class="schedule-row row">
-                                        <div class="col-xs-6 text-right">
-                                            <h5 class="white">8:30 - 10:00 sur Twitch</h5>
                                         </div>
                                     </div> 
                                 </div>
@@ -181,7 +149,7 @@
                             </div>
                             <h4 class="heading">Evènements</h4>
                             <p class="description">Corse-Connexion c’est aussi des évènements un peu partout en Corse mais aussi en ligne. 
-                                N’hésite pas à nous suivre sur les réseaux sociaux pour rester informé.e.
+                                N’hésite pas à nous suivre sur les réseaux sociaux pour rester informé.
                             <p>
                         </div>
                     </div>
@@ -211,6 +179,7 @@
                     <h4 class="light muted">Nos partenaires recrutent</h4>
                 </div>
                 <div class="row">
+                    {% if jobs %}
                         {% for job in jobs %}
                                 <div class="col-md-4">
                                     <div class="jobs text-center">
@@ -240,6 +209,7 @@
                                     </div>
                                 </div>
                         {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="row title text-center">
                     <a href="/jobs" class="btn btn-blue ripple trial-button">Voir toutes les offres</a>
@@ -325,6 +295,7 @@
     {{ parent() }} 
     
     {% block loginRedirectionPath %} 
+        <input type="hidden" name="_target_path" value="{{ path('homeTalent') }}"/>
     {% endblock %}
 
 {% endblock %}

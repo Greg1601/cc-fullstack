@@ -9,9 +9,11 @@ easy_admin:
           title: Les Talents
           fields:
               - id
+              - { property: 'username', label: "Username" }
               - { property: 'firstname', label: "Prénom" }
               - { property: 'lastname', label: "Nom" }
               - { property: 'mail', label: "Email" }
+              - { property: 'title', label: "Titre" }
               - { property: 'skills', label: "Compétences" }
               - { property: 'location', label: "Ville" }
               - { property: 'isMobile', label: "Mobile?" }
@@ -20,6 +22,7 @@ easy_admin:
               - { property: 'cv', label: "CV" }
               - { property: 'avatar', label: "Avatar" }
               - { property: 'isChecked', label: "Vérifié?" }
+              - { property: 'isfreelance', label: "Freelance?" }
           actions:
               - { name: 'show', icon: 'info-circle', label: 'Show' }
               - { name: 'edit', icon: 'pencil', label: 'Edit' }
@@ -28,9 +31,11 @@ easy_admin:
       form:
           title: Modifier un Talent
           fields:
+              - { property: 'username', label: "Username" }
               - { property: 'firstname', label: "Prénom" }
               - { property: 'lastname', label: "Nom" }
               - { property: 'mail', label: "Email" }
+              - { property: 'title', label: "Titre" }
               - { property: 'skills', label: "Compétences" }
               - { property: 'location', label: "Ville" }
               - { property: 'isMobile', label: "Mobile?" }
@@ -39,6 +44,7 @@ easy_admin:
               - { property: 'cv', label: "CV" }
               - { property: 'avatar', label: "Avatar" }
               - { property: 'isChecked', label: "Vérifié?" }
+              - { property: 'isfreelance', label: "Freelance?" }
       show:
           title: "Détails du talent"
           fields:
@@ -127,6 +133,8 @@ easy_admin:
               - { property: 'remotePossibility', label: "Télétravail?" }
               - { property: 'company.picture', label: "Illustration" }
               - { property: 'isChecked', label: "Vérifiée?" }
+              - { property: 'isFilled', label: "Pourvue?" }
+              - { property: 'visibility', label: "Visible?" }
           actions:
               - { name: 'show', icon: 'info-circle', label: 'Show' }
               - { name: 'edit', icon: 'pencil', label: 'Edit' }
@@ -145,6 +153,8 @@ easy_admin:
               - { property: 'requiredExperience', label: "Expérience requise" }
               - { property: 'remotePossibility', label: "Télétravail?" }
               - { property: 'isChecked', label: "Vérifiée?" }
+              - { property: 'isFilled', label: "Pourvue?" }
+              - { property: 'visibility', label: "Visible?" }
       show:
           title: Détails de l'offre
 

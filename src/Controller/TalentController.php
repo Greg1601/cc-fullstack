@@ -23,7 +23,9 @@ class TalentController extends AbstractController
         $talents = $this->getDoctrine()
         ->getManager()
         ->getRepository(Talent::class)
-        ->findAll();
+        ->findBy([
+            'isChecked' => '1'
+        ]);
 
         shuffle($talents);
         
@@ -122,19 +124,22 @@ class TalentController extends AbstractController
 
         
         $file = $request->files->get('CV');
-        $CVName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+        if ($file) {
+            $CVName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            $cv = $file->move(
+                $this->getParameter('userCV_directory'),
+                $CVName
+            );
+            $talent->setCv('img/users/CV/'.$CVName);
+        }
         
-        $cv = $file->move(
-            $this->getParameter('userCV_directory'),
-            $CVName
-        );
         // dump($cv);die;
 
         // $explodedPath = explode("corse-connexion/public/", $avatar);
         // dump('img/users/pictures/'.$avatarName);die;
 
         // $usablePath = $explodedPath[1];
-        $talent->setCv('img/users/CV/'.$CVName);
     
 
         $talent->setUsername($username);
@@ -144,9 +149,11 @@ class TalentController extends AbstractController
         $em->persist($talent);
         $em->flush();
 
-        return $this->redirectToRoute('homeTalent'); 
-                Response::HTTP_OK
-        ;
+        $referer = $request
+                ->headers
+                ->get('referer');
+
+        return $this->redirect($referer);
     }
 
     /**

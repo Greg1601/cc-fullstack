@@ -23,6 +23,13 @@
 
 {% endblock %}
     
+{% block flashMessages %} 
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
 
 {% block header %}
 
@@ -195,4 +202,9 @@
             </div>
         </div>
     </div>
+
+    {% block loginRedirectionPath %} 
+        <input type="hidden" name="_target_path" value="{{ path('TalentList') }}"/>
+    {% endblock %}
+
 {% endblock %}

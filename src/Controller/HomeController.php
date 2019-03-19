@@ -43,7 +43,9 @@ class HomeController extends AbstractController
         $talents = $this->getDoctrine()
         ->getManager()
         ->getRepository(Talent::class)
-        ->findAll();
+        ->findBy([
+            'isChecked' => '1'
+        ]);
 
         // Shuffle de talent
         shuffle($talents);
@@ -75,7 +77,11 @@ class HomeController extends AbstractController
         $jobs = $this ->getDoctrine()
         ->getManager()
         ->getRepository(JobOffer::class)
-        ->findAll();
+        ->findBy([
+            'isFilled' => '0',
+            'visibility' => '1',
+            'isChecked' => '1'
+        ]);
 
         //shuffle JobOffer
         shuffle($jobs);
@@ -96,6 +102,21 @@ class HomeController extends AbstractController
             'jobs' => $threeOffers,
             'skills' => $skills,
             'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/privacy", name="privacy")
+     */
+    public function privacyAction()
+    {
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
+
+        return $this->render('privacy.html.twig',[
+            'skills' => $skills,
         ]);
     }
 

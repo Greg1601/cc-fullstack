@@ -893,6 +893,11 @@ footer .bottom-footer {
 	margin-top: 150px;
 }
 
+.legal li{
+	display: inline-block;
+	margin-right: 2.5rem;
+}
+
 footer .social-footer {
 	padding: 0;
 	list-style: none;

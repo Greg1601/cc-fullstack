@@ -21,8 +21,12 @@ class JobController extends AbstractController
         $jobs = $this ->getDoctrine()
         ->getManager()
         ->getRepository(JobOffer::class)
-        ->findAll();
-
+        ->findBy([
+            'isFilled' => '0',
+            'visibility' => '1',
+            'isChecked' => '1'
+        ]);
+        
         shuffle($jobs);
 
         // récupération de tous les élements Skill pour affichage si inscription

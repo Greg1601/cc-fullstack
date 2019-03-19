@@ -168,30 +168,30 @@ jQuery(function($) {
 	$(window).on("resize", function() {
 		$('.modal:visible').each(centerModal);
 	});
-
+	
 	var password_talent = document.getElementById("password_talent"),
-		password_company = document.getElementById("password_company"),
-		confirm_password_talent = document.getElementById("confirm_password_talent"),
-		confirm_password_company = document.getElementById("confirm_password_company");
-
+	password_company = document.getElementById("password_company"),
+	confirm_password_talent = document.getElementById("confirm_password_talent"),
+	confirm_password_company = document.getElementById("confirm_password_company");
+	
 	function validatePasswordTalent(){
-	if(password_talent.value != confirm_password_talent.value) {
-		confirm_password_talent.setCustomValidity("Les mots de passe doivent être identiques");
-	} else {
-		confirm_password_talent.setCustomValidity('');
+		if(password_talent.value != confirm_password_talent.value) {
+			confirm_password_talent.setCustomValidity("Les mots de passe doivent être identiques");
+		} else {
+			confirm_password_talent.setCustomValidity('');
+		}
 	}
-	}
-
+	
 	password_talent.onchange = validatePasswordTalent;
 	confirm_password_talent.onkeyup = validatePasswordTalent;
-
+	
 	function validatePasswordCompany(){
 		if(password_company.value != confirm_password_company.value) {
 			confirm_password_company.setCustomValidity("Les mots de passe doivent être identiques");
 		} else {
 			confirm_password_company.setCustomValidity('');
 		}
-		}
+	}
 	
 	password_company.onchange = validatePasswordCompany;
 	confirm_password_company.onkeyup = validatePasswordCompany;

@@ -6,7 +6,6 @@
 
 {% block navbar %} 
 
-    {# <li><a href="#intro">Home</a></li> #}
     <li><a href="#services">Services</a></li>
     <li><a href="#talents">Talents</a></li>
     <li><a href="#presentation">Qui sommes nous?</a></li>
@@ -27,6 +26,13 @@
     </div>
 {% endblock %}
     
+{% block flashMessages %} 
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
 
 {% block header %}
 
@@ -39,6 +45,8 @@
 {% endblock %}
 
 {% block body %}
+
+    
 
    {% block intro %}
             <section>
@@ -97,9 +105,7 @@
                             <h5 class="white heading hide-hover">Inscription</h5>
                             <div class="bottom">
                                 <h4 class="white heading small-heading no-margin regular">Rejoindre la communauté Corse-Connexion</h4>
-                                {# <h4 class="white heading small-pt">20% Discount</h4> #}
                                 <a href="#" data-toggle="modal" data-target="#modalGetEmail" class="btn btn-white-fill expand">En savoir plus</a>
-                                {# <button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Consulter</button> #}
                             </div>
                         </div>
                     </div>
@@ -191,7 +197,6 @@
                                     </div>
                                     <div class="title">
                                         <h3 class="muted regular">{{ talent.username }}</h3>
-                                        {# <h5>{{ job.salary }}</h5> #}
                                         <h5 class="muted regular">{{ talent.title }}</h5>
                                     </div>
                                     <form method="post" action="/talentProfile" class="inline">
@@ -200,7 +205,6 @@
                                             Profil détaillé
                                         </button>
                                     </form>
-                                    {# <button type="button" data-toggle="modal" id="{{ talent.id }}" class="btn btn-blue-fill">Profil</button> #}
                                 </div>
                             </div>
                         {% endfor %}
@@ -262,16 +266,6 @@
                                 <h4 class="white light">Marjorie a été diablement efficace en nous prodiguant des profils de qualité, totalement en adequation avec nos besoins, pourtant spécifiques et exigeants. Elle a eu un rôle déterminant dans les recrutements que nous avons conduit. Je ne peux que la recommander chaudement !</h4>
                                 <h4 class="light-white light">Sabrina Taelman Martini</h4>
                             </div>
-                            {# <div class="item text-center">
-                                <i class="icon fa fa-twitter"></i>
-                                <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
-                                <h4 class="light-white light">#lorem #ipsum #latin</h4>
-                            </div>
-                            <div class="item text-center">
-                                <i class="icon fa fa-twitter"></i>
-                                <h4 class="white light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h4>
-                                <h4 class="light-white light">#lorem #ipsum #latin</h4>
-                            </div> #}
                         </div>
                     </div>
                 </div>
@@ -294,7 +288,7 @@
     {{ parent() }} 
     
     {% block loginRedirectionPath %} 
-        {# value="{{ path('homePro') }}"  #}
+        <input type="hidden" name="_target_path" value="{{ path('homePro') }}"/>
     {% endblock %}
 
 {% endblock %}

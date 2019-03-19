@@ -62,6 +62,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
 					{% block navbar %}
+						
 						{# <li><a href="#intro">Qui Sommes Nous?</a></li>
 						<li><a href="#services">Services</a></li>
 						<li><a href="#jobs">Offres d'Emploi</a></li>
@@ -76,6 +77,7 @@
 					{% endblock %}
 				</ul>
 			</div>
+				{% block flashMessages %}{% endblock %}
 			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
@@ -154,8 +156,10 @@
 					</div>
 				</div>
 				<div class="row bottom-footer text-center-mobile">
-					<div class="col-sm-8">
-						<p>&copy; 2019 Tous droits réservés. </p>
+					<div class="col-sm-8 legal">
+						<li><p>&copy; 2019 Tous droits réservés</p></li>
+						<li><a href="/privacy"><p>Politique de confidentialité</p></a></li>
+						<li><a href=""><p>Mentions légales</p></a></li>
 					</div>
 					<div class="col-sm-4 text-right text-center-mobile">
 						<ul class="social-footer">
@@ -182,34 +186,11 @@
 						<form action="" class="popup-form">
 							<input type="text" name="email" class="form-control form-white" placeholder="Email">
 							<input type="text" name="password" class="form-control form-white" placeholder="Mot de Passe">
-							{# <div class="checkbox-holder text-left">
-								<div class="checkbox">
-									<input type="checkbox" value="None" id="squaredOne" name="check" />
-									<label for="squaredOne"><span>J'accepte les <strong>conditions générales</strong></span></label>
-								</div>
-							</div> #}
-							{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
-							<input type="hidden" name="_target_path" {% block loginRedirectionPath %}{% endblock %} />
+							{% block loginRedirectionPath %} {% endblock %} 
 							<button type="submit" class="btn btn-submit" formaction="login" formmethod="post">Envoyer</button>
-							<p>Pas encore inscrit? <a href="#" data-toggle="modal" data-target="#modalRegistration">Par ici!!!</a>
-							{# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
+							<a href="/lostPassword">J'ai oublié mon mot de passe !!</a>
 						</form>
 					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="modalUsertype" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content modal-popup">
-					<a href="#" class="close-link" data-dismiss="modal"><i class="icon_close_alt2"></i></a>
-					
-					<button type="button" class="btn btn-submit" data-dismiss="#modalUsertype" data-toggle="modal" data-target="#modalRegistrationTalent">
-						Consulter
-					</button>
-
-					{# <a href="#" data-toggle="modal" data-target="modalRegistrationTalent" data-dismiss="modal" class="btn btn-submit">Je suis un Talent</a> #}
-					<a href="#" data-toggle="modal" data-target="modalRegistrationCompany" data-dismiss="modal" class="btn btn-submit">Je suis une Entreprise</a>
 				</div>
 			</div>
 		</div>
@@ -221,11 +202,12 @@
 					<div class="form-control form-white">
 						<h3 class="white">Enregistrement Talent</h3>
 						<p>Si tu es une entreprise. <a href="/pro">C'est par là!!!</a></p>
-						<form action="" class="popup-form" enctype="multipart/form-data">
+						<form action="insertdata.php" onsubmit="return checkall();" class="popup-form" enctype="multipart/form-data">
 							<input type="text" name="lastname" class="form-control form-white" placeholder="Nom" required>
 							<input type="text" name="firstname" class="form-control form-white" placeholder="Lastname" required>
 							<input type="text" name="title" class="form-control form-white" placeholder="Métier" required>
-							<input type="text" name="email" class="form-control form-white" placeholder="Email" required>
+							<input type="text" id="UserEmail" name="email" class="form-control form-white" placeholder="Email" required>
+							<span id="email_status"></span>
 							<input type="password" name="password" class="form-control form-white" placeholder="Mot de passe" id="password_talent" required>
 							<input type="password" name="password" class="form-control form-white" placeholder="Confirmez le mot de passe" id="confirm_password_talent" required>
 
@@ -237,7 +219,7 @@
 									<div class="animated lightSpeedIn">
 										{% for skill in skills %}
 												<input type="checkbox" name="skills[]" value="{{ skill.name }}">
-												<label for="{{ skill.name }}">{{ skill.name }}</label>
+												<label style="color: #ffae00" for="{{ skill.name }}">{{ skill.name }}</label>
 										{% endfor %}
 									</div>
 								</div>
@@ -271,34 +253,13 @@
 								<label for="remoteOnly">Télétravail seulement</label>
 								<input type="checkbox" class="form-white" name="remoteOnly">
 							</div>
-
-
-
-
-							{# <div class="dropdown">
-								<button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Vos besoins
-								</button>
-								<ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
-									<li class="animated lightSpeedIn"><a href="#">Diffusion d'offre d'emploi</a></li>
-									<li class="animated lightSpeedIn"><a href="#">Elaboration de cahier des charges</a></li>
-									<li class="animated lightSpeedIn"><a href="#">Autre demande</a></li>
-								</ul>
-							</div>
-							<div class="checkbox-holder text-left">
-								<div class="checkbox">
-									<input type="checkbox" value="None" id="squaredOne" name="check" />
-									<label for="squaredOne"><span>J'accepte les <strong>conditions générales</strong></span></label>
-								</div>
-							</div> #}
 							<button type="submit" class="btn btn-submit" formaction="talentRegistration" formmethod="post">Envoyer</button>
-							{# <p>Déjà inscrit? <a href="#" data-toggle="modal" data-target="#modal1">Par ici!!!</a></p> #}
-							{# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<div class="modal fade" id="modalRegistrationCompany" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content modal-popup">
@@ -311,34 +272,13 @@
 							<input type="text" name="email" class="form-control form-white" placeholder="Email" required>
 							<input type="password" name="password" class="form-control form-white" placeholder="Mot de passe" id="password_company" required>
 							<input type="password" name="password" class="form-control form-white" placeholder="Confirmez le mot de passe" id="confirm_password_company" required>
-							{# <input type="text" name="picture" class="form-control form-white" placeholder="Logo"> #}
 							<input type="text" name="address" class="form-control form-white" placeholder="Adresse" required>
 							<input type="text" name="phone" class="form-control form-white" placeholder="Téléphone">
 							<div class="form-control form-white file-input">
 								<label for="picture">Importez votre logo</label>
 								<input type="file" name="picture" accept="image/png, image/jpeg, image/jpg">
 							</div>
-							
-
-							{# <div class="dropdown">
-								<button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Vos besoins
-								</button>
-								<ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
-									<li class="animated lightSpeedIn"><a href="#">Diffusion d'offre d'emploi</a></li>
-									<li class="animated lightSpeedIn"><a href="#">Elaboration de cahier des charges</a></li>
-									<li class="animated lightSpeedIn"><a href="#">Autre demande</a></li>
-								</ul>
-							</div>
-							<div class="checkbox-holder text-left">
-								<div class="checkbox">
-									<input type="checkbox" value="None" id="squaredOne" name="check" />
-									<label for="squaredOne"><span>J'accepte les <strong>conditions générales</strong></span></label>
-								</div>
-							</div> #}
 							<button type="submit" class="btn btn-submit" formaction="companyRegistration" formmethod="post">Envoyer</button>
-							{# <p>Déjà inscrit? <a href="#" data-toggle="modal" data-target="#modal1">Par ici!!!</a></p> #}
-							{# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
 						</form>
 					</div>
 				</div>
@@ -385,6 +325,7 @@
 	
 	{% block scripts %}
 		<!-- Scripts -->
+		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/owl.carousel.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

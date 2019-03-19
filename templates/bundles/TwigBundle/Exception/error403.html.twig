@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block logo %}{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block mobileNav %}{% endblock %}
+
+{% block header %}
+		<header class="main-header" id="intro">
+			<div class="container">
+				<div class="table">
+					<div class="header-text">
+						<div class="row">
+							<div class="col-md-12 text-center">
+                                <div class="col-md-12 text-center" style="margin-bottom: 4rem">
+                                    <h1 class="light white">Corse Connexion</h1>
+								    <p style="font-size: 5rem;" class="orange typed">Erreur 403!! Tu n'as pas les droit d'accès à cette page!</p>
+                                </div> 
+								{# <h1 class="white typed">Corse Connexion</h1>  #}
+								{# <span class="typed-cursor">|</span> #}
+								<div class="row title text-center">
+                                    <a href="/talent" class="btn btn-blue homebtn ripple">Page Talents</a>
+                                    <a href="/pro" class="btn btn-blue homebtn ripple">Page Entreprises</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	{% endblock %}
+
+	{% block footer %}{% endblock %}
+
+
+	{% block scripts %}
+	
+	<!-- Scripts -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		{# <script src="js/owl.carousel.min.js"></script> #}
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/typewriter.js"></script>
+		<script src="js/jquery.onepagenav.js"></script>
+		<script src="js/main.js"></script>
+
+	{% endblock %}
