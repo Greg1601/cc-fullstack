@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\JobOffer;
 use App\Entity\Skill;
 use App\Entity\Talent;
+use App\Entity\Admin;
 
 class HomeController extends AbstractController
 {
@@ -37,7 +38,13 @@ class HomeController extends AbstractController
     public function homeProAction()
     {
         $user = $this->getUser();
-        // dump($user);die;
+        $usertype = null;
+
+        if ($user) {
+            if ($this->getDoctrine()->getManager()->getRepository(Admin::class)->findOneByMail($user->getMail())) {
+                $usertype = 'admin';
+            }
+        }
 
         // récupération des éléments de Talents.
         $talents = $this->getDoctrine()
@@ -58,12 +65,12 @@ class HomeController extends AbstractController
         ->getManager()
         ->getRepository(Skill::class)
         ->findAll();
-
         
         return $this->render('homepages/homePro.html.twig',[
             'talents' => $threeTalents,
             'skills' => $skills,
-            'user' => $user
+            'user' => $user,
+            'usertype' => $usertype
         ]);
     }
 
@@ -83,6 +90,8 @@ class HomeController extends AbstractController
             'isChecked' => '1'
         ]);
 
+        $usertype=null;
+
         //shuffle JobOffer
         shuffle($jobs);
 
@@ -97,11 +106,21 @@ class HomeController extends AbstractController
         
         $user = $this->getUser();
 
+        if ($user) {
+            if ($this->getDoctrine()->getManager()->getRepository(Admin::class)->findOneByMail($user->getMail())) {
+                $usertype = 'admin';
+            }
+        }
+        else {
+            $usertype = null;
+        }
+
         // return $this->render('homePro.html.twig');
         return $this->render('homepages/homeTalent.html.twig',[
             'jobs' => $threeOffers,
             'skills' => $skills,
-            'user' => $user
+            'user' => $user,
+            'usertype' => $usertype
         ]);
     }
 
@@ -116,6 +135,21 @@ class HomeController extends AbstractController
         ->findAll();
 
         return $this->render('privacy.html.twig',[
+            'skills' => $skills,
+        ]);
+    }
+
+    /**
+     * @Route("/CGU", name="CGU")
+     */
+    public function CGUAction()
+    {
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
+
+        return $this->render('mentions.html.twig',[
             'skills' => $skills,
         ]);
     }

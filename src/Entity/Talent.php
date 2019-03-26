@@ -6,9 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TalentRepository")
+ * @UniqueEntity("mail", message="Cette adresse mail est déjà utilisée.")
  */
 class Talent implements UserInterface
 {
@@ -30,7 +33,7 @@ class Talent implements UserInterface
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=190, unique=true)
      */
     private $mail;
 
@@ -94,10 +97,21 @@ class Talent implements UserInterface
      */
     private $isFreelance;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $validEmail;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $randomKey;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
         $this->isChecked = 0;
+        $this->validEmail = false;
     }
 
     public function getId(): ?int
@@ -315,6 +329,30 @@ class Talent implements UserInterface
     public function setIsFreelance(bool $isFreelance): self
     {
         $this->isFreelance = $isFreelance;
+
+        return $this;
+    }
+
+    public function getValidEmail(): ?bool
+    {
+        return $this->validEmail;
+    }
+
+    public function setValidEmail(bool $validEmail): self
+    {
+        $this->validEmail = $validEmail;
+
+        return $this;
+    }
+
+    public function getRandomKey(): ?string
+    {
+        return $this->randomKey;
+    }
+
+    public function setRandomKey(string $randomKey): self
+    {
+        $this->randomKey = $randomKey;
 
         return $this;
     }

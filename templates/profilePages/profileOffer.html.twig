@@ -30,7 +30,7 @@
 
 {% block logoLink %} {{ parent() }} {% endblock %}
 
-{% block navbar %} 
+{% block navbarButtons %} 
 
     <li><a href="/jobs">Retour à la liste des offres</a></li>
     <li><a href="/talent">Espace Talents</a></li>
@@ -42,10 +42,6 @@
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
         <li><a href="#" data-toggle="modal" data-target="#modalRegistrationTalent" class="btn btn-blue">Inscription</a></li>
     {% endif %}
-    <br>
-    <div class="align-content-end">
-        <a href="/admin" class="other-link">Espace Admin</a>
-    </div>
 
 {% endblock %}
     
@@ -104,6 +100,15 @@
                     <div class="details">
                         <p class="profileElement">Télétravail possible?</p>
                         {% if job.remotePossibility == true %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="details">
+                        <p class="profileElement">Freelance possible?</p>
+                        {% if job.freelancePossibility == true %}
                             <p>Oui</p>
                         {% else %}
                             <p>Non</p>
@@ -211,6 +216,15 @@
                                 <input type="checkbox" name="remotePossibility" checked>
                             {% else %}
                                 <input type="checkbox" name="remotePossibility">
+                            {% endif %}
+                        </div>
+
+                        <div class="form-white">
+                            <label for="freelancePossibility">Freelance possible</label>
+                            {% if job.remotePossibility == true %}
+                                <input type="checkbox" name="freelancePossibility" checked>
+                            {% else %}
+                                <input type="checkbox" name="freelancePossibility">
                             {% endif %}
                         </div>
                         

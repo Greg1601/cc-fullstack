@@ -77,6 +77,11 @@ class JobOffer
      */
     private $isFilled;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $freelancePossibility;
+
     public function __construct()
     {
         $this->visibility = true;
@@ -233,6 +238,18 @@ class JobOffer
     public function setIsFilled(bool $isFilled): self
     {
         $this->isFilled = $isFilled;
+
+        return $this;
+    }
+
+    public function getFreelancePossibility(): ?bool
+    {
+        return $this->freelancePossibility;
+    }
+
+    public function setFreelancePossibility(bool $freelancePossibility): self
+    {
+        $this->freelancePossibility = $freelancePossibility;
 
         return $this;
     }

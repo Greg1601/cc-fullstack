@@ -112,7 +112,7 @@ ul.white-list li:before {
 .main-header {
 	position: relative;
 	width: 100%;
-	height: 100%;
+	max-height: 50% !important;
 	color: white;
 	background: rgba(28, 36, 65, 0.93);
 	background: url('../img/header_test.jpg');
@@ -201,7 +201,7 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 /* Buttons */
 
 .btn {
-	font-size: 1.9vw;
+	font-size: 2rem;
 	display: inline-block;
 	padding: 15px 30px;
 	color: white;
@@ -274,7 +274,7 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 	color: #ffae00;
 	border: 2px solid #ffae00;
 	border-radius: 2px;
-	margin: 0.5rem;
+	margin: 0.5rem 0.5rem;
 }
 
 .btn.btn-offer:hover {
@@ -286,6 +286,27 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 	color: #ffae00;
 	border-color: #ffae00;
 	background: transparent;
+}
+
+.details-offers {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.details-offer {
+	width: 50%;
+}
+
+.buttontext {
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+	text-overflow: ellipsis;
+	font-size: 2rem;
+}
+
+.btn-offers {
+	margin-left: 1rem;
 }
 
 /* Blink Cursor */
@@ -580,7 +601,7 @@ a.description {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background:url('../img/team/marjorie.jpg'); 
+	background:url('../img/team/marjo_bandeau.jpg'); 
 	background-position: center; 
 	background-size:cover; 
 	background-repeat: no-repeat;
@@ -595,7 +616,7 @@ a.description {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background:url('../img/team/greg.jpg'); 
+	background:url('../img/team/greg_cool2.jpg'); 
 	background-position: center; 
 	background-size:cover; 
 	background-repeat: no-repeat;
@@ -619,7 +640,7 @@ a.description {
 }
 
 .whoIs .description {
-	color: #8a8e91;
+	color: #f7f7f7;
 	width: 80%;
 	margin: 0 auto;
 	opacity: 0;
@@ -1073,8 +1094,17 @@ footer textarea:focus{
 	background: #ffae00;
 }
 
-popup-form 
+#company_email_status {
+	color: #ff004c
+}
 
+#talent_email_status {
+	color: #ff004c
+}
+
+#company-test-mail{
+	visibility: hidden;
+}
 /* Checkbox */
 
 .checkbox-holder {
@@ -1212,10 +1242,6 @@ popup-form
 
 .row.title {
 	padding: 0 20px;
-}
-
-.profileButtons {
-	display: flex;
 }
 
 

@@ -22,6 +22,7 @@ class MailingController extends AbstractController
         $mail->setMail($request->request->get('email'));
         $mail->setFirstname($request->request->get('firstname'));
         $mail->setLastname($request->request->get('lastname'));
+        $mail->setPhone($request->request->get('phone'));
 
         $em->persist($mail);
         $em->flush();

@@ -24,6 +24,7 @@ class ContactMsgController extends AbstractController
         $contact->setMail($request->request->get('email'));
         $contact->setName($request->request->get('name'));
         $contact->setMessage($request->request->get('message'));
+        $contact->setPhone($request->request->get('phone'));
 
         $em->persist($contact);
         $em->flush();

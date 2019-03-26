@@ -169,6 +169,9 @@ jQuery(function($) {
 		$('.modal:visible').each(centerModal);
 	});
 	
+
+	// Confirmation des mots de passe
+	
 	var password_talent = document.getElementById("password_talent"),
 	password_company = document.getElementById("password_company"),
 	confirm_password_talent = document.getElementById("confirm_password_talent"),
@@ -195,5 +198,21 @@ jQuery(function($) {
 	
 	password_company.onchange = validatePasswordCompany;
 	confirm_password_company.onkeyup = validatePasswordCompany;
+
+	function validatePasswordReset(){
+		if(password_reset.value != confirm_password_reset.value) {
+			confirm_password_reset.setCustomValidity("Les mots de passe doivent être identiques");
+		} else {
+			confirm_password_reset.setCustomValidity('');
+		}
+	}
+
+	if (document.getElementById("password_reset")) {
+		var password_reset = document.getElementById("password_reset"),
+		confirm_password_reset = document.getElementById("confirm_password_reset");
+		
+		password_reset.onchange = validatePasswordReset;
+		confirm_password_reset.onkeyup = validatePasswordReset;
+	}
 	
 });

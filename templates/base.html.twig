@@ -35,6 +35,33 @@
 		<!-- Main style -->
 		<link rel="stylesheet" type="text/css" href="css/cc-style.css">
 	{% endblock %}
+
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+	<script>
+	var cgu ="<a href='http://127.0.0.1:8000/CGU'><u>CGU</u></a>";
+	var privacy = "<a href='http://127.0.0.1:8000/privacy'><u>politique de confidentialité</u></a>";
+		window.addEventListener("load", function(){
+		window.cookieconsent.initialise({
+			"palette": {
+				"popup": {
+					"background": "#ff004c",
+					"text": "#f7f7f7"
+				},
+				"button": {
+					"background": "#ffae00",	
+					"text": "#f7f7f7"		
+				}
+			},
+			"showLink": false,
+			"theme": "classic",
+			"content": {
+				"message": "En poursuivant votre navigation sur notre site, vous acceptez nos ".concat(cgu)+" et notre ".concat(privacy)+".",
+				"dismiss": "J'ai compris!",
+				"link": "En savoir plus"
+			}
+		})});
+	</script>
 </head>
 
 <body>
@@ -44,62 +71,37 @@
 		</div>
 	{% endblock %}
 
-	<nav class="navbar">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				{% block mobileNav %}
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				{% endblock %}
-				{% block logo %}<a class="navbar-brand" href="#pageStart"><img src="img/CC_mini_logo.png" data-active-url="img/CC_mini_logo.png" alt=""></a>
-			</div>{% endblock %}
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right main-nav">
-					{% block navbar %}
-						
-						{# <li><a href="#intro">Qui Sommes Nous?</a></li>
-						<li><a href="#services">Services</a></li>
-						<li><a href="#jobs">Offres d'Emploi</a></li>
-						<li><a href="#pricing">Tarifs et Contact</a></li>
-						{% if session == true %}
-							<li><a href="logout" class="btn btn-blue">Déconnexion</a></li>
-						{% endif %}
-						{% if session == false %}
-							<li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
-							<li><a href="#" data-toggle="modal" data-target="#modalRegistration" class="btn btn-blue">Inscription</a></li>
-						{% endif %} #}
+	{% block navbar %}
+		<nav class="navbar">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					{% block mobileNav %}
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 					{% endblock %}
-				</ul>
+					{% block logo %}<a class="navbar-brand" href="#pageStart"><img src="img/CC_mini_logo.png" data-active-url="img/CC_mini_logo.png" alt=""></a>
+				</div>{% endblock %}
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right main-nav">
+						{% block navbarButtons %}
+
+						{% endblock %}
+					</ul>
+				</div>
+					{% block flashMessages %}{% endblock %}
+				<!-- /.navbar-collapse -->
 			</div>
-				{% block flashMessages %}{% endblock %}
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+			<!-- /.container-fluid -->
+		</nav>
+	{% endblock %}
 
 	{% block header %}
-	{# header d'origine à conserver pour copie (l'image de fond du header de la page d'accueil est relié à la classe css main-header ). Le CSS de header a été modifié en .main-header #}
-		{# <header id="intro">
-			<div class="container">
-				<div class="table">
-					<div class="header-text">
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<h1 class="light white">Corse Connexion</h3>
-								<h1 class="white typed">Corse Connexion</h1>
-								<span class="typed-cursor">|</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header> #}
 		<header class="main-header" id="intro">
 			<div class="container" id="pageStart">
 				<div class="table">
@@ -108,7 +110,6 @@
 							<div class="col-md-12 text-center">
 								<h1 class="light white">Corse Connexion</h1>
 								<h2 class="orange typed">{% block pageTitle %}{% endblock %}</h2>
-								{# <span class="typed-cursor">|</span> #}
 							</div>
 						</div>
 					</div>
@@ -125,7 +126,46 @@
 
 		{% block offers %}{% endblock %}
 
-		{% block presentation %}{% endblock %}
+		{% block presentation %}
+			<section id="pricing" class="section">
+				<div class="container" id="presentation">
+					<div class="row title text-center">
+					</div>
+					<div class="row no-margin" style="text-align: -webkit-right;">
+						<div class="whoIs" >
+							<div class="marjo">
+							</div>
+							<div class="team-info">
+								<h4 class="white heading">Marjorie Di Placido Pietri</h4>
+								<p class="description">#38ans #DigitalNomad #Punchy<br/>Marjorie n’hésite pas à bousculer les codes quand il s’agit de recrutement. Son anti-conformisme, son expertise et sa connaissance de l’écosystème digital sur l’île seront des atouts incontestables pour réussir ton projet.</p>
+							</div>
+						</div>
+						<div class="whoIs" >
+							<div class="greg">
+							</div>
+							<div class="team-info">
+								<h4 class="white heading">Grégory Guiné</h4>
+								<p class="description">#35ans #HardWorker #Passionate <br>Amoureux de la Corse, Grégory est passionné par le numérique et aime sortir de sa zone de confort. Son implication, ses compétences et sa bonne humeur en font un partenaire de choix pour la réussite de tes projets.</p>
+							</div>
+						</div>
+						{# Masqué au dessus de width 992px #}
+						<div class="whoIs-mobile" >
+							<div class="row title text-center">
+								<h2>Qui sommes nous?</h2>
+							</div>
+							<div class="team-info">
+								<h4 class="white heading">Marjorie Di Placido Pietri</h4>
+								<p class="description">#38ans #DigitalNomad #Punchy <br>Marjorie n’hésite pas à bousculer les codes quand il s’agit de recrutement. Son anti-conformisme, son expertise et sa connaissance de l’écosystème digital sur l’île seront des atouts incontestables pour réussir ton projet.</p>
+							</div>
+							<div class="team-info">
+								<h4 class="white heading">Grégory Guiné</h4>
+								<p class="description">#35ans #HardWorker #Passionate <br>Amoureux de la Corse, Grégory est passionné par le numérique et aime sortir de sa zone de confort. Son implication, ses compétences et sa bonne humeur en font un partenaire de choix pour la réussite de tes projets.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		{% endblock %}
 
 		{% block goldenBook %}{% endblock %}
 
@@ -149,8 +189,12 @@
 								<input type="email" class="form-control" name="email" placeholder="Mail" required >
 							</div>
 							<div class="form-group">
+								<input type="tel" name="phone" class="form-control" placeholder="Téléphone" required>
+							</div>
+							<div class="form-group">
 								<textarea class="form-control" name="message" rows="3" placeholder="Message" required ></textarea>
 							</div>
+							<p>Ces données ne sont en aucun cas susceptibles d'être revendues. Pas d'inquiètude, on est pas comme ça.</p>
 							<button type="submit" class="btn btn-blue">Envoyer</button>
 						</form>
 					</div>
@@ -161,13 +205,13 @@
 						<li><a href="/privacy"><p>Politique de confidentialité</p></a></li>
 						<li><a href=""><p>Mentions légales</p></a></li>
 					</div>
-					<div class="col-sm-4 text-right text-center-mobile">
+					{# <div class="col-sm-4 text-right text-center-mobile">
 						<ul class="social-footer">
 							<li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="https://twitter.com/Kalapyu"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="https://www.linkedin.com/in/greg-guine/"><i class="fa fa-linkedin"></i></a></li>
 						</ul>
-					</div>
+					</div> #}
 				</div>
 			</div>
 		</footer>
@@ -184,8 +228,8 @@
 					<div class="form-control form-white">
 						<h3 class="white">Connexion</h3>
 						<form action="" class="popup-form">
-							<input type="text" name="email" class="form-control form-white" placeholder="Email">
-							<input type="text" name="password" class="form-control form-white" placeholder="Mot de Passe">
+							<input type="text" name="email" class="form-control form-white" placeholder="Email" required>
+							<input type="password" name="password" class="form-control form-white" placeholder="Mot de Passe" required>
 							{% block loginRedirectionPath %} {% endblock %} 
 							<button type="submit" class="btn btn-submit" formaction="login" formmethod="post">Envoyer</button>
 							<a href="/lostPassword">J'ai oublié mon mot de passe !!</a>
@@ -204,26 +248,27 @@
 						<p>Si tu es une entreprise. <a href="/pro">C'est par là!!!</a></p>
 						<form action="insertdata.php" onsubmit="return checkall();" class="popup-form" enctype="multipart/form-data">
 							<input type="text" name="lastname" class="form-control form-white" placeholder="Nom" required>
-							<input type="text" name="firstname" class="form-control form-white" placeholder="Lastname" required>
+							<input type="text" name="firstname" class="form-control form-white" placeholder="Prénom" required>
 							<input type="text" name="title" class="form-control form-white" placeholder="Métier" required>
-							<input type="text" id="UserEmail" name="email" class="form-control form-white" placeholder="Email" required>
-							<span id="email_status"></span>
+							<input type="text" id="talentEmail" name="email" class="form-control form-white" placeholder="Email" required>
+							<span id="talent_email_status"></span>
 							<input type="password" name="password" class="form-control form-white" placeholder="Mot de passe" id="password_talent" required>
 							<input type="password" name="password" class="form-control form-white" placeholder="Confirmez le mot de passe" id="confirm_password_talent" required>
 
-							<div class="dropdown">
+							{# <div class="dropdown">
 								<button id="dLabel" name="skills" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Compétences
 								</button>
 								<div class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
 									<div class="animated lightSpeedIn">
 										{% for skill in skills %}
-												<input type="checkbox" name="skills[]" value="{{ skill.name }}">
-												<label style="color: #ffae00" for="{{ skill.name }}">{{ skill.name }}</label>
+											<label style="color: #ffae00" for="{{ skill.name }}">
+												<input type="checkbox" id="{{ skill.name }}" name="{{ skill.name }}" value="{{ skill.name }}">{{ skill.name }}
+											</label>
 										{% endfor %}
 									</div>
 								</div>
-							</div>
+							</div> #}
 
 							<input type="text" name="location" class="form-control form-white" placeholder="Commune" required>
 							
@@ -239,19 +284,22 @@
 							</div>
 							<input type="text" name="linkedIn" class="form-control form-white" placeholder="Profil LinkedIn">
 							
-							<div class="form-white">
-								<label for="mobility">Mobile en Corse</label>
-								<input type="checkbox" name="mobility">
-							</div>
+							<div class="form-control form-white file-input">
+								<label>Informations complémentairtes</label>
+								<div class="form-white">
+									<label for="mobility">Mobile en Corse</label>
+									<input type="checkbox" id="mobility" name="mobility">
+								</div>
 
-							<div class="form-white">
-								<label for="isFreelance">Freelance</label>
-								<input type="checkbox" name="isFreelance">
-							</div>
+								<div class="form-white">
+									<label for="isFreelance">Dispo pour des missions en Free</label>
+									<input type="checkbox" id="isFreelance" name="isFreelance">
+								</div>
 
-							<div class="form-white">
-								<label for="remoteOnly">Télétravail seulement</label>
-								<input type="checkbox" class="form-white" name="remoteOnly">
+								<div class="form-white">
+									<label for="remoteOnly">Télétravail seulement</label>
+									<input type="checkbox" class="form-white" id="remoteOnly" name="remoteOnly">
+								</div>
 							</div>
 							<button type="submit" class="btn btn-submit" formaction="talentRegistration" formmethod="post">Envoyer</button>
 						</form>
@@ -269,16 +317,17 @@
 						<p>Si tu es un Talent. <a href="/talent">C'est par là!!!</a></p>
 						<form action="" class="popup-form" enctype="multipart/form-data">
 							<input type="text" name="name" class="form-control form-white" placeholder="Nom de l'entreprise" required>
-							<input type="text" name="email" class="form-control form-white" placeholder="Email" required>
+							<input type="text" id="companyEmail" name="email" class="form-control form-white" placeholder="Email" required>
+							<span id="company_email_status" style="color: #ff004c"></span>
 							<input type="password" name="password" class="form-control form-white" placeholder="Mot de passe" id="password_company" required>
 							<input type="password" name="password" class="form-control form-white" placeholder="Confirmez le mot de passe" id="confirm_password_company" required>
 							<input type="text" name="address" class="form-control form-white" placeholder="Adresse" required>
-							<input type="text" name="phone" class="form-control form-white" placeholder="Téléphone">
+							<input type="text" name="phone" class="form-control form-white" placeholder="Téléphone" required>
 							<div class="form-control form-white file-input">
 								<label for="picture">Importez votre logo</label>
-								<input type="file" name="picture" accept="image/png, image/jpeg, image/jpg">
+								<input type="file" name="picture" accept="image/png, image/jpeg, image/jpg" required>
 							</div>
-							<button type="submit" class="btn btn-submit" formaction="companyRegistration" formmethod="post">Envoyer</button>
+							<button type="submit" id="company-test-mail" class="btn btn-submit" formaction="companyRegistration" formmethod="post">Envoyer</button>
 						</form>
 					</div>
 				</div>
@@ -292,20 +341,13 @@
 					<div class="form-control form-white">
 						<h4 class="white">Inscris toi pour recevoir les infos de la communauté et tes invitations aux évènements de Corse-Connexion!</h4>
 						<form action="" class="popup-form">
-							<input type="text" name="email" class="form-control form-white" placeholder="Email">
-							<input type="text" name="firstname" class="form-control form-white" placeholder="Prénom">
-							<input type="text" name="lastname" class="form-control form-white" placeholder="Nom">
-							{# <div class="checkbox-holder text-left">
-								<div class="checkbox">
-									<input type="checkbox" value="None" id="squaredOne" name="check" />
-									<label for="squaredOne"><span>J'accepte les <strong>conditions générales</strong></span></label>
-								</div>
-							</div> #}
-							{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
-							{# <input type="hidden" name="_target_path" {% block loginRedirectionPath %}{% endblock %} /> #}
+							<input type="text" name="email" class="form-control form-white" placeholder="Email" required>
+							<input type="text" name="firstname" class="form-control form-white" placeholder="Prénom" required>
+							<input type="text" name="lastname" class="form-control form-white" placeholder="Nom" required>
+							<input type="tel" name="phone" class="form-control form-white" placeholder="Téléphone" required>
+							<p>Ces données ne sont en aucun cas susceptibles d'être revendues. Pas d'inquiètude, on est pas comme ça.</p>
+							
 							<button type="submit" class="btn btn-submit" formaction="getMail" formmethod="post">Envoyer</button>
-							{# <p>Enregistrer ton profil de talent ou d'entreprise? <a href="#" data-toggle="modal" data-target="#modalRegistration">C'est par là!!!</a> #}
-							{# <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Connexion</a> #}
 						</form>
 					</div>
 				</div>
@@ -333,6 +375,47 @@
 		<script src="js/typewriter.js"></script>
 		<script src="js/jquery.onepagenav.js"></script>
 		<script src="js/main.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('#talentEmail').change(function(){
+					var talentEmail = $('#talentEmail').val();
+					if (talentEmail != '')
+					{
+						$.ajax({
+							url:"checkMail",
+							method:"POST",
+							data:{email:talentEmail},
+							success:function(data){
+								$('#talent_email_status').html(data);
+							}
+						})
+					}
+				})
+				$('#companyEmail').change(function(){
+					var companyEmail = $('#companyEmail').val();
+					var companyButton = document.getElementById('company-test-mail');
+					if (companyEmail != '')
+					{
+						$.ajax({
+							url:"checkMail",
+							method:"POST",
+							data:{email:companyEmail},
+							success:function(data){
+								$('#company_email_status').html(data);
+								if (data == ("Email disponible"))
+								{
+									companyButton.style.visibility = 'visible';
+								}
+								else 
+								{
+									companyButton.style.visibility = "hidden";
+								}
+							}
+						})
+					}
+				})
+			})
+		</script>
 	{% endblock %}
 </body>
 

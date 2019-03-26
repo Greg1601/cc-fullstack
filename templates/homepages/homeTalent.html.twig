@@ -6,7 +6,7 @@
 
 {% block logoLink %} {{ parent() }} {% endblock %}
 
-{% block navbar %} 
+{% block navbarButtons %} 
 
     <li><a href="#services">Services</a></li>
     <li><a href="#jobs">Offres d'emploi</a></li>
@@ -22,7 +22,9 @@
     {% endif %}
     <br>
     <div class="align-content-end">
-        <a href="/admin" class="other-link">Espace Admin</a>
+        {% if usertype == 'admin' %}
+            <a href="/admin" class="other-link">Espace Admin</a>
+        {% endif %}
         <a href="/pro" class="other-link">Espace Entreprises</a>
     </div>
 
@@ -68,10 +70,10 @@
                                     </div>
                                     <div class="schedule-row row">
                                         <div class="col-xs-6">
-                                            <h5 class="regular white">Le 23/04/2019</h5>
+                                            <h5 class="regular white">Le 26/04/2019</h5>
                                         </div>
                                         <div class="col-xs-6 text-right">
-                                            <h5 class="white">8h30 - 10h00</h5>
+                                            <h5 class="white">10h00 - 11h00</h5>
                                         </div>
                                     </div>
                                     <div class="schedule-row row">
@@ -136,10 +138,9 @@
                                 <img src="img/icons/conversation-orange.png" alt="" class="icon">
                             </div>
                             <h4 class="heading">Accompagnement individuel</h4>
-                            <div class="description">
-                            <p>Fais-toi coacher par un expert RH.</p>
+                            <div>
+                            <p class="description">Tu as un profil dans le digital, numérique? Tu cherches un job de développeur, chef de projet digital, social media manager, webmarketeur … ?  Laisse-toi accompagner par nos experts RH et bénéficie d’un accompagnement sur-mesure.</p>
                             </div>
-                            <a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue description" style="margin-top: 20%">Voir</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -219,44 +220,7 @@
     {% endblock %}
 
     {% block presentation %}
-        <section id="pricing" class="section">
-            <div class="container" id="presentation">
-                <div class="row title text-center">
-                </div>
-                <div class="row no-margin" style="text-align: -webkit-right;">
-                    <div class="whoIs" >
-                        <div class="marjo">
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
-                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
-                        </div>
-                    </div>
-                    <div class="whoIs" >
-                        <div class="greg">
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Grégory Guiné</h4>
-                            <p class="description">nteger in quam sapien. Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem. Etiam tincidunt varius egestas. Proin hendrerit eros at rutrum suscipit.</p>
-                        </div>
-                    </div>
-                    {# Masqué au dessus de width 992px #}
-                    <div class="whoIs-mobile" >
-                         <div class="row title text-center">
-                            <h2>Qui sommes nous?</h2>
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
-                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Grégory Guiné</h4>
-                            <p class="description">Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {{ parent() }}
     {% endblock %}
 
     {% block goldenBook %}
@@ -293,7 +257,7 @@
 {% block securityForms %} 
 
     {{ parent() }} 
-    
+
     {% block loginRedirectionPath %} 
         <input type="hidden" name="_target_path" value="{{ path('homeTalent') }}"/>
     {% endblock %}

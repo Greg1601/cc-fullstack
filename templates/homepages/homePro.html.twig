@@ -4,7 +4,7 @@
 
 {% block style %} {{ parent() }} {% endblock %}
 
-{% block navbar %} 
+{% block navbarButtons %} 
 
     <li><a href="#services">Services</a></li>
     <li><a href="#talents">Talents</a></li>
@@ -21,7 +21,9 @@
     {% endif %}
     <br>
     <div class="align-content-end">
-        <a href="/admin" class="other-link">Espace Admin</a>
+        {% if usertype == 'admin' %}
+            <a href="/admin" class="other-link">Espace Admin</a>
+        {% endif %}
         <a href="/talent" class="other-link">Espace Talents</a>
     </div>
 {% endblock %}
@@ -217,42 +219,7 @@
     {% endblock %}
 
     {% block presentation %}
-        <section id="pricing" class="section">
-            <div class="container" id="presentation">
-                <div class="row no-margin" style="text-align: -webkit-right;">
-                    <div class="whoIs" >
-                        <div class="marjo">
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
-                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
-                        </div>
-                    </div>
-                    <div class="whoIs" >
-                        <div class="greg">
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Grégory Guiné</h4>
-                            <p class="description">Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem.</p>
-                        </div>
-                    </div>
-                    {# Masqué au dessus de width 992px #}
-                    <div class="whoIs-mobile" >
-                        <div class="row title text-center">
-                            <h2>Qui sommes nous?</h2>
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Marjorie Di Placido Pietri</h4>
-                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget fermentum felis, eu auctor elit. Nam molestie et nulla in porttitor. Pellentesque vel sagittis mi, sed suscipit nibh. Nunc aliquet est vitae porta ultricies. Cras in dui ipsum. Sed consectetur posuere condimentum. In hac habitasse platea dictumst.</p>
-                        </div>
-                        <div class="team-info">
-                            <h4 class="white heading">Grégory Guiné</h4>
-                            <p class="description">Praesent laoreet nulla sit amet tristique rutrum. Sed at est eget nibh convallis convallis quis nec eros. Nullam semper elit nec velit dignissim, sit amet dictum risus suscipit. Sed faucibus lacinia pulvinar. Sed rutrum lorem ullamcorper, ultricies lectus suscipit, scelerisque nisl. Integer vel tempor sem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {{ parent() }}
     {% endblock %}
 
     {% block goldenBook %}
@@ -264,7 +231,7 @@
                             <div class="item text-center">
                                 <i class="icon fa fa-linkedin"></i>
                                 <h4 class="white light">Marjorie a été diablement efficace en nous prodiguant des profils de qualité, totalement en adequation avec nos besoins, pourtant spécifiques et exigeants. Elle a eu un rôle déterminant dans les recrutements que nous avons conduit. Je ne peux que la recommander chaudement !</h4>
-                                <h4 class="light-white light">Sabrina Taelman Martini</h4>
+                                <h4 class="light-white light">Marc Simeoni - CEO & Co-founder of Volpy.com</h4>
                             </div>
                         </div>
                     </div>

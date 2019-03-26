@@ -6,9 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompanyRepository")
+ * @UniqueEntity("mail", message="Cette adresse mail est déjà utilisée.")
  */
 class Company implements UserInterface
 {
@@ -37,11 +40,6 @@ class Company implements UserInterface
     /**
      * @ORM\Column(type="text")
      */
-    private $mail;
-
-    /**
-     * @ORM\Column(type="text")
-     */
     private $address;
 
     /**
@@ -59,10 +57,26 @@ class Company implements UserInterface
      */
     private $username;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $validEmail;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $randomKey;
+
+    /**
+     * @ORM\Column(type="string", length=190, unique=true)
+     */
+    private $mail;
+
     public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
         $this->username = $this->getName();
+        $this->validEmail = false;
     }
 
     public function getId(): ?int
@@ -199,6 +213,30 @@ class Company implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getValidEmail(): ?bool
+    {
+        return $this->validEmail;
+    }
+
+    public function setValidEmail(bool $validEmail): self
+    {
+        $this->validEmail = $validEmail;
+
+        return $this;
+    }
+
+    public function getRandomKey(): ?string
+    {
+        return $this->randomKey;
+    }
+
+    public function setRandomKey(string $randomKey): self
+    {
+        $this->randomKey = $randomKey;
 
         return $this;
     }

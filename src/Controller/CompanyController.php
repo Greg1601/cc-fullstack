@@ -18,7 +18,7 @@ class CompanyController extends AbstractController
      * @Method("POST")
      */
 
-    public function companyRegistration(Request $request, UserPasswordEncoderInterface $encoder)
+    public function companyRegistration(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -49,13 +49,30 @@ class CompanyController extends AbstractController
         $company->setPicture('img/users/pictures/'.$pictureName);
         
         // Génération d'une clé aléatoire pour l'activation du compte
-        // $company->setRandomKey($cle = md5(microtime(TRUE)*100000));
+        $company->setRandomKey($cle = md5(microtime(TRUE)*100000));
         $em->persist($company);
         $em->flush();
 
-        return $this->redirectToRoute('homePro'); 
-                Response::HTTP_OK
+        $message = (new \Swift_Message('Corse-Connexion - Bienvenue'))
+            ->setFrom('info@corse-connexion.corsica')
+            ->setTo($company->getMail())
+            ->setBody(
+                $this->renderView(
+                    'emails/companyRegistration.html.twig',[
+                        'company' => $company
+                    ]
+                ),
+                'text/html'
+            )
         ;
+
+        $mailer->send($message);
+
+        $referer = $request
+                ->headers
+                ->get('referer');
+
+        return $this->redirect($referer);
     }
 
     /**
@@ -90,11 +107,38 @@ class CompanyController extends AbstractController
         $user->setUsername($request->request->get('name'));
         
         // Génération d'une clé aléatoire pour l'activation du compte
-        // $user->setRandomKey($cle = md5(microtime(TRUE)*100000));
+        $user->setRandomKey($cle = md5(microtime(TRUE)*100000));
         $em->persist($user);
         $em->flush();
 
         return $this->redirectToRoute('profile',
+            [
+                'user' => $user
+            ]
+        ); 
+                Response::HTTP_OK
+        ;
+    }
+
+    /**
+     * @Route("/companyValidEmail", name="companyValidEmail")
+     */
+    public function companyValidEmailAction(Request $request)
+    {
+        // récupération de tous les éléments de JobOffer pour affichage.
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Company::class)
+        ->findOneById($_GET['userId']);
+        
+        $user->setValidEmail(true);
+
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('homePro',
             [
                 'user' => $user
             ]

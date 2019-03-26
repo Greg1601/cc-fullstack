@@ -13,11 +13,11 @@ class AdminController extends AbstractController
 {
 
     /**
-     * @Route("/adminRegistration", name="adminRegistration")
+     * @Route("/registerAdmin", name="registerAdmin")
      * @Method("POST")
      */
 
-    public function adminRegistration(Request $request, UserPasswordEncoderInterface $encoder)
+    public function registerAdmin(Request $request, UserPasswordEncoderInterface $encoder)
     {
 
         $username = $request->request->get('firstname').' '.$request->request->get('lastname');
@@ -30,8 +30,6 @@ class AdminController extends AbstractController
         $admin->setPassword($encoder->encodePassword($admin, $request->request->get('password')));
         $admin->setUsername($username);
         
-        // Génération d'une clé aléatoire pour l'activation du compte
-        // $admin->setRandomKey($cle = md5(microtime(TRUE)*100000));
         $em->persist($admin);
         $em->flush();
 

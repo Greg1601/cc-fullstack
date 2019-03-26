@@ -6,4 +6,4 @@ corse-connexion.corsica
 # swiftMailer
 
 ##### Pour création admin via une console
-curl -d "firstname=valeur&lastname=valeur&email=valeur&password=valeur" -X POST http://localhost:8000/adminRegistration
+curl -d "firstname=valeur&lastname=valeur&email=valeur&password=valeur" -X POST http://localhost:8000/registerAdmin

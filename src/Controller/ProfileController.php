@@ -91,6 +91,8 @@ class ProfileController extends AbstractController
         ->getRepository(Skill::class)
         ->findAll();
 
+        // dump($job);die;
+
         if ($this->getUser())
         {
             $user = $this->getUser();

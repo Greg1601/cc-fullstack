@@ -4,7 +4,7 @@
 
 {% block logoLink %}"/talent"{% endblock %}
 
-{% block navbar %} 
+{% block navbarButtons %} 
     
     <li><a href="/talent">Espace Talents</a></li>
     <li><a href="/pro">Espace Entreprises</a></li>
@@ -15,10 +15,6 @@
         <li><a href="#" data-toggle="modal" data-target="#modalLogin" class="btn btn-blue">Connexion</a></li>
         <li><a href="#" data-toggle="modal" data-target="#modalRegistrationTalent" class="btn btn-blue">Inscription</a></li>
     {% endif %}
-    <br>
-    <div class="align-content-end">
-        <a href="/admin" class="other-link">Espace Admin</a>
-    </div>
 
 
     {% endblock %}
@@ -68,6 +64,12 @@
                                         <p class="muted regular">Télétravail possible</p>
                                     {% else %}
                                         <p class="muted regular">Télétravail: Non</p>
+                                    {% endif %}
+
+                                    {% if job.freelancePossibility == true %}
+                                        <p class="muted regular">Ouvert aux talents freelance</p>
+                                    {% else %}
+                                        <p class="muted regular">Freelance: Non</p>
                                     {% endif %}
                                     <p class="muted regular">Salaire indicatif: {{ job.salary }}</p>
                                 </div>

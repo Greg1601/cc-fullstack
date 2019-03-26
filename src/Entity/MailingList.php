@@ -36,6 +36,11 @@ class MailingList
      */
     private $isOkForMailing;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $phone;
+
     public function __construct()
     {
         $this->isOkForMailing = true;
@@ -90,6 +95,18 @@ class MailingList
     public function setIsOkForMailing(bool $isOkForMailing): self
     {
         $this->isOkForMailing = $isOkForMailing;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

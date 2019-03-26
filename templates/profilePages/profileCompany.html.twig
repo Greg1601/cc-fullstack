@@ -6,7 +6,7 @@
 
 {% block logoLink %} {{ parent() }} {% endblock %}
 
-{% block navbar %} 
+{% block navbarButtons %} 
 
     
     <li><a href="/talent">Espace Talents</a></li>
@@ -55,20 +55,20 @@
                     </div>
                     <div class="details">
                         <p class="profileElement">Offres publiées actuellement:</p>
-                        {% for offer in user.jobOffers %}
-                            <div class="profileButtons">
-                                <form method="post" action="/job">
+                        <div class="details-offers">
+                            {% for offer in user.jobOffers %}
+                                <form method="post" action="/job" class="details-offer">
                                     <input type="hidden" name="id" value="{{ offer.id }}">
-                                    <button type="submit" class="btn btn-offer">{{ offer.jobName }}</button>
+                                    <button type="submit" class="btn btn-offer" style="width: 100%;"><span class="buttontext">{{ offer.jobName }}</span></button>
                                 </form>  
-                            </div>
-                        {% else %}
-                            <li>Aucune offre d'emploi publiée actuellement</li>
-                        {% endfor %}
+                            {% else %}
+                                <li>Aucune offre d'emploi publiée actuellement</li>
+                            {% endfor %}
+                        </div>
                     </div>
             </div>
-            <div class="row title text-center d-flex">
-                <a href="#" data-toggle="modal" data-target="#modalAddOffer" class="btn btn-blue">Ajouter une offre d'emploi</a>
+            <div class="row title text-center d-flex justify-content-between" style="margin-top: 3rem;">
+                <a href="#" data-toggle="modal" data-target="#modalAddOffer" class="btn btn-blue btn-offers">Ajouter une offre d'emploi</a>
                 <a href="#" data-toggle="modal" data-target="#modalEditCompany" class="btn btn-blue">Modifier vos informations</a>
             </div>
         </div>
@@ -130,6 +130,10 @@
                         <input type="text" name="contact" class="form-control form-white" placeholder="Contact">
                         <div class="form-white">
                             <label for="remotePossibility">Télétravail possible</label>
+                            <input type="checkbox" name="remotePossibility">
+                        </div>
+                        <div class="form-white">
+                            <label for="remotePossibility">Ouvert au freelance?</label>
                             <input type="checkbox" name="remotePossibility">
                         </div>
                         <div class="form-control form-white file-input">

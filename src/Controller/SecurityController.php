@@ -26,9 +26,10 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
+        // dump($authenticationUtils);die;
         $lastUsername = $authenticationUtils->getLastUsername();
         // $session = new Session();
-        // dump($error);die;
+        // dump($this->getUser());die;
         $this->addFlash(
             'notice',
             'Identifiants de connexion invalides!!!'
@@ -38,7 +39,11 @@ class SecurityController extends AbstractController
         ->headers
         ->get('referer');
 
-        
+        // dump($referer);die;
+
+        if (null === $referer ) {
+            return $this->redirectToRoute('home');
+        }
         if ('http://127.0.0.1:8000/job' === $referer ) {
             return $this->redirectToRoute('jobList');
         }
@@ -49,38 +54,45 @@ class SecurityController extends AbstractController
             return $this->redirect($referer);
         }
 
+        // return $this->redirectToRoute('404page'); 
+        //     Response::HTTP_OK
+        //     ;
+
     }
 
-    // /**
-    //  * @Route("/checkMail", name="checkMail")
-    //  */
-    // public function checkMailAction()
-    // {
-    //     $_POST['email'];
-    //     dump($_POST['email']);die;
+    /**
+     * @Route("/checkMail", name="checkMail")
+     */
+    public function checkMailAction(Request $request)
+    {
+        // $_POST['email'];
+        // dump($_POST['email']);die;
         
-    //     $testCompanyMails = $this->getDoctrine()
-    //                         ->getManager()
-    //                         ->getRepository(Company::class)
-    //                         ->findOneMail($_POST['email']);
+        $testCompanyMails = $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository(Company::class)
+                            ->findOneByMail($_POST['email']);
 
-    //     $testTalentMails = $this->getDoctrine()
-    //                         ->getManager()
-    //                         ->getRepository(Talent::class)
-    //                         ->findOneMail($_POST['email']);
+        $testTalentMails = $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository(Talent::class)
+                            ->findOneByMail($_POST['email']);
 
-    //     $testAdminMails = $this->getDoctrine()
-    //                         ->getManager()
-    //                         ->getRepository(Admin::class)
-    //                         ->findOneMail($_POST['email']);
+        $testAdminMails = $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository(Admin::class)
+                            ->findOneByMail($_POST['email']);
 
-    //     if ( $testAdminMails == null && $testCompanyMails == null && $testTalentMails == null) {
-    //         echo "OK";
-    //     }
-    //     else {
-    //         echo "Adresse email déjà utilisée";
-    //     }
-    // }
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            return new Response ("Vous devez entrer une adresse mail valide");
+        }
+        elseif ( $testAdminMails == null && $testCompanyMails == null && $testTalentMails == null) {
+            return new Response ("Email disponible");
+        }
+        else {
+            return new Response ("Email déjà utilisé");
+        }
+    }
 
     /**
      * @Route("/logout", name="logout")
@@ -107,10 +119,10 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/resetPassword", name="resetPassword")
+     * @Route("/mailPassword", name="mailPassword")
      * @Method("POST")
      */
-    public function resetpasswordAction(Request $request)
+    public function mailpasswordAction(Request $request, \Swift_Mailer $mailer)
     {
         $mail = $request->request->get('email');
         // $user = null;
@@ -146,6 +158,20 @@ class SecurityController extends AbstractController
 
         if ($user) {
             // envoyer le mail à la boite concernée
+            $message = (new \Swift_Message('Mot de passe oublié - Corse Connexion'))
+            ->setFrom('info@corse-connexion.corsica')
+            ->setTo($user->getMail())
+            ->setBody(
+                $this->renderView(
+                    'emails/lostPasswordEmail.html.twig',[
+                        'user' => $user
+                    ]
+                ),
+                'text/html'
+            )
+        ;
+
+        $mailer->send($message);
         }
 
         $skills = $this->getDoctrine()
@@ -158,19 +184,82 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/newPassword", name="newPassword")
-    //  */
-    // public function newPasswordAction()
-    // {
-    //     $skills = $this->getDoctrine()
-    //     ->getManager()
-    //     ->getRepository(Skill::class)
-    //     ->findAll();
+    /**
+     * @Route("/newPassword", name="newPassword")
+     */
+    public function newPasswordAction()
+    {
 
-    //     return $this->render('resetPassword.html.twig',[
-    //         'skills' => $skills,
-    //     ]);
-    // }
+        $userMail = $_GET['mail'];
+        // dump($userMail);die;
+        
+        if ($this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail)) {  
+            $user = $this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail);
+            $usertype = 'Talent';
+            
+        }
+        elseif ($this->getDoctrine()->getManager()->getRepository(Company::Class)->findOneByMail($userMail)) {
+            $user = $this->getDoctrine()->getManager()->getRepository(Company::Class)->findOneByMail($userMail);
+            $usertype = 'Company';
+        }
+        elseif ($this->getDoctrine()->getManager()->getRepository(Admin::Class)->findOneByMail($userMail)) {
+            $user = $this->getDoctrine()->getManager()->getRepository(Admin::Class)->findOneByMail($userMail);
+            $usertype = 'Admin';
+        }
+
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
+
+        return $this->render('newPassword.html.twig',[
+            'skills' => $skills,
+            'user' => $user,
+            'usertype' => $usertype
+        ]);
+    }
+
+    /**
+     * @Route("/setNewPassword", name="setNewPassword")
+     */
+    public function setNewPasswordAction(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userMail = $request->request->get('mail');
+        $skills = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(Skill::class)
+        ->findAll();
+
+        if ($this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail)) {  
+            $user = $this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail);
+
+            $user->setPassword($encoder->encodePassword($user, $request->request->get('password')));
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('homeTalent');
+        }
+        elseif ($this->getDoctrine()->getManager()->getRepository(Company::Class)->findOneByMail($userMail)) {
+            $user = $this->getDoctrine()->getManager()->getRepository(Company::Class)->findOneByMail($userMail);
+
+            $user->setPassword($encoder->encodePassword($user, $request->request->get('password')));
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('homePro');
+        }
+        elseif ($this->getDoctrine()->getManager()->getRepository(Admin::Class)->findOneByMail($userMail)) {
+            $user = $this->getDoctrine()->getManager()->getRepository(Admin::Class)->findOneByMail($userMail);
+            
+            $user->setPassword($encoder->encodePassword($user, $request->request->get('password')));
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('homePro');
+        }
+
+    }
+
 
 }
