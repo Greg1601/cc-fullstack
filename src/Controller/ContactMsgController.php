@@ -19,7 +19,6 @@ class ContactMsgController extends AbstractController
 
         $contact = new ContactMsg;
 
-        // dump($_POST);die;
         $contact->setType($request->request->get('contactType'));
         $contact->setMail($request->request->get('email'));
         $contact->setName($request->request->get('name'));

@@ -155,6 +155,11 @@ class TalentController extends AbstractController
 
         $mailer->send($message);
 
+        $this->addFlash(
+            'notice',
+            'Merci de consulter ta boite de réception afin de confirmer ton adresse mail!'
+        );
+
         $referer = $request
                 ->headers
                 ->get('referer');

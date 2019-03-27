@@ -26,10 +26,8 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
-        // dump($authenticationUtils);die;
         $lastUsername = $authenticationUtils->getLastUsername();
-        // $session = new Session();
-        // dump($this->getUser());die;
+        
         $this->addFlash(
             'notice',
             'Identifiants de connexion invalides!!!'
@@ -38,8 +36,6 @@ class SecurityController extends AbstractController
         $referer = $request
         ->headers
         ->get('referer');
-
-        // dump($referer);die;
 
         if (null === $referer ) {
             return $this->redirectToRoute('home');
@@ -53,21 +49,13 @@ class SecurityController extends AbstractController
         else {
             return $this->redirect($referer);
         }
-
-        // return $this->redirectToRoute('404page'); 
-        //     Response::HTTP_OK
-        //     ;
-
     }
 
     /**
      * @Route("/checkMail", name="checkMail")
      */
     public function checkMailAction(Request $request)
-    {
-        // $_POST['email'];
-        // dump($_POST['email']);die;
-        
+    {        
         $testCompanyMails = $this->getDoctrine()
                             ->getManager()
                             ->getRepository(Company::class)
@@ -125,8 +113,7 @@ class SecurityController extends AbstractController
     public function mailpasswordAction(Request $request, \Swift_Mailer $mailer)
     {
         $mail = $request->request->get('email');
-        // $user = null;
-        
+        $user = null;
         $testCompany = $this->getDoctrine()
         ->getManager()
         ->getRepository(Company::class)
@@ -142,21 +129,18 @@ class SecurityController extends AbstractController
         ->getRepository(Admin::class)
         ->findOneByMail($mail);
         
-        // dump($testTalent);die;
+        // dump([$testAdmin, $testCompany, $testTalent]);die;
         if ($testAdmin != null) {
             $user = $testAdmin;
-            // dump('admin');die;
         }
         elseif ($testCompany != null) {
             $user = $testCompany;
-            // dump('company');die;
         }
         elseif ($testTalent != null) {
             $user = $testTalent;
-            // dump('talent');die;
         }
-
-        if ($user) {
+        
+        if ($user != null) {
             // envoyer le mail à la boite concernée
             $message = (new \Swift_Message('Mot de passe oublié - Corse Connexion'))
             ->setFrom('info@corse-connexion.corsica')
@@ -172,16 +156,19 @@ class SecurityController extends AbstractController
         ;
 
         $mailer->send($message);
-        }
 
-        $skills = $this->getDoctrine()
-        ->getManager()
-        ->getRepository(Skill::class)
-        ->findAll();
+        }
+    
+    return $this->redirectToRoute('home');
+
+        // $skills = $this->getDoctrine()
+        // ->getManager()
+        // ->getRepository(Skill::class)
+        // ->findAll();
         
-        return $this->render('homepages/homepage.html.twig',[
-            'skills' => $skills
-        ]);
+        // return $this->render('homepages/homepage.html.twig',[
+        //     'skills' => $skills
+        // ]);
     }
 
     /**
@@ -191,7 +178,6 @@ class SecurityController extends AbstractController
     {
 
         $userMail = $_GET['mail'];
-        // dump($userMail);die;
         
         if ($this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail)) {  
             $user = $this->getDoctrine()->getManager()->getRepository(Talent::Class)->findOneByMail($userMail);

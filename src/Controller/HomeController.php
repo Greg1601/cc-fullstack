@@ -54,10 +54,9 @@ class HomeController extends AbstractController
             'isChecked' => '1'
         ]);
 
-        // Shuffle de talent
         shuffle($talents);
 
-        //récupération des 3 derniers éléments du tableau $talentsq mélangé
+        //récupération des 3 derniers éléments du tableau $talents mélangé
         $threeTalents = array_slice($talents, 0, 3, true);
 
         // récupération de tous les élements Skill pour affichage si inscription
@@ -92,7 +91,6 @@ class HomeController extends AbstractController
 
         $usertype=null;
 
-        //shuffle JobOffer
         shuffle($jobs);
 
         // récupération de tous les élements Skill pour affichage si inscription

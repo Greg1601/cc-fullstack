@@ -94,7 +94,13 @@
 						{% endblock %}
 					</ul>
 				</div>
-					{% block flashMessages %}{% endblock %}
+					{% block flashMessages %}
+						{% for message in app.flashes('notice') %}
+							<div class="alert alert-success">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endblock %}
 				<!-- /.navbar-collapse -->
 			</div>
 			<!-- /.container-fluid -->
@@ -145,7 +151,7 @@
 							</div>
 							<div class="team-info">
 								<h4 class="white heading">Grégory Guiné</h4>
-								<p class="description">#35ans #HardWorker #Passionate <br>Amoureux de la Corse, Grégory est passionné par le numérique et aime sortir de sa zone de confort. Son implication, ses compétences et sa bonne humeur en font un partenaire de choix pour la réussite de tes projets.</p>
+								<p class="description">#35ans #HardWorker #Passionate <br>Amoureux de son île, Grégory aime les challenges en sortant de sa zone de confort. A l’écoute, impliqué, son regard technique et sa bonne humeur t’aideront à faire décoller ton projet.</p>
 							</div>
 						</div>
 						{# Masqué au dessus de width 992px #}
@@ -159,7 +165,7 @@
 							</div>
 							<div class="team-info">
 								<h4 class="white heading">Grégory Guiné</h4>
-								<p class="description">#35ans #HardWorker #Passionate <br>Amoureux de la Corse, Grégory est passionné par le numérique et aime sortir de sa zone de confort. Son implication, ses compétences et sa bonne humeur en font un partenaire de choix pour la réussite de tes projets.</p>
+								<p class="description">#35ans #HardWorker #Passionate <br>Amoureux de son île, Grégory aime les challenges en sortant de sa zone de confort. A l’écoute, impliqué, son regard technique et sa bonne humeur t’aideront à faire décoller ton projet.</p>
 							</div>
 						</div>
 					</div>
@@ -194,7 +200,7 @@
 							<div class="form-group">
 								<textarea class="form-control" name="message" rows="3" placeholder="Message" required ></textarea>
 							</div>
-							<p>Ces données ne sont en aucun cas susceptibles d'être revendues. Pas d'inquiètude, on est pas comme ça.</p>
+							<p>Pas d'inquiètude! Ces données ne sont en aucun cas susceptibles d'être revendues.</p>
 							<button type="submit" class="btn btn-blue">Envoyer</button>
 						</form>
 					</div>
@@ -203,7 +209,7 @@
 					<div class="col-sm-8 legal">
 						<li><p>&copy; 2019 Tous droits réservés</p></li>
 						<li><a href="/privacy"><p>Politique de confidentialité</p></a></li>
-						<li><a href=""><p>Mentions légales</p></a></li>
+						<li><a href="/CGU"><p>Mentions légales</p></a></li>
 					</div>
 					{# <div class="col-sm-4 text-right text-center-mobile">
 						<ul class="social-footer">
@@ -345,7 +351,7 @@
 							<input type="text" name="firstname" class="form-control form-white" placeholder="Prénom" required>
 							<input type="text" name="lastname" class="form-control form-white" placeholder="Nom" required>
 							<input type="tel" name="phone" class="form-control form-white" placeholder="Téléphone" required>
-							<p>Ces données ne sont en aucun cas susceptibles d'être revendues. Pas d'inquiètude, on est pas comme ça.</p>
+							<p>Pas d'inquiètude! Ces données ne sont en aucun cas susceptibles d'être revendues.</p>
 							
 							<button type="submit" class="btn btn-submit" formaction="getMail" formmethod="post">Envoyer</button>
 						</form>

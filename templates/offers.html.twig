@@ -16,15 +16,6 @@
         <li><a href="#" data-toggle="modal" data-target="#modalRegistrationTalent" class="btn btn-blue">Inscription</a></li>
     {% endif %}
 
-
-    {% endblock %}
-
-{% block flashMessages %} 
-    {% for message in app.flashes('notice') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
 {% endblock %}
 
 {% block header %}
